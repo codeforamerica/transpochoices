@@ -1,0 +1,28 @@
+TranspoChoices
+
+	For comparing the calories of subway sanwiches
+
+API
+	/info_for_route?origin=<>&destination=<>
+		returns a JSON markup thing.
+	example:
+	info_for_route?origin=94109&destination=94609
+	returns:
+	
+	{"driving":{
+		"distance":{"unit":"meters","value":19276},
+		"duration":{"unit":"seconds","value":1485},
+		"emmisions":{"unit":"bunnies killed","value":1},
+		"cost":{"unit":"USD","value":1}},
+	"walking":{
+		"distance":{"unit":"meters","value":20340},
+		"duration":{"unit":"seconds","value":6843},
+		"emmisions":{"unit":"bunnies killed","value":3},
+		"cost":{"unit":"USD","value":2}},
+	"bicycling":{
+		"distance":{"unit":"meters","value":20723},
+		"duration":{"unit":"seconds","value":4322},
+		"emmisions":{"unit":"bunnies killed","value":5},
+		"cost":{"unit":"USD","value":4}}
+	}
+
