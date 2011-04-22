@@ -1,5 +1,8 @@
 require 'net/http'
 
+CALORIES_PER_SECOND_WALKING = 8/60.0
+BIKE_SPEED_IN_KM_PER_SECOND = 30 / 3600.0 #30 km/h into km/sec
+
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -53,6 +56,7 @@ def calculate_transit_by_bing_resource(resource)
 	}
 end
 
+
 get "/info_for_route_bing" do
 	results = get_info_from_bing(params)
 	
@@ -66,11 +70,14 @@ get "/info_for_route_bing" do
 	end
 	if (resource=results["walking"])
 		results["walking"]=generic_by_bing_resource(resource)
+		results["walking"][:calories]=results["walking"][:duration] * CALORIES_PER_SECOND_WALKING
+		
 		results["biking"]=generic_by_bing_resource(resource)
-		results["biking"]["travelDuration"] /= 4.0
+		results["biking"][:duration] = results["biking"][:distance] / BIKE_SPEED_IN_KM_PER_SECOND
 	end
 	if (resource=results["transit"])
 		results["transit"] = calculate_transit_by_bing_resource(resource)
+		results["transit"][:calories] = results["transit"][:while_walking][:calories] = results["transit"][:while_walking][:duration] * CALORIES_PER_SECOND_WALKING
 	end
 	
 	output = {:units=>
