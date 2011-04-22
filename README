@@ -3,26 +3,36 @@ TranspoChoices
 	For comparing the calories of subway sanwiches
 
 API
-	/info_for_route?origin=<>&destination=<>
+	/info_for_route_bing?origin=<>&destination=<>
 		returns a JSON markup thing.
 	example:
-	info_for_route?origin=94109&destination=94609
+	info_for_route_bing?destination=88%202nd%20%20st,%20san%20francisco&origin=563%2046th%20st%20oakland
 	returns:
 	
-	{"driving":{
-		"distance":{"unit":"meters","value":19276},
-		"duration":{"unit":"seconds","value":1485},
-		"emmisions":{"unit":"bunnies killed","value":1},
-		"cost":{"unit":"USD","value":1}},
-	"walking":{
-		"distance":{"unit":"meters","value":20340},
-		"duration":{"unit":"seconds","value":6843},
-		"emmisions":{"unit":"bunnies killed","value":3},
-		"cost":{"unit":"USD","value":2}},
-	"bicycling":{
-		"distance":{"unit":"meters","value":20723},
-		"duration":{"unit":"seconds","value":4322},
-		"emmisions":{"unit":"bunnies killed","value":5},
-		"cost":{"unit":"USD","value":4}}
+	{
+		"units": {
+			"distance": "kilometers",
+			"duration": "seconds",
+			"emissions": "milliliters of innocent bunny blood",
+			"cost": "usd",
+			"calories": "calories"
+		},
+		"results": {
+			"driving": {
+				"distance": 15.943,
+				"duration": 900
+			},
+			"walking": null,
+			"transit": {
+				"duration": 2427,
+				"while_walking": {
+					"distance": 1.872,
+					"duration": 1347
+				},
+				"while_transit": {
+					"duration": 1080
+				}
+			}
+		}
 	}
 
