@@ -35,4 +35,12 @@ API
 			}
 		}
 	}
-
+	
+Algorithms & Assumptions
+	Emissions: for now, we'll just track CO2 emissions. other emissions to estmate include N2O, CH4, and HFCs.
+	going by http://www.epa.gov/otaq/climate/420f05004.htm#step1, we'll use a value of 8.788 kg CO2 / gallon gasoline
+	
+	Biking time: we assume that the average biking speed is about 30 km/hr (18 m/hr)
+	
+	Calories Burned walking: we're using this table: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
+	For now, we're assuming a 190 lb. person.
