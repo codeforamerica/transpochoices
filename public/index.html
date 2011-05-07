@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="apple-touch-icon" href="transpo.png"/>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
+  <link rel="stylesheet" href="client/style.css" />
+  <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+
+  <title>TranspoChoices</title> 
+</head> 
+<body> 
+
+<!-- Home Page -->
+<div data-role="page" id="home">
+
+  <div data-role="header">
+    <a href="#search" data-icon="arrow-d" data-rel="dialog" data-transition="slidedown">Search</a>
+    <h1>Transpo</h1>
+  </div>
+
+  <div data-role="content">
+    Main content
+  </div>
+</div>
+
+<!-- Search Dialog -->
+<div data-role="page" id="search">
+  <div data-role="header">
+    <h1>Directions</h1>
+    <a href="javascript:void(0);">Clear</a>
+  </div>
+
+  <div id="search-panel" data-role="content">
+    <label for="from">From</label>
+    <input type="text" name="from" id="from" value="" />
+    <label for="to">To</label>
+    <input type="text" name="to" id="to" value="" />
+  </div>
+  
+  <a href="#home" data-role="button" data-transition="slidedown" data-direction="reverse">Search</a>
+</div>
+
+<!-- Plan Details -->
+<div data-role="page" id="plan">
+
+  <div data-role="header">
+    <h1>Bar</h1>
+  </div>
+
+  <div data-role="content">  
+    <p>I'm first in the source order so I'm shown as the page.</p>    
+    <p><a href="#foo">Back to foo</a></p>  
+  </div>
+</div>
+</body>
+</html>
