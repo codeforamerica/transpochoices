@@ -6,11 +6,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="apple-touch-icon" href="transpo.png"/>
+  <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
   <link rel="stylesheet" href="client/style.css" />
+  
   <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+  <script src="client/transpo.js"></script>
   <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
-
   <title>TranspoChoices</title> 
 </head> 
 <body> 
@@ -24,7 +26,8 @@
   </div>
 
   <div data-role="content">
-    Main content
+    <div>Title</div>
+    <div>Content</div>
   </div>
 </div>
 
@@ -32,17 +35,17 @@
 <div data-role="page" id="search">
   <div data-role="header">
     <h1>Directions</h1>
-    <a href="javascript:void(0);">Clear</a>
+    <a href="javascript:void(0);" id="clear-button">Clear</a>
   </div>
 
   <div id="search-panel" data-role="content">
     <label for="from">From</label>
-    <input type="text" name="from" id="from" value="" />
+    <input type="text" name="from" id="origin" value="85 2nd St, San Francisco" />
     <label for="to">To</label>
-    <input type="text" name="to" id="to" value="" />
+    <input type="text" name="to" id="destination" value="1268 Grant Avenue, San Francisco" />
   </div>
   
-  <a href="#home" data-role="button" data-transition="slidedown" data-direction="reverse">Search</a>
+  <a href="#home" id="search-button" data-role="button" data-transition="slidedown" data-direction="reverse">Search</a>
 </div>
 
 <!-- Plan Details -->
