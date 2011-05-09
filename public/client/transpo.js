@@ -3,6 +3,7 @@
       $originInput,
       $destinationInput,
       $clearButton,
+      $metricsContent,
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -17,12 +18,21 @@
   var calculate = function (origin, destination) {
     $.ajax({
       url: 'info_for_route_bing',
+      dataType: 'json',
       data: {
         origin: origin,
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        log(data);
+        var html = '';
+                
+        $.each(data.results, function(key, val) {
+          html += '<div>' + key + '</div>';
+        });
+        
+        log(html);
+        
+        $metricsContent.html(html);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
@@ -44,6 +54,7 @@
     $originInput = $('#origin');
     $destinationInput = $('#destination');    
     $clearButton = $('#clear-button');
+    $metricsContent = $('#metrics-content');
     
     bindEvents();
   });
