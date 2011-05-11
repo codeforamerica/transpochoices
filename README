@@ -44,3 +44,6 @@ Algorithms & Assumptions
 	
 	Calories Burned walking: we're using this table: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
 	For now, we're assuming a 190 lb. person.
+	
+Setting Up:
+	You need to set the environment variable BING_KEY to your Bing API key
