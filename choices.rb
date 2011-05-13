@@ -1,8 +1,12 @@
 require 'net/http'
 
-CALORIES_PER_SECOND_WALKING = 8/60.0
+CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
+CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
 BIKE_SPEED_IN_KM_PER_SECOND = 30 / 3600.0 #30 km/h into km/sec
-
+CAMRY_MILEAGE = 35.406 #km / gallon
+EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
+DOLLARS_PER_GALLON = 4.147 #USD
+AAA_COST_PER_KM = 0.356 #USD/km
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -11,6 +15,7 @@ def get_info_from_bing(params)
 	results =modes.map do |mode|
 		begin
 			usable_url=URI.parse(URI.escape(base_url+mode+query_params))
+			#puts "calling url #{usable_url}"
 			response = JSON.parse(Net::HTTP.get(usable_url))
 			
 			resource = response["resourceSets"][0]["resources"][0]
@@ -67,6 +72,10 @@ get "/info_for_route_bing" do
 	
 	if (resource=results["driving"])
 		results["driving"]=generic_by_bing_resource(resource)
+		gas_consumed = results["driving"][:distance] / CAMRY_MILEAGE
+		results["driving"][:emissions] = (gas_consumed * EMISSIONS_PER_GALLON).round(5)
+		results["driving"][:cost] = (results["driving"][:distance] * AAA_COST_PER_KM).round(2)
+		results["driving"][:calories] = (results["driving"][:duration] * CALORIES_PER_SECOND_SITTING).round(2)
 	end
 	if (resource=results["walking"])
 		results["walking"]=generic_by_bing_resource(resource)
@@ -84,7 +93,7 @@ get "/info_for_route_bing" do
 		{
 			:distance=>"kilometers",
 			:duration=>"seconds",
-			:emissions=>"milliliters of innocent bunny blood",
+			:emissions=>"kg of CO2",
 			:cost=>"USD",
 			:calories=>"calories"
 		},
