@@ -46,6 +46,9 @@ Algorithms & Assumptions
 	Gas prices flucuate constantly, and vary widely between regions. for the moment, we'll use 4.147$ / gallon (the average of ($4.040 for the east coast, and $4.254 for california, to cover philidelphia and california)
 	http://www.eia.doe.gov/oil_gas/petroleum/data_publications/wrgp/mogas_home_page.html
 	
+	instead of using gas price directly, we'll use AAA's average cost per mile, assuming a medium sedan, 15k miles per year, is $0.573/mile, which is $0.356/km
+	http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf
+	
 	still trying to find a good source, but it looks like you can assume between 1.4~1.7 calories per minute while sitting. I'll use 1.7, assuming a heavy person.
 	
 	Biking time: we assume that the average biking speed is about 30 km/hr (18 m/hr)
