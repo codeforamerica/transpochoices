@@ -1,0 +1,15 @@
+<% var i, j; %>
+<table>
+  <thead>
+    <tr> <th><% for(i=0; i<metrics.length; i++) { %> <th><%= metrics[i] %> <% } %>
+  </thead>
+  <tbody>
+    <%
+      for(j=0; j<modes.length; j++) {
+    %>  
+        <tr><th><%= modes[j] %> <% for(i=0; i<metrics.length; i++) { %> <td><%= data.results[modes[j]][metrics[i]] %> <% } %>
+    <%
+      }
+    %>
+  </tbody>
+</table>

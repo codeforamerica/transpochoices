@@ -4,6 +4,11 @@
       $destinationInput,
       $clearButton,
       $metricsContent,
+      options = {
+          modes: ['walking', 'biking', 'driving'],
+          metrics: ['cost', 'duration', 'calories', 'emissions']
+      },
+      metricsEjs = new EJS({url: 'views/metrics.ejs'}),
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -24,14 +29,12 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        var html = '';
-                
-        $.each(data.results, function(key, val) {
-          html += '<div>' + key + '</div>';
+        var html = metricsEjs.render({
+          modes: options.modes,
+          metrics: options.metrics,
+          data: data
         });
-        
-        log(html);
-        
+
         $metricsContent.html(html);
       },
       error: function(jqXHR, textStatus, errorThrown) {
