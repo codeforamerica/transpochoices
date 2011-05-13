@@ -37,7 +37,7 @@ API
 	}
 	
 Algorithms & Assumptions
-	Emissions: for now, we'll just track CO2 emissions. other emissions to estmate include N2O, CH4, and HFCs.
+	Automobile: for now, we'll just track CO2 emissions. other emissions to estmate include N2O, CH4, and HFCs.
 	going by http://www.epa.gov/otaq/climate/420f05004.htm#step1, we'll use a value of 8.788 kg CO2 / gallon gasoline
 	
 	for now, we're assuming a 2010 Toyota Camry, with 22 Miles per Gallon (http://www.fueleconomy.gov/feg/findacar.htm)
@@ -47,7 +47,7 @@ Algorithms & Assumptions
 	http://www.eia.doe.gov/oil_gas/petroleum/data_publications/wrgp/mogas_home_page.html
 	
 	instead of using gas price directly, we'll use AAA's average cost per mile, assuming a medium sedan, 15k miles per year, is $0.573/mile, which is $0.356/km
-	http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf
+	http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdfl
 	
 	still trying to find a good source, but it looks like you can assume between 1.4~1.7 calories per minute while sitting. I'll use 1.7, assuming a heavy person.
 	
@@ -55,6 +55,12 @@ Algorithms & Assumptions
 	
 	Calories Burned walking: we're using this table: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
 	For now, we're assuming a 190 lb. person.
+	
+	Emissions while walking or biking: technically more than 0 - you have to account for the production of shoes or bikes, and CO2 exhaled during activity. I can't find a number, and it's pretty close to 0. I'm calling it 0 for now.
+	
+	costs of biking: http://www.kenkifer.com/bikepages/advocacy/autocost.htm
+	roughly $0.115 / mile ($0.07146 / km)
+	no exact number established
 	
 Setting Up:
 	You need to set the environment variable BING_KEY to your Bing API key

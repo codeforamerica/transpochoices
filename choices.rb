@@ -7,6 +7,7 @@ CAMRY_MILEAGE = 35.406 #km / gallon
 EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
 DOLLARS_PER_GALLON = 4.147 #USD
 AAA_COST_PER_KM = 0.356 #USD/km
+BIKING_COST_PER_KM = 0.07146 #USD/km
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -79,10 +80,15 @@ get "/info_for_route_bing" do
 	end
 	if (resource=results["walking"])
 		results["walking"]=generic_by_bing_resource(resource)
-		results["walking"][:calories]=results["walking"][:duration] * CALORIES_PER_SECOND_WALKING
+		results["walking"][:calories]=(results["walking"][:duration] * CALORIES_PER_SECOND_WALKING).round(1)
+		results["walking"][:emissions]=0
+		results["walking"][:cost]=0
 		
 		results["biking"]=generic_by_bing_resource(resource)
-		results["biking"][:duration] = results["biking"][:distance] / BIKE_SPEED_IN_KM_PER_SECOND
+		results["biking"][:duration] = (results["biking"][:distance] / BIKE_SPEED_IN_KM_PER_SECOND).round(0)
+		#results["biking"][:calories] = results["biking"][:distance]
+		results["biking"][:emissions] = 0
+		results["biking"][:cost]= (results["biking"][:distance] * BIKING_COST_PER_KM).round(2)
 	end
 	if (resource=results["transit"])
 		results["transit"] = calculate_transit_by_bing_resource(resource)
