@@ -2,6 +2,7 @@ require 'net/http'
 
 CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
 CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
+CALORIES_PER_KM_BIKING = 24 #dietary calories / km
 BIKE_SPEED_IN_KM_PER_SECOND = 30 / 3600.0 #30 km/h into km/sec
 CAMRY_MILEAGE = 35.406 #km / gallon
 EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
@@ -86,7 +87,7 @@ get "/info_for_route_bing" do
 		
 		results["biking"]=generic_by_bing_resource(resource)
 		results["biking"][:duration] = (results["biking"][:distance] / BIKE_SPEED_IN_KM_PER_SECOND).round(0)
-		#results["biking"][:calories] = results["biking"][:distance]
+		results["biking"][:calories] = results["biking"][:distance] * CALORIES_PER_KM_BIKING
 		results["biking"][:emissions] = 0
 		results["biking"][:cost]= (results["biking"][:distance] * BIKING_COST_PER_KM).round(2)
 	end

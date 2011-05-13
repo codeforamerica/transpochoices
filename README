@@ -56,6 +56,10 @@ Algorithms & Assumptions
 	Calories Burned walking: we're using this table: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
 	For now, we're assuming a 190 lb. person.
 	
+	biking: 
+	http://morechristlike.com/calories-burned-cycling/
+	at 30km/h, about 24 calories/km
+	
 	Emissions while walking or biking: technically more than 0 - you have to account for the production of shoes or bikes, and CO2 exhaled during activity. I can't find a number, and it's pretty close to 0. I'm calling it 0 for now.
 	
 	costs of biking: http://www.kenkifer.com/bikepages/advocacy/autocost.htm
