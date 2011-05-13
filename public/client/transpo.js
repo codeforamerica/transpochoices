@@ -62,4 +62,8 @@
     bindEvents();
   });
   
+  $('#home').live('pagecreate',function(event) {
+    $.mobile.changePage("#search", "slidedown");
+  });
+  
 })();
