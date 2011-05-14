@@ -7,6 +7,9 @@
 
     #metrics-table tbody td { text-align:center; height:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left;}
+    
+    .metric-value {font-size:20px; font-weight:bold;}
+    .metric-label {font-size:11px;}
 
 .cost { background-image: url('images/cost.png'); }
 .duration { background-image: url('images/duration.png'); }
