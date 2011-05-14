@@ -5,7 +5,7 @@
       $clearButton,
       $metricsContent,
       options = {
-          modes: ['walking', 'biking', 'driving'],
+          modes: ['walking', 'biking', 'transit', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),

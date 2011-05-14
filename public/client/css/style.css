@@ -1,3 +1,18 @@
 #home-footer { position:absolute; bottom:0; }
-    #home-footer a { margin:4px; }
+    #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
+
+#metrics-table { background: url('images/header-bg.png') no-repeat; }
+#metrics-table thead th { height:60px; width:60px; background-repeat: no-repeat; }
+#metrics-table tbody th { height:60px; width:72px; background-repeat: no-repeat; }
+#metrics-table { text-align:center;}
+
+.cost { background-image: url('images/cost.png'); }
+.duration { background-image: url('images/duration.png'); }
+.calories { background-image: url('images/calories.png'); }
+.emissions { background-image: url('images/emissions.png'); }
+
+.walking { background-image: url('images/walking.png'); }
+.biking { background-image: url('images/biking.png'); }
+.transit { background-image: url('images/transit.png'); }
+.driving { background-image: url('images/driving.png'); }

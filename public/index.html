@@ -16,13 +16,12 @@
   <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
   <title>TranspoChoices</title> 
 </head> 
-<body> 
+<body>
 
 <!-- Home Page -->
-<div data-role="page" id="home">  
-  <div data-role="content">
-    <div id="metrics-content">Content</div>
-  </div>
+<div id="home" data-role="page" data-theme="c">
+  <div id="metrics-content">Content</div>
+
 
   <div id="home-footer" data-role="footer">
     <a href="#about">About</a>
@@ -31,7 +30,7 @@
 </div>
 
 <!-- Search Dialog -->
-<div data-role="dialog" id="search">
+<div id="search" data-role="dialog" data-theme="c">
   <div data-role="header">
     <h1>Directions</h1>
     <a href="javascript:void(0);" id="clear-button">Clear</a>
@@ -48,7 +47,7 @@
 </div>
 
 <!-- Plan Details -->
-<div data-role="page" id="plan">
+<div id="plan" data-role="page" data-theme="c">
 
   <div data-role="header">
     <h1>Bar</h1>
@@ -60,7 +59,8 @@
   </div>
 </div>
 
-<div data-role="page" id="about" data-backbtn="false">
+<!-- About Page -->
+<div id="about" data-role="page" data-backbtn="false" data-theme="c">
   <div data-role="header">
     <a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a>
     <h1>About</h1>
