@@ -7,7 +7,7 @@
     <%
       for(j=0; j<modes.length; j++) {
     %>  
-        <tr><th class="<%= modes[j] %>"> <% for(i=0; i<metrics.length; i++) { %> <td><%= Math.round(data.results[modes[j]][metrics[i]]) %> <% } %>
+        <tr><th class="<%= modes[j] %>"> <% for(i=0; i<metrics.length; i++) { %> <td><%= Math.round(results[modes[j]][metrics[i]]) %> <% } %>
     <%
       }
     %>
