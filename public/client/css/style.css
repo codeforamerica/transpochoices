@@ -1,2 +1,3 @@
-#home-footer { position:absolute; bottom:0; padding:4px 0; }
-.footer-button-right { float:right; }
+#home-footer { position:absolute; bottom:0; }
+    #home-footer a { margin:4px; }
+    .footer-button-right { float:right; }
