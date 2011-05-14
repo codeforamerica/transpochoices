@@ -3,7 +3,7 @@ require 'net/http'
 CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
 CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
 CALORIES_PER_KM_BIKING = 24 #dietary calories / km
-BIKE_SPEED_IN_KM_PER_SECOND = 30 / 3600.0 #30 km/h into km/sec
+BIKE_SPEED_IN_KM_PER_SECOND = 14 / 3600.0 #30 km/h into km/sec
 CAMRY_MILEAGE = 35.406 #km / gallon
 EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
 DOLLARS_PER_GALLON = 4.147 #USD
