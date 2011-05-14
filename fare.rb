@@ -2,6 +2,29 @@ require 'csv'
 require 'bigdecimal'
 require 'set'
 
+def csv_to_hash(file)
+	csv = CSV.read(file)
+	headers = csv.shift
+	csv.map do |row|
+		Hash[*headers.zip(row).flatten]
+	end
+end
+
+class String
+	def close_to?(other)
+		self.downcase.gsub(/\W/,'') == other.downcase.gsub(/\W/,'')
+	end
+end
+
+def best_fare(rides,fares)
+	rides.inject(0) do |sum,ride|
+		sum += fares.select {|f| f.matches?([ride])}.map(&:price).min || 99
+	end
+	#puts "fare = #{out}"
+	#out
+end
+
+
 class Fare
 	#attributes
 	attr_accessor :agency_id, :fare_id, :price, :currency, :payment_method, :rules_specified
@@ -14,9 +37,9 @@ class Fare
 			self.instance_variable_set("@#{k}".to_sym,v)
 		end
 		
-		if @price
-			@price = BigDecimal.new(@price)
-		end
+		@price = BigDecimal.new(@price) if @price
+		@transfer_duration = @transfer_duration.to_i if @transfer_duration
+		@transfers = @transfers.to_i if @transfers
 		
 		if @rules_specified
 			@covered_routes ||= []
@@ -30,26 +53,20 @@ class Fare
 		return false if @transfer_duration && (rides.last.end_time - rides.first.start_time) > @transfer_duration
 		
 		return true if !@rules_specified
-		
+		#puts "checking matches. me = #{self.inspect}. rides = #{rides[0].inspect}, #{(@covered_routes.empty? || rides.map(&:route).to_set.subset?(@covered_routes))}, #{(@zone_pairs.empty? || @zone_pairs.find {|(origin,destination)| (origin.nil? || origin==rides.first.origin) && (destination.nil? || destination==rides.last.destination)})}, #{(@contained_zones.empty? || rides.map {|r| [r.origin,r.destination]}.flatten.to_set == @contained_zones)}"
 		return (@covered_routes.empty? || rides.map(&:route).to_set.subset?(@covered_routes)) &&
 			(@zone_pairs.empty? || @zone_pairs.find {|(origin,destination)| (origin.nil? || origin==rides.first.origin) && (destination.nil? || destination==rides.last.destination)}) &&
 			(@contained_zones.empty? || rides.map {|r| [r.origin,r.destination]}.flatten.to_set == @contained_zones)
 	end
 	
 	def self.load(attributes_file,rules_file=nil)
-		att = CSV.read(attributes_file)
-		att_headers = att.shift
+		fare_attributes = csv_to_hash(attributes_file)
 		
 		if rules_file
-			rules = CSV.read(rules_file)
-			rules_headers = rules.shift
-			rules = rules.map do |row|
-				Hash[*rules_headers.zip(row).flatten]
-			end.group_by {|r| r["fare_id"]}
+			rules = csv_to_hash(rules_file).group_by {|r| r["fare_id"]}
 		end
 		
-		return att.map do |row|
-			attributes = Hash[*att_headers.zip(row).flatten]
+		return fare_attributes.map do |attributes|
 			attributes.merge!({:rules_specified => !!rules_file})
 			
 			fare = self.new(attributes)
@@ -57,9 +74,9 @@ class Fare
 			if rules
 				my_rules = rules[fare.fare_id]
 				if my_rules
-					fare.covered_routes = my_rules.map {|r| r["route_id"]}.to_set
+					fare.covered_routes = my_rules.map {|r| r["route_id"]}.to_set.delete(nil)
 					fare.zone_pairs = my_rules.map {|r| [r["origin_id"],r["destination_id"]]}.to_set.delete([nil,nil])
-					fare.contained_zones = my_rules.map {|r| r["contains_id"]}.to_set
+					fare.contained_zones = my_rules.map {|r| r["contains_id"]}.to_set.delete(nil)
 				else
 					fare.rules_specified=false
 				end

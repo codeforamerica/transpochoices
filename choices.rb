@@ -1,4 +1,5 @@
 require 'net/http'
+require './fare.rb'
 
 CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
 CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
@@ -9,6 +10,12 @@ EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
 DOLLARS_PER_GALLON = 4.147 #USD
 AAA_COST_PER_KM = 0.356 #USD/km
 BIKING_COST_PER_KM = 0.07146 #USD/km
+
+GTFS_MAPPING = {
+	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
+	"Bay Area Rapid Transit"=>["BART_google_transit","BART"],
+	"AirBART"=>["BART_google_transit","AirBART"]
+}
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -19,7 +26,7 @@ def get_info_from_bing(params)
 			usable_url=URI.parse(URI.escape(base_url+mode+query_params))
 			#puts "calling url #{usable_url}"
 			response = JSON.parse(Net::HTTP.get(usable_url))
-			
+
 			resource = response["resourceSets"][0]["resources"][0]
 			info = {
 				:distance=>resource["travelDistance"],
@@ -43,23 +50,67 @@ end
 def calculate_transit_by_bing_resource(resource)
 	info_by_type = resource["routeLegs"].map do |leg|
 		leg["itineraryItems"].map do |item|
+			type = item["details"][0]["maneuverType"]
+			type = "TakeTransit" if type == "Transfer" #HACK FOR NOW
 			{
-				:type=>item["details"][0]["maneuverType"],
+				:type=>type,
 				:distance=>item["travelDistance"],
-				:duration=>item["travelDuration"]
+				:duration=>item["travelDuration"],
+				:item=>item
 			}
 		end
 	end.flatten.group_by {|i| i[:type]}
 	
+	walking_duration = info_by_type["Walk"].inject(0) {|s,x| s+x[:duration]}
+	transit_duration = info_by_type["TakeTransit"].inject(0) {|s,x| s+x[:duration]}
+	
+	#calculate the total fare
+	#look at a TakeTransit, it has:
+		#child itinerary items, with [details][maneuverType] == TransitDepart and TransitArrive, each with [details][names] = [station name]
+		#[transitLine][agencyName] == agency name
+		#[transitLine][abbreviatedName/verboseName] == route name of some sort.
+	#general strategy:
+		#chunk up the routes by agency
+		#sum: for each agency, parse up the fares, then calculate the best fare for that series of rides.
+	puts "all info = "
+	require 'pp'
+	pp info_by_type
+	
+	cost = info_by_type["TakeTransit"].map {|x| x[:item]}.chunk {|x| (x["transitLine"] || {})["agencyName"]}.inject(0)  do |sum,(agency,agency_chunk)|
+		puts "doing: #{agency}"
+		dir,agency_id = GTFS_MAPPING[agency]
+		#fares_for(agency)
+		
+		fares = Fare.load(dir+"/fare_attributes.txt",dir+"/fare_rules.txt") #todo: check that rules exist
+		fares = fares[agency_id] || fares[nil]
+		#puts "fares = "
+		
+		#pp fares
+		
+		routes = csv_to_hash(dir+"/routes.txt")
+		stops = csv_to_hash(dir+"/stops.txt")
+		
+		rides = agency_chunk.map do |itinerary_item|
+			start=itinerary_item["childItineraryItems"][0] #horrible assumption here, should check maneuvertype or something
+			finish=itinerary_item["childItineraryItems"][1]
+
+			Ride.new(:start_time=>0, #fancy_parse(start["time"]), TODO: actually parse time, don't give infinite transfer capability
+				:end_time=>0, #fancy_parse(finish["time"]),
+				:origin=>      stops.find {|s| s["stop_name"].to_s.close_to? start["details"][0]["names"][0]}["zone_id"],
+				:destination=> stops.find {|s| s["stop_name"].to_s.close_to? finish["details"][0]["names"][0]}["zone_id"],
+				:route=>routes.find {|r| r["agency_id"]==agency_id && r["route_long_name"] == itinerary_item["transitLine"]["verboseName"]}["route_id"])
+		end
+		#puts "got some rides:"
+		#require 'pp'
+		#pp rides
+		sum += best_fare(rides,fares)
+	end.to_f
+	
 	{
 		:duration=>resource["travelDuration"],
-		:while_walking=>{
-			:distance => info_by_type["Walk"].inject(0) {|s,x| s+x[:distance]},
-			:duration => info_by_type["Walk"].inject(0) {|s,x| s+x[:duration]}
-		},
-		:while_transit=>{
-			:duration => info_by_type["TakeTransit"].inject(0) {|s,x| s+x[:duration]}
-		}
+		:calories=>walking_duration * CALORIES_PER_SECOND_WALKING + transit_duration * CALORIES_PER_SECOND_SITTING,
+		:emissions=>"TODO",
+		:cost=>cost
 	}
 end
 
@@ -93,7 +144,6 @@ get "/info_for_route_bing" do
 	end
 	if (resource=results["transit"])
 		results["transit"] = calculate_transit_by_bing_resource(resource)
-		results["transit"][:calories] = results["transit"][:while_walking][:calories] = results["transit"][:while_walking][:duration] * CALORIES_PER_SECOND_WALKING
 	end
 	
 	output = {:units=>
