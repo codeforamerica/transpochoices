@@ -3,7 +3,7 @@
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <link rel="apple-touch-icon" href="transpo.png"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
@@ -19,14 +19,14 @@
 <body> 
 
 <!-- Home Page -->
-<div data-role="page" id="home" data-fullscreen="true">
+<div data-role="page" id="home">  
   <div data-role="content">
     <div id="metrics-content">Content</div>
   </div>
 
-  <div data-role="footer" data-position="fixed" class="ui-bar">
+  <div id="home-footer" data-role="footer">
     <a href="#about">About</a>
-    <a href="#search" data-rel="dialog" data-transition="slidedown" class="right-footer-button">Edit</a>
+    <a href="#search" data-rel="dialog" data-transition="slideup" class="footer-button-right">Edit</a>
   </div>
 </div>
 
@@ -44,7 +44,7 @@
     <input type="text" name="to" id="destination" value="1268 Grant Avenue, San Francisco" />
   </div>
   
-  <a href="#home" id="search-button" data-role="button" data-transition="slidedown" data-direction="reverse">Search</a>
+  <a href="javascript:void(0);" id="search-button" data-role="button">Search</a>
 </div>
 
 <!-- Plan Details -->
@@ -61,7 +61,6 @@
 </div>
 
 <div data-role="page" id="about">
-
   <div data-role="header">
     <h1>About</h1>
   </div>

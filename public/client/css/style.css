@@ -1,1 +1,2 @@
-.right-footer-button { float:right; margin-right:30px !important; }
+#home-footer { position:absolute; bottom:0; padding:4px 0; }
+.footer-button-right { float:right; }

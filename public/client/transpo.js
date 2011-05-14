@@ -21,6 +21,8 @@
   };
   
   var calculate = function (origin, destination) {
+    $.mobile.pageLoading();
+    
     $.ajax({
       url: 'info_for_route_bing',
       dataType: 'json',
@@ -34,11 +36,16 @@
           metrics: options.metrics,
           data: data
         });
-
+        
         $metricsContent.html(html);
+        
+        $.mobile.changePage("#home", "slideup", true, false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
+      },
+      complete: function() {
+        $.mobile.pageLoading(true);
       }
     });
   };
