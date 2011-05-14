@@ -58,7 +58,7 @@ class Fare
 				my_rules = rules[fare.fare_id]
 				if my_rules
 					fare.covered_routes = my_rules.map {|r| r["route_id"]}.to_set
-					fare.zone_pairs = my_rules.map {|r| [r["origin_id"],r["destination_id"]]}.to_set
+					fare.zone_pairs = my_rules.map {|r| [r["origin_id"],r["destination_id"]]}.to_set.delete([nil,nil])
 					fare.contained_zones = my_rules.map {|r| r["contains_id"]}.to_set
 				else
 					fare.rules_specified=false
