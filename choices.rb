@@ -109,7 +109,7 @@ def calculate_transit_by_bing_resource(resource)
 	{
 		:duration=>resource["travelDuration"],
 		:calories=>walking_duration * CALORIES_PER_SECOND_WALKING + transit_duration * CALORIES_PER_SECOND_SITTING,
-		:emissions=>"TODO",
+		:emissions=>nil,
 		:cost=>cost
 	}
 end
