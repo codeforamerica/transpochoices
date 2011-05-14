@@ -2,10 +2,11 @@
     #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
 
-#metrics-table { background: url('images/header-bg.png') no-repeat; }
-#metrics-table thead th { height:60px; width:60px; background-repeat: no-repeat; }
-#metrics-table tbody th { height:60px; width:72px; background-repeat: no-repeat; }
-#metrics-table { text-align:center;}
+#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; }
+    #metrics-table thead th { height:60px; width:60px; background-repeat: no-repeat; }
+
+    #metrics-table tbody tr { text-align:center;}
+    #metrics-table tbody th { height:60px; width:69px; background-repeat: no-repeat; }
 
 .cost { background-image: url('images/cost.png'); }
 .duration { background-image: url('images/duration.png'); }
