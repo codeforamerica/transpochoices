@@ -3,10 +3,10 @@
     .footer-button-right { float:right; }
 
 #metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
-    #metrics-table thead th { height:60px; width:60px; background-repeat: no-repeat; }
+    #metrics-table thead th { height:60px; width:60px; background-repeat:no-repeat; background-position:center center; }
 
     #metrics-table tbody td { text-align:center; height:55px; }
-    #metrics-table tbody th { width:69px; background-repeat: no-repeat; }
+    #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left;}
 
 .cost { background-image: url('images/cost.png'); }
 .duration { background-image: url('images/duration.png'); }
