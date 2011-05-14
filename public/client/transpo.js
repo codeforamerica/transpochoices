@@ -20,7 +20,11 @@
     $destinationInput.val('');
   };
   
-  var calculate = function (origin, destination) {
+  var formatResults = function(data) {
+    return data.results;
+  };
+  
+  var calculate = function(origin, destination) {
     $.mobile.pageLoading();
     
     $.ajax({
@@ -34,7 +38,7 @@
         var html = metricsEjs.render({
           modes: options.modes,
           metrics: options.metrics,
-          data: data
+          results: formatResults(data)
         });
         
         $metricsContent.html(html);
@@ -70,7 +74,6 @@
   });
   
   $('#home').live('pagecreate',function(event) {
-    $.mobile.changePage("#search", "slidedown");
+    $.mobile.changePage("#search", "slideup");
   });
-  
 })();
