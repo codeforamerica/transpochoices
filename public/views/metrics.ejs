@@ -1,0 +1,15 @@
+<% var i, j; %>
+<table id="metrics-table">
+  <thead>
+    <tr> <th><% for(i=0; i<metrics.length; i++) { %> <th class="<%= metrics[i] %>"> <% } %>
+  </thead>
+  <tbody>
+    <%
+      for(j=0; j<modes.length; j++) {
+    %>  
+        <tr><th class="<%= modes[j] %>"> <% for(i=0; i<metrics.length; i++) { %> <td><%= Math.round(results[modes[j]][metrics[i]]) %> <% } %>
+    <%
+      }
+    %>
+  </tbody>
+</table>

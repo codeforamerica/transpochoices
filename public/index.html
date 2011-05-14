@@ -3,35 +3,36 @@
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   
   <link rel="apple-touch-icon" href="transpo.png"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.css" />
+  <link rel="stylesheet" href="client/css/style.css" />
 
-
+  <script src="client/ejs-1.0.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
   <script src="client/transpo.js"></script>
   <script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
   <title>TranspoChoices</title> 
 </head> 
-<body> 
+<body>
 
 <!-- Home Page -->
-<div data-role="page" id="home">
-
-  <div data-role="header">
-    <a href="#search" data-icon="arrow-d" data-rel="dialog" data-transition="slidedown">Search</a>
-    <h1>Transpo</h1>
+<div id="home" data-role="page" data-theme="c">
+  <div id="metrics-content">
+    <!-- We should put something interesting here -->
   </div>
 
-  <div data-role="content">
-    <div id="metrics-content">Content</div>
+
+  <div id="home-footer" data-role="footer">
+    <a href="#about">About</a>
+    <a href="#search" data-rel="dialog" data-transition="slideup" class="footer-button-right">Edit</a>
   </div>
 </div>
 
 <!-- Search Dialog -->
-<div data-role="page" id="search">
+<div id="search" data-role="dialog" data-theme="c">
   <div data-role="header">
     <h1>Directions</h1>
     <a href="javascript:void(0);" id="clear-button">Clear</a>
@@ -44,11 +45,11 @@
     <input type="text" name="to" id="destination" value="1268 Grant Avenue, San Francisco" />
   </div>
   
-  <a href="#home" id="search-button" data-role="button" data-transition="slidedown" data-direction="reverse">Search</a>
+  <a href="javascript:void(0);" id="search-button" data-role="button">Search</a>
 </div>
 
 <!-- Plan Details -->
-<div data-role="page" id="plan">
+<div id="plan" data-role="page" data-theme="c">
 
   <div data-role="header">
     <h1>Bar</h1>
@@ -59,5 +60,18 @@
     <p><a href="#foo">Back to foo</a></p>  
   </div>
 </div>
+
+<!-- About Page -->
+<div id="about" data-role="page" data-backbtn="false" data-theme="c">
+  <div data-role="header">
+    <a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a>
+    <h1>About</h1>
+  </div>
+
+  <div data-role="content">  
+    <p>About this app!</p>
+  </div>
+</div>
+
 </body>
 </html>

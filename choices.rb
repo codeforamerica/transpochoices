@@ -98,11 +98,11 @@ get "/info_for_route_bing" do
 	
 	output = {:units=>
 		{
-			:distance=>"kilometers",
-			:duration=>"seconds",
-			:emissions=>"kg of CO2",
-			:cost=>"USD",
-			:calories=>"calories"
+			:distance=>"km",
+			:duration=>"sec",
+			:emissions=>"kg_co2",
+			:cost=>"usd",
+			:calories=>"cal"
 		},
 		:results=>results
 	}

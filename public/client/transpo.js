@@ -4,6 +4,11 @@
       $destinationInput,
       $clearButton,
       $metricsContent,
+      options = {
+          modes: ['walking', 'biking', 'transit', 'driving'],
+          metrics: ['cost', 'duration', 'calories', 'emissions']
+      },
+      metricsEjs = new EJS({url: 'views/metrics.ejs'}),
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -15,7 +20,13 @@
     $destinationInput.val('');
   };
   
-  var calculate = function (origin, destination) {
+  var formatResults = function(data) {
+    return data.results;
+  };
+  
+  var calculate = function(origin, destination) {
+    $.mobile.pageLoading();
+    
     $.ajax({
       url: 'info_for_route_bing',
       dataType: 'json',
@@ -24,18 +35,21 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        var html = '';
-                
-        $.each(data.results, function(key, val) {
-          html += '<div>' + key + '</div>';
+        var html = metricsEjs.render({
+          modes: options.modes,
+          metrics: options.metrics,
+          results: formatResults(data)
         });
         
-        log(html);
-        
         $metricsContent.html(html);
+        
+        $.mobile.changePage("#home", "slideup", true, false);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
+      },
+      complete: function() {
+        $.mobile.pageLoading(true);
       }
     });
   };
@@ -59,4 +73,7 @@
     bindEvents();
   });
   
+  $('#home').live('pagecreate',function(event) {
+    $.mobile.changePage("#search", "slideup");
+  });
 })();
