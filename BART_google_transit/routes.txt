@@ -1,0 +1,12 @@
+route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+AirBART,AirBART,,SHUTTLE,,3,http://www.bart.gov/guide/airport/inbound_oak.aspx,,
+01,BART,,PITTSBURG/BAY POINT TO SFIA-MILLBRAE,,1,http://www.bart.gov/schedules/,ffff33,
+02,BART,,MILLBRAE-SFIA TO PITTSBURG/BAYPOINT,,1,http://www.bart.gov/schedules/,ffff33,
+03,BART,,FREMONT TO RICHMOND,,1,http://www.bart.gov/schedules/,ff9933,
+04,BART,,RICHMOND TO FREMONT,,1,http://www.bart.gov/schedules/,ff9933,
+05,BART,,FREMONT TO DALY CITY,,1,http://www.bart.gov/schedules/,339933,
+06,BART,,DALY CITY TO FREMONT,,1,http://www.bart.gov/schedules/,339933,
+07,BART,,RICHMOND TO DALY CITY-MILLBRAE,,1,http://www.bart.gov/schedules/,ff0000,
+08,BART,,MILLBRAE-DALY CITY TO RICHMOND,,1,http://www.bart.gov/schedules/,ff0000,
+11,BART,,DUBLIN/PLEASANTON TO DALY CITY,,1,http://www.bart.gov/schedules/,0099cc,
+12,BART,,DALY CITY TO DUBLIN/PLEASANTON,,1,http://www.bart.gov/schedules/,0099cc,
