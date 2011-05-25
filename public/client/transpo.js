@@ -92,7 +92,7 @@
         
         $metricsContent.html(html);
         
-        $.mobile.changePage("#home", "slideup", true, false);
+        $.mobile.changePage("#home", "slideup", true, true);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
