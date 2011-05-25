@@ -92,7 +92,7 @@
         
         $metricsContent.html(html);
         
-        $.mobile.changePage("#home", "slideup", true, true);
+        $.mobile.changePage("#home", "flip", true, true);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
@@ -123,6 +123,6 @@
   });
   
   $('#home').live('pagecreate',function(event) {
-    $.mobile.changePage("#search", "slideup");
+    $.mobile.changePage("#search", "flip");
   });
 })();
