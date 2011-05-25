@@ -1,3 +1,5 @@
+#home { background-color:#fdfdfd; background-image:none; }
+
 #home-footer { position:absolute; bottom:0; }
     #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
@@ -5,8 +7,12 @@
 #metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
     #metrics-table thead th { height:60px; width:60px; background-repeat:no-repeat; background-position:center center; }
 
-    #metrics-table tbody td { text-align:center; height:55px; }
-    #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left;}
+    #metrics-table tbody tr { 
+      background:-moz-linear-gradient(top,#EEE,#FDFDFD);
+      background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
+    }
+    #metrics-table tbody td { text-align:center; height:55px;  }
+    #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
     
     .metric-value {font-size:20px; font-weight:bold;}
     .metric-label {font-size:11px;}
