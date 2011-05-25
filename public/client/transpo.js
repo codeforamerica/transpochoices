@@ -56,8 +56,6 @@
   var formatResults = function(data) {
     var val, i, j, metric, mode, results = {};
     
-    console.log(data);
-    
     for(j=0; j<options.modes.length; j++) {
       mode = options.modes[j];
       results[mode] = {};
