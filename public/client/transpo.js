@@ -91,8 +91,13 @@
         });
         
         $metricsContent.html(html);
-        
-        $.mobile.changePage("#home", "flip", true, true);
+
+        $('#metrics-table th, #metrics-table td').bind('tap', function(evt) {
+          $('#plan h1').text(this.parentNode.id);
+          $.mobile.changePage('#plan', 'slide');
+        });
+
+        $.mobile.changePage('#home', 'flip', true, true);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
@@ -107,11 +112,11 @@
     $searchButton.tap(function() {
       calculate($originInput.val(), $destinationInput.val());
     });
-    
+        
     $clearButton.tap(clearInputs);
   };
 
-  $('#home').live('pagecreate',function(event) {
+  $('#home').live('pagecreate',function(evt) {
     //Cache vars
     $searchButton = $('#search-button');
     $originInput = $('#origin');
