@@ -66,6 +66,8 @@ Algorithms & Assumptions
 	roughly $0.115 / mile ($0.07146 / km)
 	no exact number established
 	
+	taxi:
+	the same emissions, calories, and time as a car, but rates calculated per http://www.taxifarefinder.com/rates.php
 Setting Up:
 	You need to set the environment variable BING_KEY to your Bing API key
 
