@@ -116,6 +116,14 @@ get "/info_for_route_bing" do
 		results["driving"][:emissions] = (gas_consumed * EMISSIONS_PER_GALLON).round(5)
 		results["driving"][:cost] = (results["driving"][:distance] * AAA_COST_PER_KM).round(2)
 		results["driving"][:calories] = (results["driving"][:duration] * CALORIES_PER_SECOND_SITTING).round(2)
+		
+		results["taxi"]=results["driving"].clone
+		#taxi is like driving, but with a taxi rate
+		start_point = resource["routeLegs"][0]["actualStart"]["coordinates"]
+		closest_rate = TAXI_RATES.sort_by {|rate| (rate[:lat]-start_point[0])**2 + (rate[:lon]-start_point[1])**2}.first
+		puts "closest_rate = #{closest_rate.inspect}"
+		approx_time_waiting = [(results["taxi"][:duration] - results["taxi"][:distance] * AVG_CAR_SPEED),0].max
+		results["taxi"][:cost] = (closest_rate[:initial_charge] + closest_rate[:per_km] * (results["taxi"][:distance] - closest_rate[:initial_increment_km]) + (approx_time_waiting/3600) * closest_rate[:per_hour_waiting]).round(2)
 	end
 	if (resource=results["walking"])
 		results["walking"]=generic_by_bing_resource(resource)
