@@ -4,6 +4,7 @@
       $destinationInput,
       $metricsContent,
       options = {
+          modes: ['walking', 'biking', 'transit', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
@@ -84,13 +85,11 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        var results = formatResults(data);
-        console.log(results);
-        
-        var html = metricsEjs.render({
-          metrics: options.metrics,
-          results: results
-        });
+        var results = formatResults(data),
+          html = metricsEjs.render({
+            metrics: options.metrics,
+            results: results
+          });
         
         $metricsContent.html(html);
 
