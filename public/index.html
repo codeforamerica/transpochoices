@@ -5,32 +5,21 @@
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="apple-touch-icon" href="transpo.png"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
-  <link rel="stylesheet" href="lib/jquery.mobile/jquery.mobile-1.0a4.1.min.css" />
+  <link href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="client/css/style.css" />
 
   <script src="lib/ejs-1.0.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-1.6.1.min.js"></script>
   <script src="client/transpo.js"></script>
-  <script src="lib/jquery.mobile/jquery.mobile-1.0a4.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+  
   <title>TranspoChoices</title> 
 </head> 
 <body>
-
-<!-- Home Page -->
-<div id="home" data-role="page" data-theme="c">
-  <div id="metrics-content">
-    <!-- We should put something interesting here -->
-  </div>
-
-  <div id="home-footer" data-role="footer">
-    <a href="#about">About</a>
-    <a href="#search" data-transition="flip" class="footer-button-right">Edit</a>
-  </div>
-</div>
 
 <!-- Search Dialog -->
 <div id="search" data-role="page" data-theme="c">
@@ -45,8 +34,20 @@
     <label for="to">To</label>
     <input type="text" name="to" id="destination" value="1268 Grant Avenue, San Francisco" />
   </div>
-  
+
   <a href="javascript:void(0);" id="search-button" data-role="button">Search</a>
+</div>
+
+<!-- Home Page -->
+<div id="home" data-role="page" data-theme="c">
+  <div id="metrics-content">
+    <!-- We should put something interesting here -->
+  </div>
+
+  <div id="home-footer" data-role="footer">
+    <a href="#about">About</a>
+    <a href="#search" data-transition="flip" class="footer-button-right">Edit</a>
+  </div>
 </div>
 
 <!-- Plan Details -->
