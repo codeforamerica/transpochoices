@@ -4,7 +4,6 @@
       $destinationInput,
       $metricsContent,
       options = {
-          modes: ['walking', 'biking', 'transit', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
@@ -57,12 +56,16 @@
     
     for(j=0; j<options.modes.length; j++) {
       mode = options.modes[j];
-      results[mode] = {};
+      
+      if (data.results[mode]) {
+        results[mode] = {};
 
-      for (i=0; i<options.metrics.length; i++) {
-        metric = options.metrics[i];
-        if (metric) {
-          results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
+        for (i=0; i<options.metrics.length; i++) {
+          metric = options.metrics[i];
+        
+          if (metric) {
+            results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
+          }
         }
       }
     }
@@ -81,10 +84,12 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
+        var results = formatResults(data);
+        console.log(results);
+        
         var html = metricsEjs.render({
-          modes: options.modes,
           metrics: options.metrics,
-          results: formatResults(data)
+          results: results
         });
         
         $metricsContent.html(html);
