@@ -57,12 +57,16 @@
     
     for(j=0; j<options.modes.length; j++) {
       mode = options.modes[j];
-      results[mode] = {};
+      
+      if (data.results[mode]) {
+        results[mode] = {};
 
-      for (i=0; i<options.metrics.length; i++) {
-        metric = options.metrics[i];
-        if (metric) {
-          results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
+        for (i=0; i<options.metrics.length; i++) {
+          metric = options.metrics[i];
+        
+          if (metric) {
+            results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
+          }
         }
       }
     }
@@ -81,11 +85,11 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        var html = metricsEjs.render({
-          modes: options.modes,
-          metrics: options.metrics,
-          results: formatResults(data)
-        });
+        var results = formatResults(data),
+          html = metricsEjs.render({
+            metrics: options.metrics,
+            results: results
+          });
         
         $metricsContent.html(html);
 
