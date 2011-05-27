@@ -98,11 +98,11 @@ def calculate_transit_by_bing_resource(resource)
 				:end_time=>0, #fancy_parse(finish["time"]),
 				:origin=>      stops.find {|s| s["stop_name"].to_s.close_to? start["details"][0]["names"][0]}["zone_id"],
 				:destination=> stops.find {|s| s["stop_name"].to_s.close_to? finish["details"][0]["names"][0]}["zone_id"],
-				:route=>routes.find {|r| r["agency_id"]==agency_id && r["route_long_name"] == itinerary_item["transitLine"]["verboseName"]}["route_id"])
+				:route=>(routes.find {|r| r["agency_id"]==agency_id && r["route_long_name"] == itinerary_item["transitLine"]["verboseName"]} || {})["route_id"])
 		end
-		#puts "got some rides:"
-		#require 'pp'
-		#pp rides
+		puts "got some rides:"
+		require 'pp'
+		pp rides
 		sum += best_fare(rides,fares)
 	end.to_f
 	
