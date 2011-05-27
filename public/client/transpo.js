@@ -92,13 +92,16 @@
 
         $('#metrics-table th, #metrics-table td').bind('tap', function(evt) {
           $('#plan h1').text(this.parentNode.id);
-          $.mobile.changePage('#plan', 'slide');
+          $.mobile.changePage('plan');
         });
 
-        $.mobile.changePage('#home', 'flip', true, true);
+        $.mobile.changePage('home', {
+          transition: 'flip'
+        });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
+        $.mobile.pageLoading(true);
       },
       complete: function() {
         $.mobile.pageLoading(true);
@@ -114,7 +117,7 @@
     $clearButton.tap(clearInputs);
   };
 
-  $('#home').live('pagecreate',function(evt) {
+  $('#search').live('pagecreate',function(evt) {
     //Cache vars
     $searchButton = $('#search-button');
     $originInput = $('#origin');
@@ -123,9 +126,5 @@
     $metricsContent = $('#metrics-content');
     
     bindEvents();
-  });
-  
-  $('#home').live('pagecreate',function(event) {
-    $.mobile.changePage("#search", "flip");
   });
 })();
