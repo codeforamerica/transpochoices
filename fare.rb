@@ -22,13 +22,25 @@ class String
 end
 
 def best_fare(rides,fares)
-	rides.inject(0) do |sum,ride|
-		sum += fares.select {|f| f.matches?([ride])}.map(&:price).min || 99
+	leg_costs = Array.new(rides.length) {Array.new(rides.length)} #2d array by rides length. row-major. (first index is origin, second is destination)
+	
+	(1..rides.length).each do |leg_length|
+		rides.each_cons(leg_length).each_with_index do |rides_in_leg,start|
+			straight_cost = best_without_transfers(rides_in_leg,fares)
+			split_costs = (1...leg_length).map do |split_point|
+				best_without_transfers(rides_in_leg[0..split_point],fares) + 
+				best_without_transfers(rides_in_leg[split_point..-1],fares)
+			end
+			leg_costs[start][start+leg_length] = ([straight_cost]+split_costs).compact.min
+		end
 	end
-	#puts "fare = #{out}"
-	#out
+	
+	leg_costs[0].last || 99.99 #or something intelligent, if there's no valid fare
 end
 
+def best_without_transfers(rides,fares)
+	fares.select {|f| f.matches? rides}.map(&:price).min
+end
 
 class Fare
 	#attributes
