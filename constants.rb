@@ -7,6 +7,7 @@ EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
 DOLLARS_PER_GALLON = 4.147 #USD
 AAA_COST_PER_KM = 0.356 #USD/km
 BIKING_COST_PER_KM = 0.07146 #USD/km
+AVG_CAR_SPEED = 41.2 #km / hour - in city
 
 GTFS_MAPPING = {
 	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
