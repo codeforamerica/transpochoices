@@ -4,6 +4,8 @@
     #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
 
+#search-button { margin:0.5em 15px; }
+
 /* Override the header style */
 .ui-header { border: 1px solid #003b58;
   background: #003b58;
@@ -14,7 +16,7 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
 
-/* Override the button active style */    
+/* Override the button active style */
 .ui-btn-active {
   border: 1px solid #bbb;
   background: #dadada;

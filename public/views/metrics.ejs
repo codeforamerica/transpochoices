@@ -1,14 +1,15 @@
-<% var i, j; %>
+<% var i, mode; %>
 <table id="metrics-table">
   <thead>
     <tr> <th><% for(i=0; i<metrics.length; i++) { %> <th class="<%= metrics[i] %>"> <% } %> <th>
   </thead>
   <tbody>
-    <% for(j=0; j<modes.length; j++) { %>
-      <tr id="<%= modes[j] %>"><th> 
+    <% for(mode in results) { 
+        if (results.hasOwnProperty(mode))%>
+      <tr id="<%= mode %>"><th> 
       <% for(i=0; i<metrics.length; i++) { %> 
-        <td><div class="metric-value"><%= results[modes[j]][metrics[i]].value %></div>
-        <div class="metric-label"><%= results[modes[j]][metrics[i]].label %></div> 
+        <td><div class="metric-value"><%= results[mode][metrics[i]].value %></div>
+        <div class="metric-label"><%= results[mode][metrics[i]].label %></div> 
       <% } %>
       <td class="metric-more"><div class="ui-icon ui-icon-arrow-r"></div>
     <% } %>
