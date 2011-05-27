@@ -1,21 +1,8 @@
 require 'net/http'
 require './fare.rb'
 
-CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
-CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
-CALORIES_PER_KM_BIKING = 24 #dietary calories / km
-BIKE_SPEED_IN_KM_PER_SECOND = 14 / 3600.0 #30 km/h into km/sec
-CAMRY_MILEAGE = 35.406 #km / gallon
-EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
-DOLLARS_PER_GALLON = 4.147 #USD
-AAA_COST_PER_KM = 0.356 #USD/km
-BIKING_COST_PER_KM = 0.07146 #USD/km
+require './constants.rb'
 
-GTFS_MAPPING = {
-	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
-	"Bay Area Rapid Transit"=>["BART_google_transit","BART"],
-	"AirBART"=>["BART_google_transit","AirBART"]
-}
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{params[:time] || Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -129,6 +116,14 @@ get "/info_for_route_bing" do
 		results["driving"][:emissions] = (gas_consumed * EMISSIONS_PER_GALLON).round(5)
 		results["driving"][:cost] = (results["driving"][:distance] * AAA_COST_PER_KM).round(2)
 		results["driving"][:calories] = (results["driving"][:duration] * CALORIES_PER_SECOND_SITTING).round(2)
+		
+		results["taxi"]=results["driving"].clone
+		#taxi is like driving, but with a taxi rate
+		start_point = resource["routeLegs"][0]["actualStart"]["coordinates"]
+		closest_rate = TAXI_RATES.sort_by {|rate| (rate[:lat]-start_point[0])**2 + (rate[:lon]-start_point[1])**2}.first
+		puts "closest_rate = #{closest_rate.inspect}"
+		approx_time_waiting = [(results["taxi"][:duration] - results["taxi"][:distance] * AVG_CAR_SPEED),0].max
+		results["taxi"][:cost] = (closest_rate[:initial_charge] + closest_rate[:per_km] * (results["taxi"][:distance] - closest_rate[:initial_increment_km]) + (approx_time_waiting/3600) * closest_rate[:per_hour_waiting]).round(2)
 	end
 	if (resource=results["walking"])
 		results["walking"]=generic_by_bing_resource(resource)
