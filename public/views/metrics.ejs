@@ -1,17 +1,16 @@
 <% var i, j; %>
 <table id="metrics-table">
   <thead>
-    <tr> <th><% for(i=0; i<metrics.length; i++) { %> <th class="<%= metrics[i] %>"> <% } %>
+    <tr> <th><% for(i=0; i<metrics.length; i++) { %> <th class="<%= metrics[i] %>"> <% } %> <th>
   </thead>
   <tbody>
-    <%
-      for(j=0; j<modes.length; j++) {
-    %>  
-        <tr><th class="<%= modes[j] %>"> <% for(i=0; i<metrics.length; i++) { %> 
+    <% for(j=0; j<modes.length; j++) { %>
+      <tr id="<%= modes[j] %>"><th> 
+      <% for(i=0; i<metrics.length; i++) { %> 
         <td><div class="metric-value"><%= results[modes[j]][metrics[i]].value %></div>
-        <div class="metric-label"><%= results[modes[j]][metrics[i]].label %></div> <% } %>
-    <%
-      }
-    %>
+        <div class="metric-label"><%= results[modes[j]][metrics[i]].label %></div> 
+      <% } %>
+      <td class="metric-more"><div class="ui-icon ui-icon-arrow-r"></div>
+    <% } %>
   </tbody>
 </table>
