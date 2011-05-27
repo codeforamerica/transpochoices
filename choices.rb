@@ -1,8 +1,8 @@
 require 'net/http'
 require './fare.rb'
-
 require './constants.rb'
 
+require 'pp'
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{params[:time] || Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
@@ -78,6 +78,9 @@ def calculate_transit_by_bing_resource(resource)
 		stops = csv_to_hash(dir+"/stops.txt")
 		
 		rides = agency_chunk.map do |itinerary_item|
+			#puts "itinerary = "
+			#pp itinerary_item
+			
 			start=itinerary_item["childItineraryItems"][0] #horrible assumption here, should check maneuvertype or something
 			finish=itinerary_item["childItineraryItems"][1]
 
@@ -85,11 +88,11 @@ def calculate_transit_by_bing_resource(resource)
 				:end_time=>0, #fancy_parse(finish["time"]),
 				:origin=>      stops.find {|s| s["stop_name"].to_s.close_to? start["details"][0]["names"][0]}["zone_id"],
 				:destination=> stops.find {|s| s["stop_name"].to_s.close_to? finish["details"][0]["names"][0]}["zone_id"],
-				:route=>(routes.find {|r| r["agency_id"]==agency_id && r["route_long_name"] == itinerary_item["transitLine"]["verboseName"]} || {})["route_id"])
+				:route=>(routes.find {|r| r["agency_id"]==agency_id && r.values_at("route_long_name","route_short_name").include?(itinerary_item["transitLine"]["verboseName"])} || {})["route_id"])
 		end
-		puts "got some rides:"
-		require 'pp'
-		pp rides
+		#puts "got some rides for #{agency}:"
+		#pp rides
+
 		sum += best_fare(rides,fares)
 	end.to_f
 	
