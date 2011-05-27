@@ -75,20 +75,17 @@ def calculate_transit_by_bing_resource(resource)
 	#general strategy:
 		#chunk up the routes by agency
 		#sum: for each agency, parse up the fares, then calculate the best fare for that series of rides.
-	puts "all info = "
-	require 'pp'
-	pp info_by_type
+	#puts "all info = "
+	#require 'pp'
+	#pp info_by_type
 	
 	cost = info_by_type["TakeTransit"].map {|x| x[:item]}.chunk {|x| (x["transitLine"] || {})["agencyName"]}.inject(0)  do |sum,(agency,agency_chunk)|
-		puts "doing: #{agency}"
+		#puts "doing: #{agency}"
 		dir,agency_id = GTFS_MAPPING[agency]
 		#fares_for(agency)
 		
 		fares = Fare.load(dir+"/fare_attributes.txt",dir+"/fare_rules.txt") #todo: check that rules exist
 		fares = fares[agency_id] || fares[nil]
-		#puts "fares = "
-		
-		#pp fares
 		
 		routes = csv_to_hash(dir+"/routes.txt")
 		stops = csv_to_hash(dir+"/stops.txt")
@@ -122,7 +119,7 @@ get "/info_for_route_bing" do
 	results = get_info_from_bing(params)
 	
 	if params[:raw_data]=="yes_please"
-		puts "here"
+		#puts "here"
 		return [200,{},JSON.pretty_generate(results)] 
 	end
 	
@@ -159,6 +156,7 @@ get "/info_for_route_bing" do
 		},
 		:results=>results
 	}
+
 	[200,{},JSON.pretty_generate(output)]
 end
 

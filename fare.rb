@@ -2,7 +2,12 @@ require 'csv'
 require 'bigdecimal'
 require 'set'
 
+$csv_cache={}
 def csv_to_hash(file)
+	$csv_cache[file] ||= read_csv_to_hash(file)
+end
+
+def read_csv_to_hash(file)
 	csv = CSV.read(file)
 	headers = csv.shift
 	csv.map do |row|
