@@ -25,14 +25,15 @@
 <div id="search" data-role="page" data-theme="c">
   <div data-role="header">
     <h1>Directions</h1>
-    <a href="javascript:void(0);" id="clear-button">Clear</a>
   </div>
 
   <div id="search-panel" data-role="content">
-    <label for="from">From</label>
-    <input type="text" name="from" id="origin" value="85 2nd St, San Francisco" />
-    <label for="to">To</label>
-    <input type="text" name="to" id="destination" value="1268 Grant Avenue, San Francisco" />
+    <div data-role="fieldcontain">
+      <input type="search" id="origin" value="85 2nd St, San Francisco" />
+    </div>
+    <div data-role="fieldcontain">
+      <input type="search" id="destination" value="1268 Grant Avenue, San Francisco" />
+    </div>
   </div>
 
   <a href="javascript:void(0);" id="search-button" data-role="button">Search</a>
