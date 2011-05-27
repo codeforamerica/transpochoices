@@ -24,17 +24,35 @@ end
 def best_fare(rides,fares)
 	leg_costs = Array.new(rides.length) {Array.new(rides.length)} #2d array by rides length. row-major. (first index is origin, second is destination)
 	
+	#we want to go through and 'bubble up' the best route from start to finish. so, we find each optimal sub-route from point to point within the whole route.
+	#so, for each sub-route length . . .
 	(1..rides.length).each do |leg_length|
+		#for each sub-route of that length in our route
+		puts "checking split subroutes of length #{leg_length}"
 		rides.each_cons(leg_length).each_with_index do |rides_in_leg,start|
+			puts "\tstarting on #{start}"
+			
+			#find the best cost. the best cost is either straight there...
 			straight_cost = best_without_transfers(rides_in_leg,fares)
-			split_costs = (1...leg_length).map do |split_point|
-				best_without_transfers(rides_in_leg[0..split_point],fares) + 
-				best_without_transfers(rides_in_leg[split_point..-1],fares)
+			#or it's going part of the way (on an already known sub-route), transfering to a new fare, and continuing the rest of the way (on an already calculated sub-route). check each way of splitting.
+			split_costs = (0...leg_length-1).map do |split_point|
+				#we need to have absolute indexes into the leg_costs
+				abs_start = start
+				abs_split_point = start+split_point
+				abs_end = start+leg_length - 1
+				
+				leg_a = leg_costs[abs_start][abs_split_point]
+				leg_b = leg_costs[abs_split_point+1][abs_end]
+				puts "\t\t split on #{split_point}. leg_costs[#{abs_start}][#{abs_split_point}] = #{leg_a.inspect}, leg_costs[#{abs_split_point+1}][#{abs_end}] = #{leg_b.inspect}"
+				
+				leg_a + leg_b if leg_a && leg_b
 			end
+			#pick the best of these costs, and store them in the sub-route cache
 			leg_costs[start][start+leg_length] = ([straight_cost]+split_costs).compact.min
 		end
 	end
 	
+	#now that we've calculated all the way, we know the optimal cost from start to finish. return it.
 	leg_costs[0].last || 99.99 #or something intelligent, if there's no valid fare
 end
 
