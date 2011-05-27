@@ -75,3 +75,4 @@ Deploying:
 	or the following, to fix an existing app:
 	heroku stack:migrate bamboo-mri-1.9.2 <appname>
 
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/transpochoices.png)](http://stats.codeforamerica.org)
