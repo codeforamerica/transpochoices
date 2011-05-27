@@ -22,21 +22,24 @@ def get_info_from_bing(params)
 	modes=%w{driving walking transit}
 	
 	results =modes.map do |mode|
-		begin
-			usable_url=URI.parse(URI.escape(base_url+mode+query_params))
-			#puts "calling url #{usable_url}"
-			response = JSON.parse(Net::HTTP.get(usable_url))
-
-			resource = response["resourceSets"][0]["resources"][0]
-			info = {
-				:distance=>resource["travelDistance"],
-				:duration=>resource["travelDuration"]
-			}
-			[mode,resource]
-		rescue
-			[mode,nil]
+		Thread.new do
+			begin
+				usable_url=URI.parse(URI.escape(base_url+mode+query_params))
+				#puts "calling url #{usable_url}"
+				response = JSON.parse(Net::HTTP.get(usable_url))
+	
+				resource = response["resourceSets"][0]["resources"][0]
+				info = {
+					:distance=>resource["travelDistance"],
+					:duration=>resource["travelDuration"]
+				}
+				[mode,resource]
+			rescue
+				[mode,nil]
+			end
 		end
 	end
+	results.map!(&:value)
 	Hash[*results.flatten]
 end
 
