@@ -101,6 +101,7 @@
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
+        alert('Error calculating directions')
         $.mobile.pageLoading(true);
       },
       complete: function() {
@@ -126,5 +127,10 @@
     $metricsContent = $('#metrics-content');
     
     bindEvents();
+  });
+
+  $(document).bind("mobileinit", function() {
+    //Disabling this b/c it could be bad for bookmarking
+    $.mobile.hashListeningEnabled = false;
   });
 })();
