@@ -2,7 +2,6 @@
   var $searchButton,
       $originInput,
       $destinationInput,
-      $clearButton,
       $metricsContent,
       options = {
           modes: ['walking', 'biking', 'transit', 'driving'],
@@ -101,6 +100,7 @@
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
+        alert('Error calculating directions');
         $.mobile.pageLoading(true);
       },
       complete: function() {
@@ -113,8 +113,6 @@
     $searchButton.tap(function() {
       calculate($originInput.val(), $destinationInput.val());
     });
-        
-    $clearButton.tap(clearInputs);
   };
 
   $('#search').live('pagecreate',function(evt) {
@@ -122,9 +120,13 @@
     $searchButton = $('#search-button');
     $originInput = $('#origin');
     $destinationInput = $('#destination');
-    $clearButton = $('#clear-button');
     $metricsContent = $('#metrics-content');
     
     bindEvents();
+  });
+
+  $(document).bind("mobileinit", function() {
+    //Disabling this b/c it could be bad for bookmarking
+    $.mobile.hashListeningEnabled = false;
   });
 })();
