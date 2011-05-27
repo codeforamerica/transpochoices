@@ -13,29 +13,44 @@
   background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
-    
+
+/* Override the button active style */    
 .ui-btn-active {
-  border: 1px solid     #bbb;
-  background:       #dadada;
+  border: 1px solid #bbb;
+  background: #dadada;
   font-weight: bold;
-  color:           #101010;
-  text-shadow: 0 1px 1px   #fff;
-  background-image: -moz-linear-gradient(top, 
-              #ededed, 
-              #dadada);
-  background-image: -webkit-gradient(linear,left top,left bottom,
-    color-stop(0,     #ededed),
-    color-stop(1,     #dadada));
+  color: #101010;
+  text-shadow: 0 1px 1px #fff;
+  background-image: -moz-linear-gradient(top, #ededed, #dadada);
+  background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #ededed), color-stop(1, #dadada));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ededed', EndColorStr='#dadada')";
 }
+
+.ui-field-contain { border-bottom: none; padding:5px 0; }
+.ui-input-search { width: auto; }
+
+.ui-icon-searchfield {
+  /*background-image: url(images/from.png);*/
+  background-size: 16px 16px;
+}
+
+.ui-loader {
+  background: #003b58;
+  color: #fff;
+  text-shadow: 0 1px 1px #3E3E3E;
+  background-image: -moz-linear-gradient(top, #37657d, #003b58);
+  background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
+}
+
 
 #metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
     #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
 
     #metrics-table tbody tr { 
-      cursor:pointer;
-      background:-moz-linear-gradient(top,#EEE,#FDFDFD);
-      background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
+  cursor:pointer;
+  background:-moz-linear-gradient(top,#EEE,#FDFDFD);
+  background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
     }
     #metrics-table tbody td { text-align:center; height:55px; width:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
