@@ -147,7 +147,7 @@ $taxi_info = [{"Add. Charge (per mile)"=>"$2.80",
   
 KM_PER_MILE = 1.609344
 
-$taxi_info.each {|l| r= JSON.parse(Net::HTTP.get(URI.parse("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address="+CGI.escape(l["City"]))))["results"][0]["geometry"]["location"]; l[:lat]=r["lat"]; r[:lon]=r["lon"]}
+$taxi_info.each {|l| r= JSON.parse(Net::HTTP.get(URI.parse("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address="+CGI.escape(l["City"]))))["results"][0]["geometry"]["location"]; l[:lat]=r["lat"]; l[:lon]=r["lng"]}
 $taxi_info.each {|l| l[:per_km] = l.delete("Add. Charge (per mile)").sub('$','').to_f * KM_PER_MILE}
 $taxi_info.each {|l| l[:per_hour_waiting] = l.delete("Wait Time Charge (per hour)").sub('$','').to_f}
 $taxi_info.each {|l| l[:initial_increment_km] = l.delete("Initial Increment (mile)").split('/').map(&:to_f).inject(&:/) * KM_PER_MILE}
