@@ -1,21 +1,8 @@
 require 'net/http'
 require './fare.rb'
 
-CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
-CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
-CALORIES_PER_KM_BIKING = 24 #dietary calories / km
-BIKE_SPEED_IN_KM_PER_SECOND = 14 / 3600.0 #30 km/h into km/sec
-CAMRY_MILEAGE = 35.406 #km / gallon
-EMISSIONS_PER_GALLON = 8.788 #kg CO2/gallon gasoline
-DOLLARS_PER_GALLON = 4.147 #USD
-AAA_COST_PER_KM = 0.356 #USD/km
-BIKING_COST_PER_KM = 0.07146 #USD/km
+require './constants.rb'
 
-GTFS_MAPPING = {
-	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
-	"Bay Area Rapid Transit"=>["BART_google_transit","BART"],
-	"AirBART"=>["BART_google_transit","AirBART"]
-}
 def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{params[:time] || Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
