@@ -90,7 +90,7 @@
         
         $metricsContent.html(html);
 
-        $('#metrics-table th, #metrics-table td').bind('tap', function(evt) {
+        $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(evt) {
           $('#plan h1').text(this.parentNode.id);
           $.mobile.changePage('plan');
         });
