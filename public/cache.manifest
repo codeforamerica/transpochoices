@@ -1,4 +1,15 @@
 CACHE MANIFEST
+NETWORK:
+info_for_route_bing
+http://maps.gstatic.com/ 
+http://maps.google.com/ 
+http://maps.googleapis.com/
+http://maps.google.com/maps/api/js?sensor=false
+client/css/style.css
+views/metrics.ejs
+client/transpo.js
+index.html
+
 CACHE:
 transpo.png
 favicon.ico
@@ -11,16 +22,13 @@ client/css/images/emissions.png
 client/css/images/header-bg.png
 client/css/images/transit.png
 client/css/images/walking.png
-
 lib/jquery/jquery-1.6.1.min.js
 lib/jquery.mobile-latest/jquery.mobile.min.css
 lib/jquery.mobile-latest/jquery.mobile.min.js
-
 lib/jquery.mobile-latest/images/ajax-loader.png
 lib/jquery.mobile-latest/images/icon-search-black.png
 lib/jquery.mobile-latest/images/icons-18-black.png
 lib/jquery.mobile-latest/images/icons-18-white.png
 lib/jquery.mobile-latest/images/icons-36-black.png
 lib/jquery.mobile-latest/images/icons-36-white.png
-
 lib/ejs-1.0.min.js
