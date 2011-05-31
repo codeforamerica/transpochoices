@@ -8,6 +8,8 @@
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
+      geocoder = new google.maps.Geocoder(),
+      curLatLng,
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -47,10 +49,18 @@
     }
   };
   
-  var clearInputs = function() {
-    $originInput.val('');
-    $destinationInput.val('');
-  };
+  var locateMe = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( function(position) {
+        curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      }, 
+      function(msg){
+        alert('We couldn\'t locate your position.');
+      },
+      { enableHighAccuracy: true, maximumAge: 90000 });
+    } 
+  };  
+
   
   var formatResults = function(data) {
     var val, i, j, metric, mode, results = {};
@@ -113,7 +123,39 @@
     });
   };
   
+  var listAddresses = function(searchId) {
+    var $list = $('#' + searchId + '-list'),
+      $input = $('#' + searchId);
+    
+    return function (results, status) {
+      $list.empty();
+      
+      $.each(results, function(i, val) {
+        $list.append('<li data-icon="false">' + val.formatted_address + '</li>');
+      });
+      
+      $list.listview('refresh');
+      
+      $('li', $list).tap(function() {
+        $input.val(this.innerHTML);
+        $list.empty();
+      });
+    };
+  };
+  
   var bindEvents = function() {
+    var bounds;
+    
+    $originInput.keyup(function(){
+      bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+      geocoder.geocode({'address': $(this).val(), 'bounds':bounds }, listAddresses('origin'));
+    });
+
+    $destinationInput.keyup(function(){
+      bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+      geocoder.geocode({'address': $(this).val(), 'bounds':bounds }, listAddresses('destination'));
+    });
+
     $searchButton.tap(function() {
       calculate($originInput.val(), $destinationInput.val());
     });
@@ -125,6 +167,8 @@
     $originInput = $('#origin');
     $destinationInput = $('#destination');
     $metricsContent = $('#metrics-content');
+    
+    locateMe();
     
     bindEvents();
   });
