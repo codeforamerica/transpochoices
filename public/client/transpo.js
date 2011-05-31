@@ -146,14 +146,14 @@
   var bindEvents = function() {
     var bounds;
     
-    $originInput.keyup(function(){
+    $originInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      geocoder.geocode({'address': $(this).val(), 'bounds':bounds }, listAddresses('origin'));
+      geocoder.geocode({'address': $originInput.val(), 'bounds':bounds }, listAddresses('origin'));
     });
 
-    $destinationInput.keyup(function(){
+    $destinationInput.keyup(  function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      geocoder.geocode({'address': $(this).val(), 'bounds':bounds }, listAddresses('destination'));
+      geocoder.geocode({'address':$destinationInput.val(), 'bounds':bounds }, listAddresses('destination'));
     });
 
     $searchButton.tap(function() {
