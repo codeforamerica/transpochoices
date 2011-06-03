@@ -37,6 +37,7 @@
 #walking th { background-image: url('images/walking.png'); }
 #biking th { background-image: url('images/biking.png'); }
 #transit th { background-image: url('images/transit.png'); }
+#taxi th { background-image: url('images/taxi.png'); }
 #driving th { background-image: url('images/driving.png'); }
 
 /* jQuery Mobile Overrides */

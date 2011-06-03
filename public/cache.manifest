@@ -22,6 +22,7 @@ client/css/images/driving.png
 client/css/images/duration.png
 client/css/images/emissions.png
 client/css/images/header-bg.png
+client/css/images/taxi.png
 client/css/images/transit.png
 client/css/images/walking.png
 lib/jquery/jquery-1.6.1.min.js
