@@ -79,8 +79,40 @@
     <h1>About</h1>
   </div>
 
-  <div data-role="content">  
-    <p>About this app!</p>
+  <div data-role="content">
+    <p>TranspoChoices is all about making better transportation choices. However, our calculations are
+      only approximations and should be treated as such. Feel free to send feedback to aaron [at] codeforamerica.org</p>
+    
+    <h2>Assumptions</h2>
+    <h3>Walking</h3>
+    <p><strong>Cost</strong> - Always rounding to $0</p>
+    <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Walking Routes API</a></p>
+    <p><strong>Calories</strong> - Using this <a href="http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf">table</a>, assuming a 190lb individual</p>
+    <p><strong>CO2 Emissions</strong> - Always rounding to 0</p>
+
+    <h3>Biking</h3>
+    <p><strong>Cost</strong> - <a href="http://www.kenkifer.com/bikepages/advocacy/autocost.htm">$0.115 per mile</a></p>
+    <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Walking Routes API</a>, then extrapolates biking time</p>
+    <p><strong>Calories</strong> - Assuming 30km/h and 24 calories/km</p>
+    <p><strong>CO2 Emissions</strong> - Always rounding to 0</p>
+    
+    <h3>Transit</h3>
+    <p><strong>Cost</strong> - Uses GTFS data (SF Muni and BART only)</p>
+    <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Transit Routes API</a></p>
+    <p><strong>Calories</strong> - Calories burned while walking to transit, then 1.4-1.7 calories per idle minute</p>
+    <p><strong>CO2 Emissions</strong> - 0, but only because can can't find a good way to calculate it</p>
+        
+    <h3>Taxi</h3>
+    <p><strong>Cost</strong> - Uses <a href="http://www.taxifarefinder.com/rates.php">TaxiFareFinder.com</a></p>
+    <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Driving Routes API</a></p>
+    <p><strong>Calories</strong> - 1.4-1.7 calories per idle minute</p>
+    <p><strong>CO2 Emissions</strong> - <a href="http://www.epa.gov/otaq/climate/420f05004.htm#step1">8.788 kg CO2/gallon gasoline at 35.4 km/gallon</a></p>
+
+    <h3>Driving</h3>
+    <p><strong>Cost</strong> - Uses <a href="http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf"2011 AAA average cost per mile</a></p>
+    <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Driving Routes API</a></p>
+    <p><strong>Calories</strong> - 1.4-1.7 calories per idle minute</p>
+    <p><strong>CO2 Emissions</strong> - <a href="http://www.epa.gov/otaq/climate/420f05004.htm#step1">8.788 kg CO2/gallon gasoline at 35.4 km/gallon</a></p>
   </div>
 </div>
 
