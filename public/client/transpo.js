@@ -167,7 +167,7 @@
       geocode();
     });
 
-    $destinationInput.keyup(  function() {
+    $destinationInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
       var geocode = delay(function() {
         geocoder.geocode({'address':$destinationInput.val(), 'bounds':bounds }, listAddresses('destination'));
