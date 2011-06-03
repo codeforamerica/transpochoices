@@ -10,6 +10,7 @@
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
       geocoder = new google.maps.Geocoder(),
       curLatLng,
+      geocodeDelay = 2000, //ms
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -143,17 +144,36 @@
     };
   };
   
+  var delay = function(func, timeout) {
+    var timeoutId;
+    return function() {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      
+      timeoutId = setTimeout(func, timeout);
+    };
+  };
+  
   var bindEvents = function() {
     var bounds;
     
     $originInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      geocoder.geocode({'address': $originInput.val(), 'bounds':bounds }, listAddresses('origin'));
+      var geocode = delay(function() {
+        geocoder.geocode({'address': $originInput.val(), 'bounds':bounds }, listAddresses('origin'));
+      }, geocodeDelay);
+      
+      geocode();
     });
 
     $destinationInput.keyup(  function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      geocoder.geocode({'address':$destinationInput.val(), 'bounds':bounds }, listAddresses('destination'));
+      var geocode = delay(function() {
+        geocoder.geocode({'address':$destinationInput.val(), 'bounds':bounds }, listAddresses('destination'));
+      }, geocodeDelay);
+
+      geocode();
     });
 
     $searchButton.tap(function() {
