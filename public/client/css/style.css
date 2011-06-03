@@ -1,12 +1,48 @@
 #home { background-color:#fdfdfd; background-image:none; }
 
+/* Position the "footer" */
 #home-footer { position:absolute; bottom:0; }
     #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
 
+/* Tweak search button width */
 #search-button { margin:0.5em 15px; }
 
-/* Override the header style */
+/* Position the address lists nicely under the address fields */
+.address-list-container { padding:0 15px; }
+  .address-list { margin:-1px 0 0 0 !important; }
+
+/* Metrics table styling */
+#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
+    #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
+    #metrics-table tbody tr { 
+      cursor:pointer;
+      background:-moz-linear-gradient(top,#EEE,#FDFDFD);
+      background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
+    }
+    #metrics-table tbody td { text-align:center; height:55px; width:55px; }
+    #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
+    
+    .metric-value {font-size:20px; font-weight:bold;}
+    .metric-label {font-size:11px;}
+    .metric-more { width:22px !important; }
+
+/* Metric images */
+.cost { background-image: url('images/cost.png'); }
+.duration { background-image: url('images/duration.png'); }
+.calories { background-image: url('images/calories.png'); }
+.emissions { background-image: url('images/emissions.png'); }
+
+/* Mode images */
+#walking th { background-image: url('images/walking.png'); }
+#biking th { background-image: url('images/biking.png'); }
+#transit th { background-image: url('images/transit.png'); }
+#taxi th { background-image: url('images/taxi.png'); }
+#driving th { background-image: url('images/driving.png'); }
+
+/* jQuery Mobile Overrides */
+
+/* Override the header style to be blueish*/
 .ui-header { border: 1px solid #003b58;
   background: #003b58;
   color: #fff;
@@ -16,7 +52,7 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
 
-/* Override the button active style */
+/* Override the button active style to be gray, not light blue */
 .ui-btn-active {
   border: 1px solid #bbb;
   background: #dadada;
@@ -28,14 +64,17 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ededed', EndColorStr='#dadada')";
 }
 
+/* Tweak padding and widths */
 .ui-field-contain { border-bottom: none; padding:5px 0; }
 .ui-input-search { width: auto; }
 
+/* Override the icon for the search fields */
 .ui-icon-searchfield {
   /*background-image: url(images/from.png);*/
   background-size: 16px 16px;
 }
 
+/* Override to be bluish */
 .ui-loader {
   background: #003b58;
   color: #fff;
@@ -44,29 +83,3 @@
   background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
-
-
-#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
-    #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
-
-    #metrics-table tbody tr { 
-  cursor:pointer;
-  background:-moz-linear-gradient(top,#EEE,#FDFDFD);
-  background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
-    }
-    #metrics-table tbody td { text-align:center; height:55px; width:55px; }
-    #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
-    
-    .metric-value {font-size:20px; font-weight:bold;}
-    .metric-label {font-size:11px;}
-    .metric-more { width:22px !important; }
-
-.cost { background-image: url('images/cost.png'); }
-.duration { background-image: url('images/duration.png'); }
-.calories { background-image: url('images/calories.png'); }
-.emissions { background-image: url('images/emissions.png'); }
-
-#walking th { background-image: url('images/walking.png'); }
-#biking th { background-image: url('images/biking.png'); }
-#transit th { background-image: url('images/transit.png'); }
-#driving th { background-image: url('images/driving.png'); }
