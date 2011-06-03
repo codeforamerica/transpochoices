@@ -4,7 +4,7 @@
       $destinationInput,
       $metricsContent,
       options = {
-          modes: ['walking', 'biking', 'transit', 'driving'],
+          modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
@@ -161,7 +161,7 @@
     $originInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
       var geocode = delay(function() {
-        geocoder.geocode({'address': $originInput.val(), 'bounds':bounds }, listAddresses('origin'));
+        geocoder.geocode({'address':$originInput.val(), 'bounds':bounds }, listAddresses('origin'));
       }, geocodeDelay);
       
       geocode();
