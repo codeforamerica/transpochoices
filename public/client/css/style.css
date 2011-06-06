@@ -72,8 +72,13 @@
 .ui-input-search { width: auto; }
 
 /* Override the icon for the search fields */
-.ui-icon-searchfield {
-  /*background-image: url(images/from.png);*/
+#origin-fieldcontain .ui-icon-searchfield {
+  background-image: url(images/point_a.png);
+  background-size: 16px 16px;
+}
+
+#destination-fieldcontain .ui-icon-searchfield {
+  background-image: url(images/point_b.png);
   background-size: 16px 16px;
 }
 
