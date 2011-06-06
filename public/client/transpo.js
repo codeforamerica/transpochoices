@@ -104,9 +104,10 @@
         
         $metricsContent.html(html);
 
-        $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(evt) {
+        $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
           $('#plan h1').text(this.parentNode.id);
           $.mobile.changePage('plan');
+          e.preventDefault();
         });
 
         $.mobile.changePage('home', {
@@ -137,9 +138,10 @@
       
       $list.listview('refresh');
       
-      $('li', $list).tap(function() {
+      $('li', $list).tap(function(e) {
         $input.val(this.innerHTML);
         $list.empty();
+        e.preventDefault();ƒ
       });
     };
   };
@@ -176,8 +178,9 @@
       geocode();
     });
 
-    $searchButton.tap(function() {
+    $searchButton.tap(function(e) {
       calculate($originInput.val(), $destinationInput.val());
+      e.preventDefault();
     });
   };
 
