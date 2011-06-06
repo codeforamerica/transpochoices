@@ -1,5 +1,8 @@
 <!DOCTYPE html> 
+<!--
 <html manifest="cache.manifest">
+-->
+<html>
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -29,15 +32,14 @@
 
   <div id="search-panel" data-role="content">
     <div data-role="fieldcontain">
-      <input type="search" id="origin" value="" />
-
+      <input type="search" id="origin" value="85 2nd St, San Francisco" />
       <div class="address-list-container" data-role="content">
         <ul id="origin-list" class="address-list" data-role="listview" data-inset="true" data-theme="c"></ul>
       </div>
     </div>
+
     <div data-role="fieldcontain">
-      <input type="search" id="destination" value="" />
-      
+      <input type="search" id="destination" value="1231 18th Ave, San Francisco" />
       <div class="address-list-container" data-role="content">
         <ul id="destination-list" class="address-list" data-role="listview" data-inset="true" data-theme="c"></ul>
       </div>
@@ -61,14 +63,14 @@
 
 <!-- Plan Details -->
 <div id="plan" data-role="page" data-theme="c">
-
   <div data-role="header">
     <a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a>
-    <h1></h1>
+    <h1 id="plan-title"></h1>
   </div>
 
   <div data-role="content">
-    This is where the plan details go.
+    <a id="google-link" target="_blank" href="http://www.google.com/maps?saddr=85%202nd%20St,%20SF&daddr=1231%2018th%20Ave,%20SF&dirflg=b" id="search-button" data-role="button">Google Directions</a>
+    <a id="bing-link" target="_blank" href="http://m.bing.com/directions#/Maps?w=a.85%202nd%20St,%20San%20Francisco,%20CA%2094105-3459~a.1231%2018th%20Ave,%20San%20Francisco,%20CA%2094122-1852&mode=T&limit=D&time=201106061257" id="search-button" data-role="button">Bing Directions</a>
   </div>
 </div>
 
