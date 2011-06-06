@@ -10,6 +10,7 @@
       metricsEjs = new EJS({url: 'views/metrics.ejs'}),
       geocoder = new google.maps.Geocoder(),
       curLatLng,
+      curPlan,
       geocodeDelay = 2000, //ms
       log = function(toLog) {
         if (window.console && window.console.log) {
@@ -48,6 +49,19 @@
         label: 'calories'
       };
     }
+  };
+  
+  var makeGoogleUrl = function(origin, destination, mode) {
+    var modes = {
+      'walking': 'w', 
+      'biking': 'b', 
+      'transit': 't', 
+      'taxi': 'd', 
+      'driving': 'd'
+    };
+    
+    return 'http://www.google.com/maps?saddr=' + encodeURIComponent(origin) + '&daddr=' + 
+      encodeURIComponent(destination) + '&dirflg=' + modes[mode];
   };
   
   var locateMe = function() {
@@ -105,7 +119,7 @@
         $metricsContent.html(html);
 
         $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
-          $('#plan h1').text(this.parentNode.id);
+          curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
           $.mobile.changePage('plan');
           e.preventDefault();
         });
@@ -141,7 +155,7 @@
       $('li', $list).tap(function(e) {
         $input.val(this.innerHTML);
         $list.empty();
-        e.preventDefault();ƒ
+        e.preventDefault();
       });
     };
   };
@@ -176,6 +190,10 @@
       }, geocodeDelay);
 
       geocode();
+    });
+    
+    $('#plan').live('pagebeforeshow', function() {
+      $('#google-link').attr('href', makeGoogleUrl(curPlan.origin, curPlan.destination, curPlan.mode));
     });
 
     $searchButton.tap(function(e) {
