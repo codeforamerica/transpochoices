@@ -13,6 +13,7 @@
       curPlan,
       $googleLink,
       $bingLink,
+      $planTitle,
       geocodeDelay = 2000, //ms
       log = function(toLog) {
         if (window.console && window.console.log) {
@@ -229,6 +230,9 @@
 
       $googleLink = $googleLink || $('#google-link');
       $bingLink = $bingLink || $('#bing-link');
+      $planTitle = $planTitle || $('#plan-title');
+
+      $planTitle.text(curPlan.mode);
 
       if (googleUrl) {
         $googleLink.show().attr('href', googleUrl);

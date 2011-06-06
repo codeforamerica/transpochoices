@@ -8,6 +8,8 @@
 /* Tweak search button width */
 #search-button { margin:0.5em 15px; }
 
+#plan-title { text-transform:capitalize; }
+
 /* Position the address lists nicely under the address fields */
 .address-list-container { padding:0 15px; }
   .address-list { margin:-1px 0 0 0 !important; }
