@@ -11,12 +11,18 @@
       geocoder = new google.maps.Geocoder(),
       curLatLng,
       curPlan,
+      $googleLink,
+      $bingLink,
       geocodeDelay = 2000, //ms
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
         }
       };
+  
+  var zeroPad = function(n, pad) {
+    return n < pad ? '0' + n : n;
+  };
   
   var renderers = {
     'km': function(val) {
@@ -60,8 +66,33 @@
       'driving': 'd'
     };
     
-    return 'http://www.google.com/maps?saddr=' + encodeURIComponent(origin) + '&daddr=' + 
-      encodeURIComponent(destination) + '&dirflg=' + modes[mode];
+    
+    if (modes[mode]) {
+      return 'http://www.google.com/maps?saddr=' + encodeURIComponent(origin) + '&daddr=' + 
+        encodeURIComponent(destination) + '&dirflg=' + modes[mode];
+    }
+
+    return null;
+  };
+  
+  var makeBingUrl = function(origin, destination, mode) {
+    var now = new Date(),
+      //201106061257
+      nowStr = '' + now.getFullYear() + zeroPad(now.getMonth()+1, 2) + zeroPad(now.getDate(), 2) + 
+        zeroPad(now.getHours(), 2) + zeroPad(now.getMinutes(), 2),
+      modes = {
+        'walking': 'W', 
+        'transit': 'T', 
+        'taxi': 'D', 
+        'driving': 'D'
+      };
+    
+    if (modes[mode]) {
+      return 'http://m.bing.com/directions#/Maps?w=a.' + encodeURIComponent(origin) + '~a.' + 
+        encodeURIComponent(destination) + '&mode=' + modes[mode] + '&limit=D&time=' + nowStr;
+    }
+
+      return null;
   };
   
   var locateMe = function() {
@@ -193,7 +224,23 @@
     });
     
     $('#plan').live('pagebeforeshow', function() {
-      $('#google-link').attr('href', makeGoogleUrl(curPlan.origin, curPlan.destination, curPlan.mode));
+      var googleUrl = makeGoogleUrl(curPlan.origin, curPlan.destination, curPlan.mode), 
+        bingUrl = makeBingUrl(curPlan.origin, curPlan.destination, curPlan.mode);
+
+      $googleLink = $googleLink || $('#google-link');
+      $bingLink = $bingLink || $('#bing-link');
+
+      if (googleUrl) {
+        $googleLink.show().attr('href', googleUrl);
+      } else {
+        $googleLink.hide();
+      }
+      
+      if (bingUrl) {
+        $bingLink.show().attr('href', bingUrl);
+      } else {
+        $bingLink.hide();
+      }    
     });
 
     $searchButton.tap(function(e) {
