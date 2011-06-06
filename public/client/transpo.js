@@ -3,6 +3,9 @@
       $originInput,
       $destinationInput,
       $metricsContent,
+      $googleLink,
+      $bingLink,
+      $planTitle,
       options = {
           modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
@@ -11,10 +14,6 @@
       geocoder = new google.maps.Geocoder(),
       curLatLng,
       curPlan,
-      $googleLink,
-      $bingLink,
-      $planTitle,
-      geocodeDelay = 2000, //ms
       log = function(toLog) {
         if (window.console && window.console.log) {
           window.console.log(toLog);
@@ -192,36 +191,35 @@
     };
   };
   
-  var delay = function(func, timeout) {
-    var timeoutId;
+  //Thanks _!
+  var limit = function(func, wait, debounce) {
+    var timeout;
     return function() {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      
-      timeoutId = setTimeout(func, timeout);
+      var context = this, args = arguments;
+      var throttler = function() {
+        timeout = null;
+        func.apply(context, args);
+      };
+      if (debounce) clearTimeout(timeout);
+      if (debounce || !timeout) timeout = setTimeout(throttler, wait);
     };
   };
   
   var bindEvents = function() {
-    var bounds;
+    var bounds,
+      delayedGeocode = limit(function(addr, bounds, listId) {
+        geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
+        console.log('geocoding');
+      }, 500, true);
     
     $originInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      var geocode = delay(function() {
-        geocoder.geocode({'address':$originInput.val(), 'bounds':bounds }, listAddresses('origin'));
-      }, geocodeDelay);
-      
-      geocode();
+      delayedGeocode($originInput.val(), bounds, 'origin');
     });
 
     $destinationInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      var geocode = delay(function() {
-        geocoder.geocode({'address':$destinationInput.val(), 'bounds':bounds }, listAddresses('destination'));
-      }, geocodeDelay);
-
-      geocode();
+      delayedGeocode($destinationInput.val(), bounds, 'destination');
     });
     
     $('#plan').live('pagebeforeshow', function() {
