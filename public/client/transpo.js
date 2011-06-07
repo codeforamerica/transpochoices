@@ -20,10 +20,14 @@
         }
       };
   
-  var zeroPad = function(n, pad) {
-    return n < pad ? '0' + n : n;
+  var zeroPad = function (number, width) {
+    width -= number.toString().length;
+    if ( width > 0 ) {
+      return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+    }
+    return number;
   };
-  
+    
   var renderers = {
     'km': function(val) {
       return {
@@ -65,7 +69,6 @@
       'taxi': 'd', 
       'driving': 'd'
     };
-    
     
     if (modes[mode]) {
       return 'http://www.google.com/maps?saddr=' + encodeURIComponent(origin) + '&daddr=' + 
@@ -209,8 +212,7 @@
     var bounds,
       delayedGeocode = limit(function(addr, bounds, listId) {
         geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
-        console.log('geocoding');
-      }, 500, true);
+      }, 1000, true);
     
     $originInput.keyup(function() {
       bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
