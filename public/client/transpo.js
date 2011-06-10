@@ -208,6 +208,20 @@
     };
   };
   
+  var toggleSearch = function() {
+    if ($originInput.val() || $destinationInput.val()) {
+      $searchButton
+        .removeAttr('disabled')
+        .parent()
+        .removeClass('disabled-btn');
+    } else {
+      $searchButton
+        .attr('disabled', 'disabled')
+        .parent()
+        .addClass('disabled-btn');
+    }
+  };
+  
   var bindEvents = function() {
     var bounds,
       delayedGeocode = limit(function(addr, bounds, listId) {
@@ -215,14 +229,28 @@
       }, 1000, true);
     
     $originInput.keyup(function() {
-      bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      delayedGeocode($originInput.val(), bounds, 'origin');
+      if ($originInput.val()) {
+        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+        delayedGeocode($originInput.val(), bounds, 'origin');
+      }
+      toggleSearch();
+    })
+    .change(function(){
+      toggleSearch();
     });
 
     $destinationInput.keyup(function() {
-      bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      delayedGeocode($destinationInput.val(), bounds, 'destination');
+      if ($destinationInput.val()) {
+        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+        delayedGeocode($destinationInput.val(), bounds, 'destination');
+      }    
+      toggleSearch();
+    })
+    .change(function(){
+      toggleSearch();
     });
+    
+    toggleSearch();
     
     $('#plan').live('pagebeforeshow', function() {
       var googleUrl = makeGoogleUrl(curPlan.origin, curPlan.destination, curPlan.mode), 
