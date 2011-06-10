@@ -34,7 +34,6 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
           modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
           metrics: ['cost', 'duration', 'calories', 'emissions']
       },
-      metricsEjs = new EJS({url: 'views/metrics.ejs'}),
       geocoder = new google.maps.Geocoder(),
       curLatLng,
       curPlan,
@@ -157,6 +156,33 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
     return results;
   };
   
+  var makeMetricsTable = function(metrics, results) {
+    var i, 
+      mode, 
+      html = '<table id="metrics-table">' + 
+        '<thead><tr><th>';
+        
+      for(i=0; i<metrics.length; i++) { 
+        html += '<th class="' +  metrics[i] + '">';
+      }
+      
+      html += '<th></thead><tbody>';
+
+      for(mode in results) { 
+        if (results.hasOwnProperty(mode)) {
+          html += '<tr id="' + mode + '"><th>';
+          for(i=0; i<metrics.length; i++) {
+            html += '<td><div class="metric-value">' + results[mode][metrics[i]].value + '</div>' + 
+              '<div class="metric-label">' + results[mode][metrics[i]].label + '</div>';
+          }
+          html += '<td class="metric-more"><div class="ui-icon ui-icon-arrow-r"></div>';
+        }
+      }
+      html += '</tbody></table>';
+      
+      return html;
+  };
+  
   var calculate = function(origin, destination) {
     $.mobile.pageLoading();
     
@@ -169,10 +195,7 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
       },
       success: function(data, textStatus, jqXHR) {
         var results = formatResults(data),
-          html = metricsEjs.render({
-            metrics: options.metrics,
-            results: results
-          });
+          html = makeMetricsTable(options.metrics, results);
         
         $metricsContent.html(html);
 
