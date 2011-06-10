@@ -1,0 +1,478 @@
+h1 {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; color: #2f2f2f; font-size: 31px; font-weight: bold}
+h2 {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; color: #bababa; font-size: 18px;}
+h1 {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; color: #2f2f2f; font-size: 31px; font-weight: bold}
+h2, .h2 {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; color: #bababa; font-size: 18px;}
+
+h3 {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; font-weight: bold; color: #4f4f4f; line-height: 26px; font-size: 18px; margin: 10px 0 15px 0}
+h4 {font-size: 16px; font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; font-weight: bold; color: #4f4f4f; line-height: 24px; margin: 10px 0 15px 0}
+
+p {font-size: 12px; color: #747474; line-height: 22px; margin: 0 0 20px 0}
+
+b, strong {font-weight: bold}
+em, i {font-style: italic;}
+
+.clientsBorder b, .clientsBorder strong { color: #91B024;}
+
+/*
+ul  {font-size: 12px; color: #747474; line-height: 22px; margin: 10px 0 15px 0}
+ul li {background: url("images/bullet-sm-gray.png") no-repeat scroll 0 10px transparent; padding-left: 10px;}
+*/
+
+ul.bulleted li {
+	list-style-type: disc;
+}
+
+.half {width: 48%; float: left;}
+.half2{width: 48%; margin-left: 4%; float:left}
+
+
+.floatLeft {float:left}
+.floatRight {float:right}
+
+.floatRightPad {float:right; margin: 7px 0 15px 20px; display:block; 
+border: 1px solid #ccc;
+  box-shadow: 0 0 20px -3px #999;
+  -moz-box-shadow: 0 0 20px -3px #999;
+  -webkit-box-shadow: 0 0 20px -3px #999;
+}
+
+.floatLeftPad {
+  float:left; margin: 7px 20px 15px 0; 
+  display:block;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 20px -3px #999;
+  -moz-box-shadow: 0 0 20px -3px #999;
+  -webkit-box-shadow: 0 0 20px -3px #999;
+}
+
+.floatRightPad-noBorder {float:right; margin: 7px 0 15px 20px; display:block; }
+
+.floatLeftPad-noBorder {
+  float:left; margin: 7px 20px 15px 0; 
+  display:block;
+}
+
+
+.clearLeft {clear: left; }
+.clearRight {clear:right;}
+.clearBoth {clear: both;}
+
+.innerThird {float:left; width: 31%; margin-right: 3%}
+.innerThird.last {margin:0}
+
+
+.contentContainer ul.defaultList, .mceContentBody ul.defaultList {
+  margin-bottom: 25px;
+  background: #f3f3f3;
+  border: 1px solid #e8e8e8;
+  padding: 10px;
+}
+
+.contentContainer li, .mceContentBody li {
+	list-style-type: none;
+	color: #747474;
+	font-size: 12px;
+	margin: 0 0 8px 16px;
+  	line-height: 20px;
+}
+
+.contentContainer li.product {
+	list-style-type: none;
+	margin: 0;
+}
+
+
+
+
+
+.homeFooterLink {
+font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; 
+color: #d88813;
+background: url('images/azavea-logo.png') 0 0 repeat-x;
+padding: 15px 0;
+margin-top: 20px;
+font-size: 18px;
+display:block;
+line-height: 24px;
+font-weight:bold;
+}
+.productDescription {font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial; font-size: 18px; letter-spacing: -1px;}
+
+.homeServicesHeader, .homeNewsHeader  {
+display:block;
+font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial;
+font-weight: normal;
+padding: 8px 8px 8px 15px;
+font-size: 21px;
+color: #fff;
+margin: 0 5px 18px 0;
+box-shadow: 3px 3px 1px #c4c4c4;
+-moz-box-shadow: 3px 3px 1px #c4c4c4;
+-webkit-box-shadow: 3px 3px 1px #c4c4c4;
+}
+.homeServicesHeader {background: #3cade2;}
+.homeNewsHeader {background: #e26a3b}
+
+
+.homeBodyCopy  p{
+color:#63879F;
+font-size:12px;
+line-height:24px;
+margin: 0 2px;
+display:block;
+}
+
+.homeBodyCopy h2 {
+margin: 0 0 9px;
+}
+
+
+/* COMPACT LIST BLOCK FOR CLIENTS AND PRODUCTS AND NEWS */
+
+.listBlock {
+font-size: 12px; line-height: 18px;
+}
+.listBlock  a  {font-weight: bold; padding: 15px 12px 15px 0; display:block;}
+
+.listBlock a.extLink {
+font-size:11px;
+color: #A1AE74;
+}
+
+.extLinkImg {
+background:url('images/azavea-logo.png') 0 0 no-repeat;
+display: inline-block;
+width: 21px;
+height: 8px;
+margin-left: 3px;
+}
+
+.listBlock  .title  {font-weight: bold; padding: 15px 12px 0 0; display:block; color: #a9a9a9; font-size:11px;}
+
+
+.listBlock h3 {
+  font-size: 21px;
+  font-weight:bold;
+  padding: 0 0 8px 0 ;
+  margin: 0;
+}
+
+.listBlock h3.sectorTitle {border-bottom-width: 3px;
+border-bottom-style: solid;
+}
+
+.listBlock .sectorDescrip {margin-top: 19px;}
+
+.listBlock h4{
+  border-width: 1px 0;
+  border-style: solid;
+  color: #403f3f;
+  font-size: 15px;
+  margin: 20px 0 0;
+  padding:8px 0;
+  opacity: 0.7; 
+}
+
+
+.listBlock .listWrap {
+border-top-style:solid;
+border-top-width:3px;
+}
+
+.listBlock .list {
+clear:left;
+background: url('images/azavea-logo.png') repeat-x center bottom;
+line-height: 14px;
+margin-bottom: 0;
+}
+
+.listBlock .list li {
+display:block;
+float: left;
+margin-bottom: 1px;
+margin-right: 10px;
+margin-left: 0;
+list-style:none;
+line-height: 14px;
+
+}
+
+.listBlock .list li.last {margin-right: 0}
+
+.listBlock .list li.client {width: 218px;}
+.listBlock .list li.product {width: 332px;}
+.listBlock .list li.news {font-size: 11px; width: 300px; float: none; background: url('images/azavea-logo.png') repeat-x scroll center bottom; padding-bottom: 10px;}
+.listBlock .shadeBoxContent .list li.client {width:200px;}
+
+.listBlock ul.last {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  background: none;
+}
+.newsPostPreview.listBlock ul.last {
+  border: none;
+}
+
+.listBlock .clientDescrip {
+padding-top: 3px;
+font-size: 11px;
+color: #979797;
+font-weight:normal;
+display:block;
+text-indent: 0;
+}
+
+.listBlock li a .clientDescrip {
+padding-bottom:0;
+}
+.listBlock li .clientDescrip {
+padding-bottom:15px
+}
+
+
+/* STAFF PROFILES LIST */
+
+.userRow ul{
+	border: none;
+	background: none;
+}
+
+
+
+/*CLIENT LOGO SPRITE FOR INVERTING WITHIN THE LISTBLOCK */
+
+
+
+.listBlock .productLogo {
+background-image: url('images/azavea-logo.png');
+background-repeat: no-repeat;
+width: 160px;
+height: 30px;
+display:block;
+}
+
+
+.listBlock .productLogo.cicero {
+background-position: 0 0; 
+}
+.listBlock .productLogo.kif {
+background-position: 0 -43px; 
+}
+.listBlock .productLogo.sajara {
+background-position: 0 -86px; 
+}
+.listBlock .productLogo.decisiontree {
+background-position: 0 -129px; 
+}
+.listBlock .productLogo.hunchlab {
+background-position: 0 -172px; 
+}
+
+
+/* TECHNOLOGIES PAGE CUSTOM TEMPLATE */
+
+.techBoxInner, .techBox {
+font-size: 11px;
+}
+
+.techBoxInner h4, .techBox h4 {
+  font-size: 15px;
+  color: #287aa0;
+  clear: both;
+  margin: 0 0 5px 0;
+  padding: 0 0 3px;
+  line-height: 18px;
+
+}
+
+.techBoxInner ul, .techBox ul  {
+margin-bottom: 32px;
+padding:0;
+}
+
+.techBoxInner ul li, .techBox ul li {
+font-size: 11px;
+margin: 0 0 3px 0;
+padding-left: 9px;
+background: url('images/azavea-logo.png') no-repeat scroll 0 5px transparent;
+list-style-type: none;
+}
+
+.techBoxInner .innerThird, .techBox .innerThird {
+  background: url('images/azavea-logo.png') top right repeat-y;
+  margin-right:2%;
+padding-right:24px;
+width:184px
+}
+
+.techBoxInner .innerThird.last, .techBox .innerThird.last {
+margin:0; background: none; padding:0;
+}
+
+
+/* PRODUCTS PAGE STYLES */
+
+/* CUSTOM STYLES FOR PRODUCTS PAGE */
+
+.productContainer {
+	width: 675px;
+	margin: 30px 0;
+  padding: 30px 0 0 0;
+  background: url('images/azavea-logo.png') repeat-x scroll center top transparent;
+  display:block;
+}
+
+.productContainer hr {
+	background: url('images/azavea-logo.png') 0 0 repeat-x;
+	height: 4px;
+	margin: 20px 0 0 0;
+}
+
+.productHeader {
+	height: 34px;
+	margin: 8px 0;
+}
+
+.productHeader .productDescription {
+	float: right;
+	margin: 12px 8px 0 0;
+  color: #333;
+  }
+
+.productHeader .productDescription a {color: #333}  
+  
+.productBanner a {
+	width: 675px;
+	height: 59px;
+    display:block;
+  box-shadow: 3px 3px 1px #c4c4c4;
+  -moz-box-shadow: 3px 3px 1px #c4c4c4;
+  -webkit-box-shadow: 3px 3px 1px #c4c4c4;
+  }
+  
+
+
+.productBanner .learnMore {
+	width:  110px;
+	height: 29px;
+	background-image: url('images/azavea-logo.png');
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	float: right;
+	display: block;
+	position: relative;
+	top: 22px;
+	right: 9px;
+	cursor: pointer;
+  display:block;
+}
+
+.productBanner .learnMore span.hover {
+	width:  110px;
+	height: 29px;
+	background-image: url('images/azavea-logo.png');
+	background-position: 0px -29px;
+	background-repeat: no-repeat;
+	float: right;
+	position: relative;
+	top: -19px;
+	display: block;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+
+}
+
+.productContainer .productLogo {
+  display:block;
+  float:left;
+}
+
+.productHeader .hunchLab {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  width: 134px;
+  height: 34px;
+}
+.productBanner .hunchLab {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  
+}
+
+.productHeader .sajara {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  width: 105px;
+  height: 34px;
+}
+.productBanner .sajara {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+}
+
+.productHeader .cicero {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  width: 96px;
+  height: 24px;
+}
+.productBanner .cicero {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+}
+
+.productHeader .decisionTree {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  width: 161px;
+  height: 24px;
+}
+.productBanner .decisionTree {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+}
+
+.productHeader .kaleidocade {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+  width: 164px;
+  height: 33px;
+}
+.productBanner .kaleidocade {
+	background: url('images/azavea-logo.png') 0 0 no-repeat;
+}
+
+
+/* BLOG SIDEBAR LIST STYLES */
+
+
+.blogsSidebar h4 {
+  font-size: 12px; color: #1E5073;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid #ddd;
+  padding: 0 0 6px;
+  margin: 0 0 12px 0;
+  line-height: 12px;
+}
+
+.blogsSidebar ul {margin-bottom: 0}
+
+.blogsSidebar li {font-size: 11px; margin: 5px 0 6px 0; font-weight: bold; line-height: 16px;}
+.blogsSidebar li a {color: #3890D4;}
+
+li.twitter {
+  background: url('images/azavea-logo.png') 0 0 no-repeat;
+    padding-left: 21px;
+}
+
+li.blog {
+  background: url('images/azavea-logo.png') 0 0 no-repeat;
+    padding-left: 21px;
+}
+
+li.newsletter {
+  background: url('images/azavea-logo.png') 0 0 no-repeat;
+    padding-left: 21px;
+}
+
+/*  IMAGE CAPTIONS */
+
+div.caption01 {
+	background: #dae4ed;
+	color: #333;
+	font-size: 8px;
+	font-style:italic;
+	padding-left: 10px;
+	}
