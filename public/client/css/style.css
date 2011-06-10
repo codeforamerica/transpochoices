@@ -8,6 +8,9 @@
 /* Tweak search button width */
 #search-button { margin:0.5em 15px; }
 
+.disabled-btn { color:#ccc; }
+  .disabled-btn input { cursor:default !important; }
+
 #plan-title { text-transform:capitalize; }
 
 /* Position the address lists nicely under the address fields */
