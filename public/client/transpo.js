@@ -1,23 +1,32 @@
 (function(){
   var $searchButton,
-      $originInput,
-      $destinationInput,
-      $metricsContent,
-      $googleLink,
-      $bingLink,
-      $planTitle,
-      options = {
-          modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
-          metrics: ['cost', 'duration', 'calories', 'emissions']
-      },
-      geocoder = new google.maps.Geocoder(),
-      curLatLng,
-      curPlan,
-      log = function(toLog) {
-        if (window.console && window.console.log) {
-          window.console.log(toLog);
-        }
-      };
+    $originInput,
+    $destinationInput,
+    $metricsContent,
+    $googleLink,
+    $bingLink,
+    $planTitle,
+    options = {
+        modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
+        metrics: ['cost', 'duration', 'calories', 'emissions']
+    },
+    geocoder = new google.maps.Geocoder(),
+    curLatLng,
+    curPlan;
+      
+  var log = function(toLog) {
+    if (window.console && window.console.log) {
+      window.console.log(toLog);
+    }
+  };
+  
+  var trackEvent = function(category, action, opt_label, opt_value) {
+    if (_gaq) {
+      _gaq.push(['_trackEvent', category, action, opt_label, opt_value]);
+    } else {
+      log(category, action, opt_label, opt_value);
+    }
+  };
   
   var zeroPad = function (number, width) {
     width -= number.toString().length;
