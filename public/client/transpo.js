@@ -21,8 +21,10 @@
   };
   
   var trackEvent = function(category, action, opt_label, opt_value) {
+    var args = Array.prototype.slice.call(arguments);
     if (_gaq) {
-      _gaq.push(['_trackEvent', category, action, opt_label, opt_value]);
+      args.unshift('_trackEvent');
+      _gaq.push(args);
     } else {
       log(category, action, opt_label, opt_value);
     }
@@ -185,6 +187,8 @@
         $metricsContent.html(html);
 
         $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
+          trackEvent('mode', 'click', this.parentNode.id);
+          
           curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
           $.mobile.changePage('plan');
           e.preventDefault();
@@ -298,10 +302,19 @@
         $bingLink.show().attr('href', bingUrl);
       } else {
         $bingLink.hide();
-      }    
+      }
+      
+      $googleLink.click(function(){
+        trackEvent('directions', 'get', 'google');
+      });
+      
+      $bingLink.click(function(){
+        trackEvent('directions', 'get', 'bing');
+      });
     });
 
     $searchButton.tap(function(e) {
+      trackEvent('directions', 'search');
       calculate($originInput.val(), $destinationInput.val());
       e.preventDefault();
     });
