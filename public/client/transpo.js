@@ -266,10 +266,7 @@
         delayedGeocode($originInput.val(), bounds, 'origin');
       }
       toggleSearch();
-    })
-    .change(function(){
-      toggleSearch();
-    });
+    }).change(toggleSearch);
 
     $destinationInput.keyup(function() {
       if ($destinationInput.val()) {
@@ -277,10 +274,7 @@
         delayedGeocode($destinationInput.val(), bounds, 'destination');
       }    
       toggleSearch();
-    })
-    .change(function(){
-      toggleSearch();
-    });
+    }).change(toggleSearch);
     
     toggleSearch();
     
