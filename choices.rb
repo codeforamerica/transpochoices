@@ -92,9 +92,10 @@ def calculate_transit_by_bing_resource(resource)
 		end
 		#puts "got some rides for #{agency}:"
 		#pp rides
-
-		sum += best_fare(rides,fares)
-	end.to_f
+		fare = best_fare(rides,fares)
+		break nil if fare.nil?
+		sum += fare
+	end
 	
 	{
 		:duration=>resource["travelDuration"],
