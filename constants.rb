@@ -12,7 +12,8 @@ AVG_CAR_SPEED = 41.2 #km / hour - in city
 GTFS_MAPPING = {
 	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
 	"Bay Area Rapid Transit"=>["BART_google_transit","BART"],
-	"AirBART"=>["BART_google_transit","AirBART"]
+	"AirBART"=>["BART_google_transit","AirBART"],
+	"SEPTA"=>["SEPTA_bus","SEPTA"]
 }
 
 
