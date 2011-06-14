@@ -97,11 +97,12 @@ def calculate_transit_by_bing_resource(resource)
 		sum += fare
 	end
 	
+	
 	{
 		:duration=>resource["travelDuration"],
 		:calories=>walking_duration * CALORIES_PER_SECOND_WALKING + transit_duration * CALORIES_PER_SECOND_SITTING,
 		:emissions=>nil,
-		:cost=>cost
+		:cost=>(cost.nil? ? nil : cost.to_f)
 	}
 end
 
