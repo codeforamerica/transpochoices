@@ -157,6 +157,10 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         
           if (metric) {
             results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
+            if (!data.results[mode][metric]){
+              console.debug("L");
+              results[mode][metric]['value']="?";
+            }
           }
         }
       }
