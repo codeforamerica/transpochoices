@@ -53,7 +53,7 @@ def best_fare(rides,fares)
 	end
 	
 	#now that we've calculated all the way, we know the optimal cost from start to finish. return it.
-	leg_costs[0].last || 99.99 #or something intelligent, if there's no valid fare
+	leg_costs[0].last #if no fare is found, this will just be nil.
 end
 
 def best_without_transfers(rides,fares)
