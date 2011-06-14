@@ -1,16 +1,24 @@
 #home { background-color:#fdfdfd; background-image:none; }
 
 /* Position the "footer" */
-#home-footer { position:absolute; bottom:0; }
+#home-footer { position:absolute; bottom:0; height:40px; }
     #home-footer a { margin:6px; }
     .footer-button-right { float:right; }
 
 /* Tweak search button width */
 #search-button { margin:0.5em 15px; }
 
+.disabled-btn { color:#ccc; }
+  .disabled-btn input { cursor:default !important; }
+
+#plan-title { text-transform:capitalize; }
+
 /* Position the address lists nicely under the address fields */
 .address-list-container { padding:0 15px; }
   .address-list { margin:-1px 0 0 0 !important; }
+
+/* All for room for the footer */
+#metrics-content { margin-bottom:40px; }
 
 /* Metrics table styling */
 #metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
@@ -69,8 +77,13 @@
 .ui-input-search { width: auto; }
 
 /* Override the icon for the search fields */
-.ui-icon-searchfield {
-  /*background-image: url(images/from.png);*/
+#origin-fieldcontain .ui-icon-searchfield {
+  background-image: url(images/point_a.png);
+  background-size: 16px 16px;
+}
+
+#destination-fieldcontain .ui-icon-searchfield {
+  background-image: url(images/point_b.png);
   background-size: 16px 16px;
 }
 

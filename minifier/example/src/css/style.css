@@ -1,0 +1,1778 @@
+/*C5 OVERRIDE */
+
+div.ccm-block-arrange, div.ccm-block {
+margin: 2px -2px;
+padding:0
+}
+
+
+/* Azavea 2010 Stylesheet */
+
+html { height: 100%; }
+body { height: 100%; font-family: Arial, Helvetica, sans-serif;}
+button {cursor: pointer}
+
+
+a {text-decoration: none; color:#E47D0E; }
+
+
+
+.addBorder {border: 1px solid #b9b9b9;}
+.addDottedBottom {
+  background: url(images/azavea-logo.png) bottom left repeat-x;
+  padding-bottom: 5px;
+  margin-bottom: 25px;
+}
+
+a.siteButton, button.siteButton {
+  padding: 3px 18px 4px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  text-shadow: 0 -1px 0 #3A7404;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 14px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #fff;
+  text-align:center;
+  background-image: url(images/azavea-logo.png);
+  background-position:  0 -28px;
+  background-repeat:  repeat-x;
+  border: 1px solid #aaa;
+  display: inline-block;
+}
+
+a.siteButton:hover , button.siteButton:hover {
+background-position: 0 0;
+}
+a.siteButton:active, button.siteButton:active {
+border: 1px solid #666;
+}
+
+a.siteButtonLg, button.siteButtonLg{
+  padding: 8px 60px 10px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  text-shadow: 0 -1px 0 #3A7404;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 18px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align:center;
+  background-image: url(images/azavea-logo.png);
+  background-position:0 -56px;  
+  background-repeat:repeat-x;
+  border: 1px solid #aaa;
+  display: inline-block;
+}
+
+a.siteButtonLg:hover, button.siteButtonLg:hover {
+background-position: 0 0;
+}
+a.siteButtonLg:active, button.siteButtonLg:active {
+border: 1px solid #666;
+}
+
+
+a.siteButton.buttonRecentNews {
+float: right;
+background-color: #E26A3B
+}
+
+
+
+/* C5 OVERRIDE */
+
+.ccm-layout .ccm-layout-cell {overflow: visible !important;}
+
+/* SITEWIDE LAYOUT ////////////////////*/
+
+
+.fixedWide {
+  width: 990px;
+  margin: 0 auto;
+}
+
+.headerWide {
+  width: 980px;
+  margin: 0 auto;
+  }
+
+.fullWide {width: 100%}
+
+.page { /* wrapper for theme portion */ 
+	font-family: Arial,Helvetica,Garuda,sans-serif; 
+  border-top: 10px solid #999;
+}
+
+.contentContainer {
+float: left;
+width: 675px;
+margin: 10px -36px 40px -31px;
+border-left: 1px solid #e8e8e8;
+padding: 0 30px;
+margin-bottom: 40px;
+}
+
+
+
+#headerContainer {
+background: url(images/azavea-logo.png) bottom center repeat-x;
+margin-bottom: 25px;
+padding-bottom: 31px;
+}
+
+.parentCrumbs {margin-bottom: 21px}
+.parentCrumbs h2 {display:inline}
+.parentCrumbs h2 a {color: #BABABA}
+
+
+h1.titlePage {
+
+}
+
+
+
+#headerCallout {float:right; width: 300px;}
+
+/* SIDEBAR ////////////////////*/
+
+#sidebar {
+  clear: both;
+  float:left;
+  width: 242px;
+  margin-right: 30px;
+  padding: 10px 30px 40px 0;
+  border-right: 1px solid #e8e8e8
+}
+
+#sidebar .nav {
+  text-transform: uppercase;
+  text-align:left;
+}
+
+
+
+
+
+
+
+#sidebar .nav li {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #fff ;
+  background-image:url(images/azavea-logo.png);
+  background-position: bottom center; 
+  background-repeat: repeat-x;
+  margin: 0 0 20px 0;
+  padding: 0 0 20px 17px;
+}
+
+#sidebar .nav li a {
+  color: #e47d0e;
+  display:block;
+  padding: 3px 5px 3px 0;
+ }
+ 
+#sidebar .nav a.nav-selected {
+  background-color: #999;
+  padding-left: 10px;
+  display:block;
+  color: #fff;
+}
+
+
+#sidebar .nav li ul {
+    margin-top: 3px
+ }
+ 
+#sidebar .nav li li {
+  text-transform: none;
+  padding: 0 0 0 10px;
+  font-size: 11px;
+  font-weight: bold;
+  background-image:url(images/azavea-logo.png);
+  background-position: 0 10px;
+  background-repeat: no-repeat;
+  margin: 0;
+  line-height: 14px;
+}
+
+#sidebar .nav li li.nav-selected {
+  background: none;
+  padding-left: 0;
+
+}
+
+
+#sidebar .nav li li a {
+   padding: 4px 0;
+  color: #989898;
+
+}
+
+#sidebar .nav li ul ul {
+    padding-left: 15px;
+    margin: 0 0 5px -15px;
+    background: #fff;
+ }
+ 
+#sidebar .nav li ul ul li {
+  font-weight: normal;
+  background-image:url(images/azavea-logo.png);
+  background-position: 0 8px;
+  background-repeat: no-repeat;
+  }
+
+#sidebar div.searchByYear {
+	margin: 12px 0;
+	color: #707070;
+	font-size: 12px;
+	text-transform: capitalize;
+}
+/* HEADER ////////////////////*/
+
+
+#titleAndNav {
+	text-align: left;
+	background: #fff;
+	height: 80px;
+  margin-top: 10px;
+  margin-bottom: 33px;
+  border-bottom: 1px solid #e8e8e7;
+}
+
+#home #titleAndNav {
+  margin-bottom:0
+  }
+
+#headerLogo {
+  float:left;
+  margin: 19px 0 0 10px;
+}
+
+#headerNavContainer {
+	float:left; 
+  margin: 31px 0 0 26px;
+  }
+
+#headerNav {
+	width: 594px;
+	height: 28px;
+	list-style: none;
+  margin: 0;
+  padding:0;
+}
+
+#headerNav li {
+	display: block;
+  float: left;
+	width: 97px;
+}
+
+#headerNav li.nav-selected {
+  margin: 0 3px;
+}
+
+#headerNav li a {
+	float: left;
+	text-indent: -9999px;
+  height: 28px;
+  display:block;
+  background: 0 0 no-repeat;
+  z-index: 9;
+  position: relative
+}
+
+#headerNav li a .hover {
+  background-position: 0 -28px;
+  background-repeat: no-repeat;
+  display:block;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  position:absolute;
+  width: 100%;
+  height: 28px;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  cursor:pointer;
+  }
+  
+#headerNav li a.nav-selected .hover  {
+  opacity: 1 !important;
+  filter: alpha(opacity=100) !important;
+
+  
+}
+
+#headerNav #about-us a, #headerNav #about-us .hover {
+	width: 97px;	
+	background-image: url('images/azavea-logo.png');
+}
+
+#headerNav #services a, #headerNav #services .hover {
+	width: 97px;	
+	background-image: url('images/azavea-logo.png') ;
+}
+
+#headerNav #products a, #headerNav #products .hover  {
+	width: 97px;	
+	background-image: url('images/azavea-logo.png');
+}
+
+#headerSearch {
+  float:right;
+  margin: 34px 20px 0 0;
+  height:26px;
+  width:156px;
+  position: relative;
+
+}
+
+#headerSearch.focus {
+  background-position: 0 -26px
+}
+
+
+
+.searchBox {
+  border:none;
+  background: none;
+  font-size:11px;
+  height:14px;
+  padding-top: 6px;
+  margin-left:8px;
+  width:121px;
+  font-weight: bold;
+  color: #888
+  }
+  
+
+
+.searchSubmit {
+  background: url(images/azavea-logo.png) 0 0 no-repeat;
+  height: 13px;
+  width: 14px;
+  z-index:6;
+  display:block;
+  position: absolute;
+  right:6px;
+  top:6px;
+}
+
+
+
+
+/* FOOTER ////////////////////*/
+
+#footer {
+	text-align: left;
+	font-size: 11px;
+	color: #747474;
+	border: solid #d6d6d6;
+	border-width: 4px 0 0 0;
+	padding: 20px 0 40px 0;
+  clear: both;
+  margin-top: 30px;
+
+}
+
+#footer a {
+	color: #747474;
+	text-decoration: none;
+    font-weight: bold;
+}
+
+#footer a:hover {
+	color: #3CADE2;
+}
+
+ul#footerNav {
+	float: right;
+	text-transform: uppercase;
+
+}
+
+
+
+ul#footerNav li {
+	display: inline;
+	margin: 0 0 0 30px;
+}
+
+:focus {
+	outline: 0;
+}
+
+
+
+
+
+
+
+
+/* PER-SECTION COLORING ////////////////////*/
+
+
+.about-usBorder {
+  border-color: #3890D4;
+}
+.about-usShade {
+  color: #3890D4;
+}
+.about-usBg {
+  background-color: #3890D4;
+}
+#about-us .nav a.nav-selected {
+  background-image:none ;
+  background-color: #3890D4;
+}
+
+
+  
+.servicesBorder {
+  border-color: #3CADE2;
+}
+
+.servicesShade {
+  color: #3CADE2;
+}
+.servicesBg {
+  background-color: #3CADE2;
+}
+#services .nav a.nav-selected {
+  background-image:none ;
+  background-color: #3CADE2;
+}  
+  
+.productsBorder {
+  border-color: #6C9752;
+}  
+
+#products .nav a.nav-selected {
+  background-image: none;
+  background-color: #6C9752;
+}
+
+
+.clientsBorder {
+  border-color: #91B024;
+}  
+
+.clientsShade {
+  color: #627817;
+}  
+.clientsBg {
+  background-color: #91B024;
+} 
+#clients .nav a.nav-selected {
+  background-image: none;
+  background-color: #91B024;
+}
+
+
+.researchBorder {
+ border-color: #E29D3B;
+}
+.researchShade {
+ border-color: #E29D3B;
+}
+.researchBg {
+  background-color: #E29D3B;
+}
+#research .nav a.nav-selected {
+  background-image: none;
+  background-color: #E29D3B;
+}
+
+
+.news-roomBorder {
+  border-color: #E26A3B;
+}
+.news-roomShade {
+  color: #E26A3B;
+}
+#news-room .nav a.nav-selected {
+  background-image:none ;
+  background-color: #E26A3B;
+}
+
+.newsPostPreview h3.sectorTitle {
+	width: 300px;
+	float: left;
+	line-height: 30px;
+}
+
+.listBlock h3.news-roomShade.sectorTitle.noRSS {
+	margin: 0 0 0 15px;
+}
+
+/* CUSTOM STYLES FOR HOMEPAGE ////////////////////*/
+
+#splash {
+	background: url('images/azavea-logo.png') repeat-x;
+	width: 100%;
+	height: 285px;
+	border: solid #d6d6d6;
+	border-width: 0 0 4px 0;
+  border-top: 2px solid #d6d6d6;
+  height: 286px;
+  position: relative;
+}
+
+
+#splashShadow {
+  background: url('images/azavea-logo.png') no-repeat;
+  width: 1140px;
+  height: 164px;
+  position: absolute;
+  margin: 111px 0 0 -157px;
+}
+
+
+
+
+div.homeContentBlock {
+	color: #4e748f;
+	text-align: left;
+	width: 332px;
+	border: solid #d6d6d6;
+	border-width: 0 1px 0 0;
+	padding: 0 17px;
+}
+
+
+#homeContentContainer {
+  margin-top: 30px;
+  }
+
+#leftColumn {
+	background: purple;
+}
+
+#centerColumn {
+	background: green;
+}
+
+#rightColumn {
+	background: red;
+}
+
+
+
+
+
+/* JQUERY TOOLS OVERLAY */
+
+.overlay {
+	
+	/* must be initially hidden */
+	display:none;
+	
+	/* place overlay on top of other elements */
+	z-index:10000;
+	
+	/* styling */
+	background-color:#fff;
+	
+	width:675px;	
+	min-height:200px;
+	border:1px solid #ccc;
+	
+	/* CSS3 styling for latest browsers */
+	-moz-box-shadow: 0 0 30px #ccc;
+	-webkit-box-shadow:  0 0 30px #ccc;	
+	box-shadow:  0 0 30px #ccc;	  
+  text-align: center;
+  padding: 15px
+}
+
+/* default close button positioned on upper right corner */
+.overlay .close {
+	background-image:url(images/azavea-logo.png);
+  position:absolute;
+	right:-15px;
+	top:-15px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+.overlay .imageCaption {
+color:#444444;
+font-weight:bold;
+line-height:15px;
+margin:14px auto 3px;
+width:90%;
+}
+
+
+
+/* GENERIC SHADED BOX STYLES */
+/* structured as such
+<div class="shadeBox">
+<div class="shadeBoxHead"></div>
+<div class="shadeBoxContent"></div>
+<div class="shadeBoxFoot"></div>
+</div>
+ */
+
+
+
+
+.shadeBox {
+background: url(images/azavea-logo.png) 0 0 repeat-y !important;
+margin-left: -23px;
+margin-right: -25px;
+clear:left;
+}
+
+
+.shadeBox .shadeBoxHead {
+background: url(images/azavea-homepage-hunchlab-banner.jpg) 0 0 no-repeat;
+height: 37px;
+
+}
+
+.shadeBox .shadeBoxFoot {
+background: url(images/azavea-logo.png) 0 0 no-repeat;
+height: 37px;
+}
+
+
+.shadeBox .shadeBoxContent {
+margin: -25px 23px;
+padding: 18px 23px;
+position: relative;
+border-left-width: 3px;
+border-left-style: solid;
+overflow: auto;
+}
+
+.shadeThinBox {
+background: url(images/azavea-homepage-hunchlab-banner.jpg) 0 0 repeat-y;
+margin: -10px -30px 50px 10px;
+width: 266px;
+float:right;
+
+}
+
+
+.shadeThinBox .shadeBoxHead {
+background: url(images/azavea-logo.png) 0 0 no-repeat;
+height: 37px;
+
+}
+
+.shadeThinBox .shadeBoxFoot {
+background: url(images/azavea-homepage-hunchlab-banner.jpg) 0 0 no-repeat;
+height: 37px;
+
+}
+
+.shadeThinBox .shadeBoxContent {
+margin: -25px 23px;
+
+position: relative;
+border-left-width: 3px;
+border-left-style: solid;
+}
+
+
+
+
+
+
+/* CLIENTS DETAIL SIDEBAR */
+
+
+.sidebar h5 {font-size: 11px; font-weight: bold; color: #bababa; text-transform: uppercase; margin: 0 0 4px 0;}
+
+.sidebar a {font-size:12px; font-weight:bold}
+
+.sidebar .section {
+  background: url(images/azavea-logo.png) bottom left repeat-x;
+  padding: 15px 20px
+  }
+
+.sidebar .section.last {
+background: none
+}
+  
+.sidebar .imgThumb {
+  box-shadow: 5px 5px 5px #eee;
+  -moz-box-shadow: 5px 5px 5px #eee;
+  -webkit-box-shadow: 5px 5px 5px #eee;
+  display:block;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  }
+  
+.sidebar .imgThumb .caption {
+  display: block;
+  padding: 3px;
+  color: #fff;
+  font-weight: bold;
+  font-family: "ronnia-1","ronnia-2",Trebuchet MS, Arial;
+  text-align: left;
+}  
+  
+ 
+/* ABOUT US - CUSTOM STYLING */
+
+p.smallSpacing { margin: 0 0 12px; }
+
+.supportedOrganizations p {
+  margin: 20px 0 12px;
+} 
+
+img.serviceImg {
+	margin-bottom: 20px;	
+}
+
+/* FEATURED CLIENT BLOCK */
+
+.featuredClient {
+  margin-bottom: 30px;
+  margin-top: 20px;
+ }
+
+.featuredClient .shadeBoxContent {
+  border-left: 6px solid #c6d68e;
+}
+
+.featuredClient h3 {
+  font-size: 22px;
+  font-weight:bold;
+  border-bottom: 1px solid #c6d68e;
+  padding: 0 0 12px 0 ;
+  margin: 0 0 19px;
+  color: #777;
+}
+
+.featuredClient h4 a  {
+color: #e47d0e;
+font-size: 17px;
+display:block;
+}
+
+.featuredClient p {
+font-size: 12px;
+color: #6f6f6f;
+line-height: 18px;
+margin-top: 10px;
+}
+
+.featuredClient .footerLink {
+text-transform: uppercase;
+font-weight: bold;
+font-size: 11px;
+
+}
+
+.featuredClient .thumb {
+float: right;
+border-width: 1px;
+border-style: solid;
+margin-left: 30px;
+display:block;
+}
+
+.featuredClient .thumb img {
+background-color: #fff
+}
+
+.featuredClient .thumbCaption {
+display:block;
+color: #fff;
+padding: 3px 3px 3px 6px;
+text-transform: uppercase;
+font-weight:bold;
+font-size: 11px;
+}
+
+
+
+/* BLOG POSTS BLOCK */
+
+.newsPostPreview ul.list.news-roomBorder {
+	clear: none;
+	width: 314px;
+	float: left;
+	background: none;
+}
+
+
+.newsPostPreview .postThumb {
+	float:left;
+	margin: 3px 0 0 0;
+	width: auto;
+	height: 100%;
+	text-align: center;
+}
+
+.newsPostPreview .postThumb img, .ccm-blog-post .postThumb img {
+	/*border: 1px solid #b9b9b9;
+	-moz-box-shadow: 0 0 7px -1px #A0A0A0;
+	-webkit-box-shadow: 0 0 7px -1px #A0A0A0;
+  box-shadow: 0 0 7px -1px #A0A0A0;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#a0a0a0', Direction=135, Strength=3);
+  */
+}
+
+
+.newsPostPreview .postContentWrap.hasThumb {
+margin-left: 145px;
+}
+
+.newsPostPreview .date {
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight:bold;
+	color: #818181;
+	margin: 15px 0 3px;
+}
+
+.ccm-blog-list-content .newsPostPreview  {
+  background: url(images/azavea-homepage-hunchlab-banner.jpg) bottom left repeat-x;
+   padding: 10px 0 15px;
+}
+
+.ccm-blog-list-content .newsPostPreview .date {
+  font-size: 14px;
+   }
+
+.newsInfoWrap.hasThumb {margin-left: 75px;}
+
+
+
+.newsPostPreview .postTitle {
+	padding: 5px 10px 5px 0;
+}
+
+.ccm-blog-list-content .newsPostPreview .postTitle {
+margin-bottom: 4px;
+}
+
+.newsPostPreview li.inTheNews .postTitle {
+	min-height: 12px !important;
+	padding: 5px 0 0;
+}
+
+.newsPostPreview .postTitle a {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.newsPostPreview .icon {float:left; padding: 5px 5px 5px 0 }
+
+
+
+
+
+/* NEWS AND BLOGS PAGE PREVIEW/LIST ENTRIES */
+
+.newsPostPreview .postTitle a {
+color: #e26a3b;
+font-size: 18px;
+font-weight: bold;
+}
+
+.newsPostPreview .postContent {
+color: #747474;
+font-size: 12px;
+line-height: 18px;
+}
+
+.newsPostPreview .postContent a.continueReading {
+color: #e26a3b;
+font-weight: bold;
+}
+
+.newsPostPreview .postContent a.continueReading:hover {
+text-decoration: underline;
+}
+
+.newsPostPreview .postTags, .newsPostPreview .postCategory {
+color: #a8a8a8;
+font-size: 11px;
+font-weight: bold;
+margin: 11px 0;
+}
+
+.news-roomBorder #headerContainer {
+	margin-bottom: 12px;
+}
+
+
+.news-roomBorder .newsPostPreview .postTags .tagSpan, .news-roomBorder .newsPostPreview .postTags a, .news-roomBorder .newsPostPreview .postCategory .tagSpan a {
+	color: #e26a3b;
+}
+
+.news-roomBorder .newsPostPreview .postTags a:hover, .newsPostPreview .postCategory a:hover {
+text-decoration: underline;
+}
+
+
+
+/* SMALL NEWS BLOCK FOR HOMEPAGE */
+
+.smallNewsBlockContainer {
+border-bottom:2px solid #E8E8E8;
+margin-left:26px;
+padding-bottom:13px;
+}
+
+.smallNewsBlockContainer .newsPostPreview {
+background: url(images/azavea-logo.png) 0 0 repeat-x;
+padding: 15px 0 10px;
+clear:left;
+}
+
+.smallNewsBlockContainer .newsPostPreview.first {
+padding-top: 5px;
+background: none;
+}
+
+.smallNewsBlockContainer .newsPostPreview .postThumb {
+	margin: 5px 15px 15px 0;
+}
+
+
+.smallNewsBlockContainer .newsPostPreview  .date {
+margin-top: 0;
+color: #a6a6a6;
+font-size: 11px;
+}
+
+.smallNewsBlockContainer .newsPostPreview .postTitle {
+margin-bottom: 0;
+padding: 0;
+margin-left: 79px;
+}
+
+.smallNewsBlockContainer .newsPostPreview .postTitle a {
+	font-size: 11px;
+  line-height: 15px;
+	font-weight: bold;
+}
+
+
+
+/* NEWS SECTION PAGINATION */
+
+.ccm-blog-blog-list-pagination-links {
+  background: url(images/azavea-homepage-hunchlab-banner.jpg) bottom left repeat-x;
+	padding: 15px 0;
+	font-size: 14px;
+	font-weight: bold;
+	color: #e6e6e6;
+}
+
+.ccm-blog-blog-list-pagination-links a {
+	color: #E26A3B;
+}
+
+.ccm-blog-blog-list-prev-link  {
+	float: left !important;
+}
+
+.ccm-blog-blog-list-next-link  {
+	float: right !important;
+}
+
+.ccm-blog-blog-list-pagination-links .totalPostsAndPages {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #979797;
+	text-align:center;
+}
+
+.ccm-blog-blog-list-pagination-links .totalPostsAndPages span {
+	font-size: 16px;
+}
+
+.ccm-blog-blog-list-pagination-links .bottomBorder {
+	width: 100%;
+	margin-top: 15px;
+	background: url(images/azavea-logo.png) 0 0 repeat-x;
+}
+
+/* INDIVIDUAL BLOG POST */
+
+.ccm-blog-post .postThumb {
+	float:left;
+	margin: 4px 20px 15px 0;
+	width: auto;
+	height: 100%;
+	text-align: center;
+}
+
+.ccm-blog-post-title {
+font-size: 24px;
+display: inline;
+}
+
+.ccm-blog-post-author, .ccm-blog-post-timestamp, .ccm-blog-post-category {
+	color: #919191;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+
+.ccm-blog-post-timestamp {
+font-style: normal;
+font-size: 13px;
+padding: 10px 0;
+display:block;
+}
+
+.ccm-blog-post-body {
+	margin-top: 15px;
+}
+
+.ccm-blog-post-tags {
+color: #a8a8a8;
+font-size: 12px;
+font-weight: bold;
+margin: 10px 0;
+}
+
+.ccm-blog-post-tags a {
+color: #e26a3b;
+}
+
+
+/* ARCHIVE SIDEBAR */
+
+ul.ccm-blog-archive-list li {
+	font-weight: bold;
+	font-size: 12px;
+	list-style-type: disc;
+	margin: 8px 0;
+}
+
+ul.ccm-blog-archive-list li a {
+	color: #e26a3b;
+}
+
+ul.ccm-blog-archive-list li ul {
+	margin-left: 15px;
+}
+
+.ccm-blog-archive-rss a {
+	color: #e26a3b;
+	font-weight: bold;
+}
+
+/* HOMEPAGE SLIDES */
+
+
+#slideWrap {
+margin-top: 20px; 
+border-color: #6D909F;
+border-width:2px;
+border-style: solid;
+position:relative;
+width: 968px;
+}
+
+.slides {
+background: #fff;
+position:relative;
+height: 236px;
+}
+
+.slide {
+width: 100%;
+
+}
+
+
+.slideInfo {
+position: absolute;
+bottom: 18px;
+right: 13px;
+background: #000;
+opacity: 0.85;
+filter: alpha(opacity = 70);
+padding: 12px;
+max-width: 305px;
+text-align:right
+}
+
+.slideTitle a {
+color: #fff;
+font-size: 20px;
+}
+
+.slideDesc a {
+color: #e67f57;
+font-size: 16px;
+font-weight:normal;
+line-height: 18px;
+}
+
+.slideImgLink {
+  display: block;
+  height: 223px;
+  overflow: hidden
+  }
+
+.slide {
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;	
+  }
+ 
+ 
+  
+.slidecontrols {
+position: absolute;
+z-index: 13;
+top: 222px;
+}  
+  
+.slidecontrols li {
+float:left;
+position:relative;
+overflow:hidden;
+display:block;
+height: 14px;
+cursor:pointer;
+}  
+
+
+
+.slidecontrols li#tab1 {
+background: #415f6d;
+}
+.slidecontrols li#tab2 {
+background: #587989;
+}
+.slidecontrols li#tab3 {
+background: #6c8e9f;
+}
+.slidecontrols li#tab4 {
+background: #8aabbc;
+}
+.slidecontrols li#tab5 {
+background: #98bdd0;
+}
+.slidecontrols li#tab5 {
+background: #a8d0e5;
+}
+  
+.slidecontrols .loader {
+height: 14px;
+position: absolute;
+top: 0;
+right:0;
+background: url(images/azavea-logo.png) 0 0 repeat-x;
+}  
+
+.slidecontrols li.current{
+/*background: #ff0000*/
+}
+
+
+.slideTitle, .slideDesc {margin:0} 
+
+/* HOMEPAGE STYLES */
+
+
+#homeContentContainer a {
+color: #db9b41;
+}
+
+ 
+#homeContentContainer h1 {
+color:#05314F;
+font-size: 30px;
+font-weight:bold;
+letter-spacing:-0.07em;
+line-height:37px;
+margin-bottom:19px;
+margin-top:8px;
+word-spacing:0.05em;
+margin-right: -15px;
+white-space:nowrap;
+}
+
+#homeContentContainer h2.intro {
+font-size:15px;
+line-height:25px;
+}
+
+
+#homeContentContainer h2 {
+color:#3F657F;
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+letter-spacing:-0.03em;
+line-height:24px;
+margin-top:9px;
+word-spacing:-1px;
+}
+
+
+
+/* LIBRARY SUMMARY TEMPLATE */
+
+.listBlock.libraryBlock h4 {
+border-style:solid;
+border-width:0;
+color:#222222;
+font-family:arial;
+font-size:12px;
+margin:10px 0 0;
+opacity:0.7;
+padding:0;
+}
+
+ul.fileList li {
+clear:left; 
+list-style:none; 
+margin:0; 
+padding: 12px 0;
+background:url(images/azavea-logo.png) repeat-x center bottom;
+}
+ul.fileList a {padding:0}
+ul.fileList .icon {
+float:left;
+display:block;
+width: 20px;
+}
+
+ul.fileList .description {
+display:block;
+margin-left: 20px;
+line-height: 14px;
+font-size: 11px;
+}
+
+
+
+
+
+/* FLOATED BLOCKS FOR CONTENT PAGES */
+
+.floatRightBox {
+  color: #fff;
+  float:right;  
+  margin: 8px 0 15px 40px; 
+  width: 175px;
+  padding: 17px 22px 90px 22px;
+  background-position: bottom center;
+  border-width: 1px 1px 5px 1px;
+  border-style: solid;
+  box-shadow: 0 0 20px -3px #bbb;
+  -moz-box-shadow: 0 0 20px -3px #bbb;
+  -webkit-box-shadow: 0 0 20px -3px #bbb;
+}
+
+.floatRightBox h3 {
+font-size:16px;
+font-weight:normal;
+line-height:28px;
+color: #fff;
+}
+
+
+/* BASIC SHADE BOX */
+
+.basicShadeBox {
+  color: #fff;
+  margin: 8px 0 15px 0; 
+  padding: 17px 22px;
+  background-position: bottom center;
+  border: 1px solid #eee;
+  box-shadow: 0 0 26px -10px #666666;
+  -moz-box-shadow: 0 0 26px -10px #666666;
+  -webkit-box-shadow: 0 0 26px -10px #666666;
+  }
+
+  
+/* CLEAN SHADE BOX */
+
+
+
+.cleanShadeBox  {
+-moz-box-shadow:2px 2px 0 #CCCCCC;
+-webkit-box-shadow: 2px 2px 0 #CCCCCC;
+background:none repeat scroll 0 0 #F3F3F3;
+border:1px solid #E8E8E8;
+float:right;
+padding:18px 21px 14px;
+width:175px;  
+margin: 8px 0 15px 0; 
+}
+#sidebar .cleanShadeBox {
+margin-left: auto;
+margin-right: auto;
+float:none;
+}
+
+/* CLIENT DETAIL PAGE */
+
+#clientDetail .shadeBox {
+margin-right: 0;
+width: 200px;
+float:right
+
+}
+
+
+
+
+
+
+/* STAFF PROFILE PAGE */
+
+#profileHeader {
+width: 675px;
+
+margin-bottom: 30px;
+margin-top: 10px;
+position: relative;
+-webkit-box-shadow: 3px 3px 1px #C4C4C4;
+-moz-box-shadow: 3px 3px 1px #C4C4C4;
+box-shadow: 3px 3px 1px #C4C4C4;
+}
+
+#profileHeaderDesc { background: #e4e4e4; padding: 20px 25px 25px; }
+
+#profileHeaderDesc, #profileHeaderDesc p {
+color:#4F4F4F;
+font-family:"ronnia-1","ronnia-2",Trebuchet MS,Arial;
+font-size:16px;
+font-weight:bold;
+line-height:28px;
+margin: 0
+}
+
+#profileHeader #profileName {color: #fff; margin: 0;}
+#profileHeader #profileJobTitle {color: #E67F57;  margin: 0}
+
+#profileHeader .slideInfo.topLeft {
+top: 25px;
+right: auto;
+bottom: auto;
+left: 25px;
+}
+#profileHeader .slideInfo.topRight {
+top: 25px;
+right: 25px;
+bottom: auto;
+left: auto;
+}
+#profileHeader .slideInfo.bottomLeft {
+top: 135px;
+right: auto;
+bottom: auto;
+left: 25px;
+}
+#profileHeader .slideInfo.bottomRight {
+top: 135px;
+right: 25px;
+bottom: auto;
+left: auto;
+}
+  
+#profileLinks {
+padding: 17px 22px 15px;
+margin: 5px 0 30px 41px;
+border: 1px solid #eee;
+}
+
+#profileLinks h3{
+color: #3890D4;
+border-bottom: 1px solid;
+margin-bottom:8px;
+}
+#profileLinks h4 {
+margin: 0 ;
+padding: 10px 0 10px 15px;
+background: url(images/azavea-logo.png) bottom left repeat-x;
+}
+
+#profileLinks li {
+  background: url(images/azavea-logo.png) bottom left repeat-x;
+  padding: 15px 0;
+  margin: 0;
+  list-style: none;
+  }
+
+
+  
+/* STAFF RESEARCH PAGE */
+.staffResearchItem {
+   width: 328px;
+   margin-right: 15px;
+   float:left;
+   margin-bottom: 15px;
+   -moz-box-shadow:3px 3px 1px #C4C4C4;
+   -webkit-box-shadow:3px 3px 1px #C4C4C4;
+   box-shadow:3px 3px 1px #C4C4C4;
+   min-height: 70px;
+}
+
+.staffResearchItem.even {
+  margin-right: 0
+  }
+  
+.staffResearchItem h3 {
+  margin: 12px 15px 0 15px;
+  line-height: 20px;
+  }
+ 
+.staffResearchItem h3 a {
+  color: #fff;
+  }
+  
+.staffResearchItem p {
+  color: #ede0be;
+  margin: 0 0 15px 15px;
+  padding-top: 0;
+  font-size: 12px;
+  }
+  
+.staffResearchItem p a {
+  color: #524025;
+}
+  
+  
+  
+/* JOB LISTING PAGE */
+.jobList {
+  padding-top: 10px;
+}
+
+.jobListItem {
+  padding: 15px;
+   width: 675px;
+   margin-bottom: 15px;
+   -moz-box-shadow:3px 3px 1px #C4C4C4;
+   -webkit-box-shadow:3px 3px 1px #C4C4C4;
+   box-shadow:3px 3px 1px #C4C4C4;
+   cursor:pointer;
+   min-height: 50px;
+}
+
+.jobListItem.even {
+  margin-right: 0
+  }
+  
+.jobListItem h3 {
+  margin: 0 15px 0 0;
+  line-height: 20px;
+  }
+ 
+.jobListItem h3 a {
+  color: #fff;
+  }
+  
+.jobListItem p {
+  color: #BED8ED;
+  margin: 0;
+  padding-top: 0;
+  font-size: 12px;
+  }
+  
+.jobListItem p a {
+  color: #27587F;
+}
+  
+
+.noJobs {border: 1px solid #ccc; padding: 40px 15px 0 15px; height: 100px; line-height: 100px; text-align: center;}
+  
+  
+
+/* SEARCH RESULTS PAGE */
+
+#searchResults a.searchResultHeader { color: #3cade2; }
+#searchResults .pageLink { color: #3cade2; font-size: 12px; margin:2px 0px 8px 0px; padding:0px; display:block; }
+#searchResults a.continueReading { font-weight: bold; }
+
+/* margin below header needs to be a little smaller to ensure even padding of .totalResultsAndPages */
+#search-results #headerContainer {
+	margin-bottom: 15px;
+}
+
+#searchResultsContainer .totalResultsAndPages {
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #979797;
+} 
+
+#searchResultsContainer .totalResultsAndPages span.numResults {
+	font-size: 16px;
+}
+
+#searchResultsContainer .searchResultsNav {
+	display: inline;
+	float: right;
+}
+
+#searchResultsContainer .searchResultsNav .resultPages {
+	display: inline;
+}
+
+#searchResultsContainer .searchResultsNav .resultPages span {
+	text-align: center;
+	border: 1px solid #e47d0e;
+	margin: 0 2px;
+	padding: 4px 8px;
+}
+
+#searchResultsContainer .searchResultsNav .resultPages span.currentPage {
+	background: #E47D0E;
+	color: #fff;
+}
+
+#searchResultsContainer  .bottomBorder {
+	width: 100%;
+	margin-top: 15px;
+	background: url(images/azavea-logo.png) 0 0 repeat-x;
+}
+
+
+
+
+/* DIRECTIONS MAP */
+
+#directionsMap {
+width: 675px;
+height: 400px;
+position:relative;
+border: 1px solid #ccc;
+margin: 25px 0;
+}
+
+#directionsMap #mapShadowTop { 
+  background:url("images/azavea-logo.png") repeat-x scroll 0 -2px transparent;
+  height:11px;
+  left:9px;
+  left:9px;
+  position:absolute;
+  right:0;
+  top:0;
+  z-index:50;
+}
+
+#directionsMap #mapShadowLeft {
+  background:url("images/azavea-logo.png") no-repeat scroll -2px 0 transparent;
+  bottom:0;
+  left:0;
+  position:absolute;
+  top:0;
+  width:11px;
+  z-index:50;
+}
+
+.wml-info-window .wml-info-window-content {
+
+
+  padding:10px 20px 20px !important;
+  -moz-box-shadow: 0 0 30px -5px #333;
+	-webkit-box-shadow:  0 0 30px -5px  #333;	
+	box-shadow:  0 0 30px -5px #333;	
+}
+
+.wml-container a.siteButton {
+color: #fff;
+}
+
+
+/* CONTACT FORM AND VARIANTS */
+
+div.center {
+	text-align: center;
+}
+
+.cleanShadeBox.leftSidebar {
+	padding-top: 10px;
+}
+
+.cleanShadeBox.leftSidebar h3.about-usShade {
+	margin: 5px 0;
+	font-size: 15px;
+}
+
+.contactForm {
+background: url(images/azavea-logo.png) 0 0 repeat-x;
+padding-top: 25px;
+margin-top:20px;
+}
+
+.cleanShadeBox.leftSidebar .contactForm {
+margin-top: 5px;
+}
+
+.contactForm label {
+font-size: 11px; font-weight:bold; display:block; color: #666; margin-bottom: 3px; text-transform: uppercase}
+.contactForm label.inline, .contactForm input.inline {
+display:inline; padding-right: 8px; width: auto; vertical-align: top;
+}
+.contactForm label.inline.checktext {
+display:inline-block;
+line-height:13px;
+margin-bottom:0;
+padding-left:3px;
+width:88%;
+}
+
+.cleanShadeBox.leftSidebar .contactForm label.inline.checktext {
+width: auto;
+font-size: 10px;
+padding: 0;
+}
+
+.contactForm label.clear {
+clear: left;
+}
+
+.contactForm input, .contactForm textarea{
+margin-bottom: 15px;
+width: 100%;
+border: 1px solid #ccc;
+font-size: 12px;
+color: #666;
+}
+
+.cleanShadeBox.leftSidebar .contactForm input {
+margin-bottom: 6px;
+}
+
+.contactForm textarea {
+height: 200px;
+}
+
+.cleanShadeBox.leftSidebar .contactForm  textarea {
+height: 60px;
+margin-bottom: 10px;
+}
+
+.contactForm button {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+}
+.contactForm button:hover {
+  background-image:none ;
+  border: 1px solid #333;
+  }
+
+.cleanShadeBox.leftSidebar .contactForm button {
+	font-size: 12px;
+	width: 70%;
+	margin: 10px auto 0 auto;
+}
+.error {
+padding: 1px 6px !important;
+}
+  
+.error em {
+left:0 !important;
+
+}
+
+/* MAIN CONTENT FORM */
+
+.basicShadeBox.mainContent {
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.basicShadeBox.mainContent .contactForm textarea {
+	height: auto;
+}
+
+.basicShadeBox.mainContent .contactForm button {
+	width: 40%;
+}
+
+/* DIRECTIONS TABS */
+/* root element for tabs  */
+.tabs { 
+  float:left;
+  list-style:none outside none;
+  margin-bottom:40px;
+  margin-top:22px;
+  padding:0;
+  width:210px;
+}
+
+/* single tab */
+.tabs li {  
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-type:none !important; 
+  font-weight: bold;
+  padding: 18px 10px 18px 3px;
+  background-image: url(images/azavea-logo.png) !important; 
+  background-position:0 100% !important;
+  background-repeat:repeat-x !important;
+  cursor: pointer;
+}
+
+.tabs li.active {
+  background-image:none;
+  background-color: #999;
+  padding-left:15px;
+  padding-right: 15px;
+  color: #fff;
+}
+
+/* link inside the tab. uses a background image */
+.tabs a { 
+	position:relative;
+	top:1px;
+}
+
+.tabs a:active {
+	outline:none;		
+}
+
+.panes {
+  margin-bottom:40px;
+  margin-left:210px;
+  padding: 25px 40px 40px 25px;
+  position:relative;
+  height: 100%;
+}
+
+.panes h4 {border-bottom: 1px solid #3890D4; color: #3890D4; padding-bottom: 5px; margin-bottom: 20px;}
+
+.panes div{
+	display:none;		
+}
+
+
+/* SEARCH RESULTS */
+
+
+#searchResults .searchResult {
+background:url(images/azavea-logo.png) repeat-x center bottom;
+margin-bottom:18px;
+margin-top:8px;
+padding-bottom:3px;
+}
+#searchResults .searchResult h3 {
+margin-bottom:0;
+padding-bottom:0;
+}
+#searchResults .searchResult p {
+margin-top:4px;
+}
