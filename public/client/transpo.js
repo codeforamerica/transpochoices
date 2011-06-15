@@ -44,8 +44,8 @@
         return null;
       } else {
         return {
-          value: 'Not',
-          label: 'available'
+          value: 'N/A',
+          label: ''
         };
       }
     },
