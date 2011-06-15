@@ -39,26 +39,36 @@
   };
     
   var renderers = {
+    'na': function(val) {
+      if (val || val === 0) {
+        return null;
+      } else {
+        return {
+          value: 'Not',
+          label: 'available'
+        };
+      }
+    },
     'km': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val * 0.62137).toFixed(1),
         label: 'miles'
       };
     },
     'sec': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val / 60).toFixed(0),
         label: 'minutes'
       };
     },
     'kg_co2': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val || 0).toFixed(2),
         label: 'kg of CO2'
       };
     },
     'usd': function(val) {
-      return {
+      return renderers.na(val) || {
         value: '$' + (val || 0).toFixed(2),
         label: '&nbsp;'
       };
