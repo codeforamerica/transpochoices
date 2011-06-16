@@ -68,8 +68,8 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         return null;
       } else {
         return {
-          value: 'Not',
-          label: 'available'
+          value: 'N/A',
+          label: ''
         };
       }
     },
@@ -348,9 +348,11 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
     });
 
     $searchButton.tap(function(e) {
-      trackEvent('directions', 'search');
-      calculate($originInput.val(), $destinationInput.val());
-      e.preventDefault();
+      if (!$searchButton.is(':disabled')) {
+        trackEvent('directions', 'search');
+        calculate($originInput.val(), $destinationInput.val());
+        e.preventDefault();
+      }
     });
   };
 
