@@ -324,9 +324,11 @@
     });
 
     $searchButton.tap(function(e) {
-      trackEvent('directions', 'search');
-      calculate($originInput.val(), $destinationInput.val());
-      e.preventDefault();
+      if (!$searchButton.is(':disabled')) {
+        trackEvent('directions', 'search');
+        calculate($originInput.val(), $destinationInput.val());
+        e.preventDefault();
+      }
     });
   };
 
