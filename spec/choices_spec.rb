@@ -27,6 +27,10 @@ describe "get info" do
 		JSON.parse(last_response.body)["results"]["transit"]["cost"].should == 3 #or whatever number.
 	end
 	
-	pending "should return null fare when transit GTFS data is unavailable" do
+	it "should return null fare when transit GTFS data is unavailable" do
+		stub_request(:get,"#{@base_url}transit#{@boston_bing_query}").
+			to_return(:body=>fixture("nonexist_transit.json"))
+		get "/info_for_route_bing", @boston_params
+		JSON.parse(last_response.body)["results"]["transit"]["cost"].should be_nil
 	end
 end
