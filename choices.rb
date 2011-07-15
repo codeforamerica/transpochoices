@@ -69,6 +69,7 @@ def calculate_transit_by_bing_resource(resource)
 	cost = info_by_type["TakeTransit"].map {|x| x[:item]}.chunk {|x| (x["transitLine"] || {})["agencyName"]}.inject(0)  do |sum,(agency,agency_chunk)|
 		#puts "doing: #{agency}"
 		dir,agency_id = GTFS_MAPPING[agency]
+		break nil if (dir.nil? || agency_id.nil?) #if we don't have the agency's info, don't try to calculate a fare for it.
 		#fares_for(agency)
 		
 		fares = Fare.load(dir+"/fare_attributes.txt",dir+"/fare_rules.txt") #todo: check that rules exist
