@@ -6,6 +6,8 @@ GEM
     diff-lcs (1.1.2)
     json (1.5.1)
     rack (1.2.2)
+    rack-test (0.6.0)
+      rack (>= 1.0)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -27,6 +29,7 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  rack-test
   rspec
   sinatra
   webmock
