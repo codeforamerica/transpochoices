@@ -45,8 +45,10 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
   };
   
   var trackEvent = function(category, action, opt_label, opt_value) {
+    var args = Array.prototype.slice.call(arguments);
     if (_gaq) {
-      _gaq.push(['_trackEvent', category, action, opt_label, opt_value]);
+      args.unshift('_trackEvent');
+      _gaq.push(args);
     } else {
       log(category, action, opt_label, opt_value);
     }
@@ -61,26 +63,36 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
   };
     
   var renderers = {
+    'na': function(val) {
+      if (val || val === 0) {
+        return null;
+      } else {
+        return {
+          value: 'N/A',
+          label: ''
+        };
+      }
+    },
     'km': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val * 0.62137).toFixed(1),
         label: 'miles'
       };
     },
     'sec': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val / 60).toFixed(0),
         label: 'minutes'
       };
     },
     'kg_co2': function(val) {
-      return {
+      return renderers.na(val) || {
         value: (val || 0).toFixed(2),
         label: 'kg of CO2'
       };
     },
     'usd': function(val) {
-      return {
+      return renderers.na(val) || {
         value: '$' + (val || 0).toFixed(2),
         label: '&nbsp;'
       };
@@ -157,10 +169,6 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         
           if (metric) {
             results[mode][metric] = renderers[data.units[metric]](data.results[mode][metric]);
-            if (!data.results[mode][metric]){
-              console.debug("L");
-              results[mode][metric]['value']="?";
-            }
           }
         }
       }
@@ -213,6 +221,8 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         $metricsContent.html(html);
 
         $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
+          trackEvent('mode', 'click', this.parentNode.id);
+          
           curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
           $.mobile.changePage('plan');
           e.preventDefault();
@@ -294,10 +304,7 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         delayedGeocode($originInput.val(), bounds, 'origin');
       }
       toggleSearch();
-    })
-    .change(function(){
-      toggleSearch();
-    });
+    }).change(toggleSearch);
 
     $destinationInput.keyup(function() {
       if ($destinationInput.val()) {
@@ -305,10 +312,7 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         delayedGeocode($destinationInput.val(), bounds, 'destination');
       }    
       toggleSearch();
-    })
-    .change(function(){
-      toggleSearch();
-    });
+    }).change(toggleSearch);
     
     toggleSearch();
     
@@ -332,12 +336,23 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
         $bingLink.show().attr('href', bingUrl);
       } else {
         $bingLink.hide();
-      }    
+      }
+      
+      $googleLink.click(function(){
+        trackEvent('directions', 'get', 'google');
+      });
+      
+      $bingLink.click(function(){
+        trackEvent('directions', 'get', 'bing');
+      });
     });
 
     $searchButton.tap(function(e) {
-      calculate($originInput.val(), $destinationInput.val());
-      e.preventDefault();
+      if (!$searchButton.is(':disabled')) {
+        trackEvent('directions', 'search');
+        calculate($originInput.val(), $destinationInput.val());
+        e.preventDefault();
+      }
     });
   };
 
