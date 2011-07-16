@@ -50,6 +50,8 @@
 
 /* jQuery Mobile Overrides */
 
+.ui-page { background-image: url('images/bg.png') !important; }
+
 /* Override the header style to be blueish*/
 .ui-header { border: 1px solid #003b58;
   background: #003b58;
