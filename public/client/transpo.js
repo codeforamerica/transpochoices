@@ -200,11 +200,11 @@
           trackEvent('mode', 'click', this.parentNode.id);
           
           curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
-          $.mobile.changePage('plan');
+          $.mobile.changePage('#plan');
           e.preventDefault();
         });
 
-        $.mobile.changePage('home', {
+        $.mobile.changePage('#home', {
           transition: 'flip'
         });
       },
