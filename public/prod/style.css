@@ -22,8 +22,12 @@
 /* Tweak search button width */
 #search-button { margin:0.5em 15px; }
 
+/* Disable search styling */
 .disabled-btn { color:#ccc; }
   .disabled-btn input { cursor:default !important; }
+
+/* Hide cancel on load */
+#cancel-button { display:none; }
 
 #plan-title { text-transform:capitalize; }
 
