@@ -1,5 +1,6 @@
 (function(){
   var $searchButton,
+    $cancelButton,
     $originInput,
     $destinationInput,
     $metricsContent,
@@ -132,12 +133,13 @@
 
   
   var formatResults = function(data) {
-    var val, i, j, metric, mode, results = {};
+    var val, i, j, metric, mode, total = 0, results = {};
     
     for(j=0; j<options.modes.length; j++) {
       mode = options.modes[j];
       
       if (data.results[mode]) {
+        total++;
         results[mode] = {};
 
         for (i=0; i<options.metrics.length; i++) {
@@ -150,7 +152,10 @@
       }
     }
     
-    return results;
+    return {
+      total: total,
+      results: results
+    };
   };
   
   var makeMetricsTable = function(metrics, results) {
@@ -191,22 +196,31 @@
         destination: destination
       },
       success: function(data, textStatus, jqXHR) {
-        var results = formatResults(data),
+        var obj = formatResults(data),
+          total = obj.total,
+          results = obj.results,
           html = makeMetricsTable(options.metrics, results);
         
-        $metricsContent.html(html);
+        if (total > 0) {
+          $metricsContent.html(html);
 
-        $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
-          trackEvent('mode', 'click', this.parentNode.id);
+          $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
+            trackEvent('mode', 'click', this.parentNode.id);
           
-          curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
-          $.mobile.changePage('#plan');
-          e.preventDefault();
-        });
+            curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
+            $.mobile.changePage('#plan');
+            e.preventDefault();
+          });
 
-        $.mobile.changePage('#home', {
-          transition: 'flip'
-        });
+          $.mobile.changePage('#home', {
+            transition: 'flip'
+          });
+          
+          $cancelButton.show();
+        } else {
+          $cancelButton.hide();
+          alert('No routes found')
+        }
       },
       error: function(jqXHR, textStatus, errorThrown) {
         log(errorThrown);
@@ -335,6 +349,7 @@
   $('#search').live('pagecreate',function(evt) {
     //Cache vars
     $searchButton = $('#search-button');
+    $cancelButton = $('#cancel-button');
     $originInput = $('#origin');
     $destinationInput = $('#destination');
     $metricsContent = $('#metrics-content');
