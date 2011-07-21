@@ -1,13 +1,109 @@
-TranspoChoices
+TranspoChoices is all about making better transportation choices. However, our
+calculations are only approximations and should be treated as such.
 
-	For comparing the calories of subway sanwiches
+## Assumptions
 
-API
+### Walking
+
+**Cost** - Always rounding to $0
+
+**Time** - Calculated by [Bing Walking Routes API][7]
+
+   [7]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+
+**Calories** - Using this [table][8], assuming a 190lb individual
+
+   [8]: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
+
+**CO2 Emissions** - Always rounding to 0
+
+### Biking
+
+**Cost** - [$0.115 per mile][9]
+
+   [9]: http://www.kenkifer.com/bikepages/advocacy/autocost.htm
+
+**Time** - Calculated by [Bing Walking Routes API][10], then extrapolates biking time
+
+   [10]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+
+**Calories** - Assuming 30km/h and 24 calories/km
+
+**CO2 Emissions** - Always rounding to 0
+
+### Transit
+
+**Cost** - Uses fare data in the [GTFS specification][11] (SF Muni and BART only)
+
+   [11]: http://code.google.com/transit/spec/transit_feed_specification.html
+
+**Time** - Calculated by [Bing Transit Routes API][12]
+
+   [12]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+
+**Calories** - Calories burned while walking to transit, then 1.4-1.7 calories per idle minute
+
+**CO2 Emissions** - 0, but only because can can't find a good way to calculate it
+
+### Taxi
+
+**Cost** - Uses [TaxiFareFinder.com][13]
+
+   [13]: http://www.taxifarefinder.com/rates.php
+
+**Time** - Calculated by [Bing Driving Routes API][14]
+
+   [14]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+
+**Calories** - 1.4-1.7 calories per idle minute
+
+**CO2 Emissions** - [8.788 kg CO2/gallon gasoline at 35.4 km/gallon][15]
+
+   [15]: http://www.epa.gov/otaq/climate/420f05004.htm#step1
+
+### Driving
+
+**Cost** - Uses $0.585, the [2011 AAA average cost per mile][16]
+
+   [16]: http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf
+
+**Time** - Calculated by [Bing Driving Routes API][17]
+
+   [17]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+
+**Calories** - 1.4-1.7 calories per idle minute
+
+**CO2 Emissions** - [8.788 kg CO2/gallon gasoline at 35.4 km/gallon][18]
+
+   [18]: http://www.epa.gov/otaq/climate/420f05004.htm#step1
+
+## Who Made This?
+
+TranspoChoices was lovingly made by [Code for America][19] fellows [Aaron
+Ogle][20] and [Talin Salway][21], with design work by [Pete Fecteau][22]. Feel
+free to send feedback to aaron [at] codeforamerica.org.
+
+   [19]: http://codeforamerica.org
+   [20]: http://twitter.com/atogle
+   [21]: http://twitter.com/yenthefirst
+   [22]: http://twitter.com/peterfecteau
+
+## This is cool. Can I help?
+
+Sure! TranspoChoices is an [open-source project][23] and we're looking for
+people with all kinds of talent to [get involved][24].
+
+   [23]: https://github.com/codeforamerica/transpochoices
+   [24]: http://codeforamerica.org/?cfa_project=transportation-choices
+
+## API
 	/info_for_route_bing?origin=<>&destination=<>
-		returns a JSON markup thing.
-	example:
+
+Example:
+
 	info_for_route_bing?destination=88%202nd%20%20st,%20san%20francisco&origin=563%2046th%20st%20oakland
-	returns:
+
+Returns:
 	
 	{
 		"units": {
@@ -35,43 +131,8 @@ API
 			}
 		}
 	}
-	
-Algorithms & Assumptions
-	Automobile: for now, we'll just track CO2 emissions. other emissions to estmate include N2O, CH4, and HFCs.
-	going by http://www.epa.gov/otaq/climate/420f05004.htm#step1, we'll use a value of 8.788 kg CO2 / gallon gasoline
-	
-	for now, we're assuming a 2010 Toyota Camry, with 22 Miles per Gallon (http://www.fueleconomy.gov/feg/findacar.htm)
-	this converts to 35.406 km/gallon
-	
-	Gas prices flucuate constantly, and vary widely between regions. for the moment, we'll use 4.147$ / gallon (the average of ($4.040 for the east coast, and $4.254 for california, to cover philidelphia and california)
-	http://www.eia.doe.gov/oil_gas/petroleum/data_publications/wrgp/mogas_home_page.html
-	
-	instead of using gas price directly, we'll use AAA's average cost per mile, assuming a medium sedan, 15k miles per year, is $0.573/mile, which is $0.356/km
-	http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdfl
-	
-	still trying to find a good source, but it looks like you can assume between 1.4~1.7 calories per minute while sitting. I'll use 1.7, assuming a heavy person.
-	
-	Biking time: we assume that the average biking speed is about 30 km/hr (18 m/hr)
-	
-	Calories Burned walking: we're using this table: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
-	For now, we're assuming a 190 lb. person.
-	
-	biking: 
-	http://morechristlike.com/calories-burned-cycling/
-	at 30km/h, about 24 calories/km
-	
-	Emissions while walking or biking: technically more than 0 - you have to account for the production of shoes or bikes, and CO2 exhaled during activity. I can't find a number, and it's pretty close to 0. I'm calling it 0 for now.
-	
-	costs of biking: http://www.kenkifer.com/bikepages/advocacy/autocost.htm
-	roughly $0.115 / mile ($0.07146 / km)
-	no exact number established
-	
-	taxi:
-	the same emissions, calories, and time as a car, but rates calculated per http://www.taxifarefinder.com/rates.php
-Setting Up:
-	You need to set the environment variable BING_KEY to your Bing API key
 
-Deploying:
+## Deploying:
 	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
 	heroku create --stack bamboo-mri-1.9.2 <appname>
 	or the following, to fix an existing app:
