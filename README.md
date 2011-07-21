@@ -1,6 +1,48 @@
 TranspoChoices is all about making better transportation choices. However, our
 calculations are only approximations and should be treated as such.
 
+## API
+	/info_for_route_bing?origin=<>&destination=<>
+
+Example:
+
+	info_for_route_bing?destination=88%202nd%20%20st,%20san%20francisco&origin=563%2046th%20st%20oakland
+
+Returns:
+	
+	{
+		"units": {
+			"distance": "kilometers",
+			"duration": "seconds",
+			"emissions": "milliliters of innocent bunny blood",
+			"cost": "usd",
+			"calories": "calories"
+		},
+		"results": {
+			"driving": {
+				"distance": 15.943,
+				"duration": 900
+			},
+			"walking": null,
+			"transit": {
+				"duration": 2427,
+				"while_walking": {
+					"distance": 1.872,
+					"duration": 1347
+				},
+				"while_transit": {
+					"duration": 1080
+				}
+			}
+		}
+	}
+
+## Deploying
+	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
+	heroku create --stack bamboo-mri-1.9.2 <appname>
+	or the following, to fix an existing app:
+	heroku stack:migrate bamboo-mri-1.9.2 <appname>
+
 ## Assumptions
 
 ### Walking
@@ -95,47 +137,5 @@ people with all kinds of talent to [get involved][24].
 
    [23]: https://github.com/codeforamerica/transpochoices
    [24]: http://codeforamerica.org/?cfa_project=transportation-choices
-
-## API
-	/info_for_route_bing?origin=<>&destination=<>
-
-Example:
-
-	info_for_route_bing?destination=88%202nd%20%20st,%20san%20francisco&origin=563%2046th%20st%20oakland
-
-Returns:
-	
-	{
-		"units": {
-			"distance": "kilometers",
-			"duration": "seconds",
-			"emissions": "milliliters of innocent bunny blood",
-			"cost": "usd",
-			"calories": "calories"
-		},
-		"results": {
-			"driving": {
-				"distance": 15.943,
-				"duration": 900
-			},
-			"walking": null,
-			"transit": {
-				"duration": 2427,
-				"while_walking": {
-					"distance": 1.872,
-					"duration": 1347
-				},
-				"while_transit": {
-					"duration": 1080
-				}
-			}
-		}
-	}
-
-## Deploying:
-	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
-	heroku create --stack bamboo-mri-1.9.2 <appname>
-	or the following, to fix an existing app:
-	heroku stack:migrate bamboo-mri-1.9.2 <appname>
 
 [![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/transpochoices.png)](http://stats.codeforamerica.org)
