@@ -85,7 +85,7 @@ Returns:
 
 **Calories** - Calories burned while walking to transit, then 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - 0, but only because can can't find a good way to calculate it
+**CO2 Emissions** - Currently not calculated
 
 ### Taxi
 
