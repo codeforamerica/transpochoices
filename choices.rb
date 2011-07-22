@@ -88,8 +88,8 @@ def calculate_transit_by_bing_resource(resource)
 
 			Ride.new(:start_time=>0, #fancy_parse(start["time"]), TODO: actually parse time, don't give infinite transfer capability
 				:end_time=>0, #fancy_parse(finish["time"]),
-				:origin=>      stops.min_by {|s|  start_match.match(s["stop_name"].downcase)}["zone_id"],
-				:destination=> stops.min_by {|s| finish_match.match(s["stop_name"].downcase)}["zone_id"],
+				:origin=>      stops.min_by {|s|  start_match.match((s["stop_name"] || "").downcase)}["zone_id"],
+				:destination=> stops.min_by {|s| finish_match.match((s["stop_name"] || "").downcase)}["zone_id"],
 				:route=>(routes.find {|r| r["agency_id"]==agency_id && r.values_at("route_long_name","route_short_name").include?(itinerary_item["transitLine"]["verboseName"])} || {})["route_id"])
 		end
 		puts "got some rides for #{agency}:"
