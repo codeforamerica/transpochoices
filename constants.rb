@@ -17,7 +17,7 @@ GTFS_MAPPING = {
     "City of Seattle"=>["KCMetro_google_transit", "EOS"],
     "Metro Transit"=>["KCMetro_google_transit", "KCM"],
     "King County Marine Division"=>["KCMetro_google_transit", "KMD"],
-    "Sound Transit"=>["KCMetro_google_transit", "ST"]
+    "Sound Transit"=>["SoundTransit_gtfs", "SoundTransit"]
 }
 TAXI_RATES = [{:lat=>42.3584308,
   :lon=>-71.0597732,
