@@ -41,10 +41,10 @@ describe "get info" do
 			@seattle_params = {:origin=>"Seattle, WA, USA",:destination=>"Everett, WA, USA", :time=>"13:33"}
 			
 			%w(driving walking).each do |mode|
-				stub_request(:get,"#{@base_url}#{mode}#{@boston_bing_query}").
+				stub_request(:get,"#{@base_url}#{mode}#{@seattle_bing_query}").
 				to_return(:body=>"[]")
 			end
-			stub_request(:get,"#{@base_url}transit#{@boston_bing_query}").
+			stub_request(:get,"#{@base_url}transit#{@seattle_bing_query}").
 				to_return(:body=>fixture("failing_seattle.json"))
 		end
 		

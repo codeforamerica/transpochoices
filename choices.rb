@@ -82,17 +82,18 @@ def calculate_transit_by_bing_resource(resource)
 			#puts "itinerary = "
 			#pp itinerary_item
 			
-			start=itinerary_item["childItineraryItems"][0] #horrible assumption here, should check maneuvertype or something
-			finish=itinerary_item["childItineraryItems"][1]
+			#horrible assumption here, should check maneuvertype or something
+			start_match = Amatch::Levenshtein.new(itinerary_item["childItineraryItems"][0]["details"][0]["names"][0].downcase)
+			finish_match= Amatch::Levenshtein.new(itinerary_item["childItineraryItems"][1]["details"][0]["names"][0].downcase)
 
 			Ride.new(:start_time=>0, #fancy_parse(start["time"]), TODO: actually parse time, don't give infinite transfer capability
 				:end_time=>0, #fancy_parse(finish["time"]),
-				:origin=>      stops.find {|s| s["stop_name"].to_s.close_to? start["details"][0]["names"][0]}["zone_id"],
-				:destination=> stops.find {|s| s["stop_name"].to_s.close_to? finish["details"][0]["names"][0]}["zone_id"],
+				:origin=>      stops.min_by {|s|  start_match.match(s["stop_name"].downcase)}["zone_id"],
+				:destination=> stops.min_by {|s| finish_match.match(s["stop_name"].downcase)}["zone_id"],
 				:route=>(routes.find {|r| r["agency_id"]==agency_id && r.values_at("route_long_name","route_short_name").include?(itinerary_item["transitLine"]["verboseName"])} || {})["route_id"])
 		end
-		#puts "got some rides for #{agency}:"
-		#pp rides
+		puts "got some rides for #{agency}:"
+		pp rides
 		fare = best_fare(rides,fares)
 		break nil if fare.nil?
 		sum += fare
