@@ -10,13 +10,15 @@ BIKING_COST_PER_KM = 0.07146 #USD/km
 AVG_CAR_SPEED = 41.2 #km / hour - in city
 
 GTFS_MAPPING = {
-	"San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
-	"Bay Area Rapid Transit"=>["BART_google_transit","BART"],
-	"AirBART"=>["BART_google_transit","AirBART"],
-	"SEPTA"=>["SEPTA_bus","SEPTA"]
+    "San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
+    "Bay Area Rapid Transit"=>["BART_google_transit","BART"],
+    "AirBART"=>["BART_google_transit","AirBART"],
+    "SEPTA"=>["SEPTA_bus","SEPTA"],
+    "City of Seattle"=>["KCMetro_google_transit", "EOS"],
+    "Metro Transit"=>["KCMetro_google_transit", "KCM"],
+    "King County Marine Division"=>["KCMetro_google_transit", "KMD"],
+    "Sound Transit"=>["KCMetro_google_transit", "ST"]
 }
-
-
 TAXI_RATES = [{:lat=>42.3584308,
   :lon=>-71.0597732,
   :per_km=>1.739839338264535,
