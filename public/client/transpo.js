@@ -280,13 +280,20 @@
         .parent()
         .addClass('disabled-btn');
     }
+    
+    if (!$originInput.val()) {
+      $('#origin-list').empty();
+    }
+    if (!$destinationInput.val()) {
+      $('#destination-list').empty();
+    }
   };
   
   var bindEvents = function() {
     var bounds,
       delayedGeocode = limit(function(addr, bounds, listId) {
         geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
-      }, 1000, true);
+      }, 800, true);
     
     $originInput.keyup(function() {
       if ($originInput.val()) {
@@ -300,7 +307,7 @@
       if ($destinationInput.val()) {
         bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
         delayedGeocode($destinationInput.val(), bounds, 'destination');
-      }    
+      }
       toggleSearch();
     }).change(toggleSearch);
     
