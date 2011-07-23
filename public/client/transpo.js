@@ -247,7 +247,7 @@
       $list.listview('refresh');
       
       $('li', $list).tap(function(e) {
-        $input.val(this.innerHTML);
+        $input.val($(this).text());
         $list.empty();
         e.preventDefault();
       });

@@ -1,8 +1,8 @@
 #home { background-color:#fdfdfd; background-image:none; }
 
 /* Position the "footer" */
-#home-footer { position:absolute; bottom:0; height:40px; }
-    #home-footer a { margin:6px; }
+.footer { padding:6px 0; }
+    .footer a { margin:6px; }
     .footer-button-right { float:right; }
 
 /* Tweak search button width */
@@ -22,7 +22,7 @@
   .address-list { margin:-1px 0 0 0 !important; }
 
 /* All for room for the footer */
-#metrics-content { margin-bottom:40px; }
+#metrics-content { margin-bottom:0; }
 
 /* Metrics table styling */
 #metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }

@@ -271,7 +271,7 @@ b[0]&&b[0].ownerDocument||c);var h=[],i;for(var j=0,k;(k=a[j])!=null;j++){typeof
       $list.listview('refresh');
       
       $('li', $list).tap(function(e) {
-        $input.val(this.innerHTML);
+        $input.val($(this).text());
         $list.empty();
         e.preventDefault();
       });
