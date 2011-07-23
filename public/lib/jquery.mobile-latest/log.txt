@@ -1,5 +1,0 @@
-Git Release Version: 1.0b1pre
-Git Information for this build:
-SHA1: 991db0de46859bfcf3d59f0c32c9dd09e9eb278b
-Date: Fri May 27 10:55:20 2011 -0700
-Title: Merge branch 'master' of https://github.com/jquery/jquery-mobile
