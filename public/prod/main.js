@@ -79,7 +79,8 @@ var TranspoChoices = TranspoChoices || {};
     geocoder = new google.maps.Geocoder(),
     curLatLng,
     bounds,
-    region = 'US';
+    region = 'US',
+    currentLocationStr = 'Current Location';
   
   var initCurrentPosition = function() {
     if (navigator.geolocation) {
@@ -92,9 +93,20 @@ var TranspoChoices = TranspoChoices || {};
   };
 
   self.geocode = tc.util.limit(function(addr, callback) {
-    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
-      callback(results);
-    });
+    if (curLatLng && typeof addr === 'string' && addr && currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
+      callback([
+        {
+          formatted_address: currentLocationStr,
+          geometry: {
+            location: curLatLng
+          }
+        }
+      ]);
+    } else {
+      geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
+        callback(results);
+      });
+    }
   }, 750, true);
   
   initCurrentPosition();
