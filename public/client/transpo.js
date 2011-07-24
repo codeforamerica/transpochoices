@@ -204,13 +204,18 @@ var TranspoChoices = TranspoChoices || {};
       $list.empty();
       
       $.each(results, function(i, val) {
-        $list.append('<li data-icon="false">' + val.formatted_address + '</li>');
+        $list.append('<li data-icon="false" data-latlon="'+val.geometry.location.lat()+','+val.geometry.location.lng()+'">' + val.formatted_address + '</li>');
       });
       
       $list.listview('refresh');
       
       $('li', $list).tap(function(e) {
-        $input.val($(this).text());
+        var $this = $(this);
+        
+        $input
+          .val($this.text())
+          .attr('data-latlon', $this.attr('data-latlon'));
+        
         $list.empty();
         e.preventDefault();
       });
@@ -289,7 +294,7 @@ var TranspoChoices = TranspoChoices || {};
     $searchButton.tap(function(e) {
       if (!$searchButton.is(':disabled')) {
         tc.util.trackEvent('directions', 'search');
-        calculate($originInput.val(), $destinationInput.val());
+        calculate(($originInput.attr('data-latlon') || $originInput.val()), ($destinationInput.attr('data-latlon') || $destinationInput.val()));
         e.preventDefault();
       }
     });

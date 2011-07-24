@@ -15,10 +15,12 @@ var TranspoChoices = TranspoChoices || {};
       }, null,
       { enableHighAccuracy: true, maximumAge: 90000 });
     } 
-  };  
+  };
 
-  self.geocode = tc.util.limit(function(addr, success, failure) {
-    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, success, failure);
+  self.geocode = tc.util.limit(function(addr, callback) {
+    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
+      callback(results);
+    });
   }, 750, true);
   
   initCurrentPosition();
