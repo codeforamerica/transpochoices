@@ -1,4 +1,6 @@
-(function(){
+var TranspoChoices = TranspoChoices || {};
+
+(function(tc){
   var $searchButton,
     $cancelButton,
     $originInput,
@@ -14,30 +16,6 @@
     geocoder = new google.maps.Geocoder(),
     curLatLng,
     curPlan;
-      
-  var log = function(toLog) {
-    if (window.console && window.console.log) {
-      window.console.log(toLog);
-    }
-  };
-  
-  var trackEvent = function(category, action, opt_label, opt_value) {
-    var args = Array.prototype.slice.call(arguments);
-    if (_gaq) {
-      args.unshift('_trackEvent');
-      _gaq.push(args);
-    } else {
-      log(category, action, opt_label, opt_value);
-    }
-  };
-  
-  var zeroPad = function (number, width) {
-    width -= number.toString().length;
-    if ( width > 0 ) {
-      return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
-    }
-    return number;
-  };
     
   var renderers = {
     'na': function(val) {
@@ -102,8 +80,8 @@
   var makeBingUrl = function(origin, destination, mode) {
     var now = new Date(),
       //201106061257
-      nowStr = '' + now.getFullYear() + zeroPad(now.getMonth()+1, 2) + zeroPad(now.getDate(), 2) + 
-        zeroPad(now.getHours(), 2) + zeroPad(now.getMinutes(), 2),
+      nowStr = '' + now.getFullYear() + tc.util.zeroPad(now.getMonth()+1, 2) + tc.util.zeroPad(now.getDate(), 2) + 
+        tc.util.zeroPad(now.getHours(), 2) + tc.util.zeroPad(now.getMinutes(), 2),
       modes = {
         'walking': 'W', 
         'transit': 'T', 
@@ -129,8 +107,7 @@
       },
       { enableHighAccuracy: true, maximumAge: 90000 });
     } 
-  };  
-
+  };
   
   var formatResults = function(data) {
     var val, i, j, metric, mode, total = 0, results = {};
@@ -205,7 +182,7 @@
           $metricsContent.html(html);
 
           $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
-            trackEvent('mode', 'click', this.parentNode.id);
+            tc.util.trackEvent('mode', 'click', this.parentNode.id);
           
             curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
             $.mobile.changePage('#plan');
@@ -223,8 +200,8 @@
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        log(errorThrown);
-        alert('Error calculating directions');
+        tc.util.log(errorThrown);
+        alert('Unable to calculate directions');
         $.mobile.pageLoading(true);
       },
       complete: function() {
@@ -254,20 +231,6 @@
     };
   };
   
-  //Thanks _!
-  var limit = function(func, wait, debounce) {
-    var timeout;
-    return function() {
-      var context = this, args = arguments;
-      var throttler = function() {
-        timeout = null;
-        func.apply(context, args);
-      };
-      if (debounce) clearTimeout(timeout);
-      if (debounce || !timeout) timeout = setTimeout(throttler, wait);
-    };
-  };
-  
   var toggleSearch = function() {
     if ($originInput.val() || $destinationInput.val()) {
       $searchButton
@@ -291,7 +254,7 @@
   
   var bindEvents = function() {
     var bounds,
-      delayedGeocode = limit(function(addr, bounds, listId) {
+      delayedGeocode = tc.util.limit(function(addr, bounds, listId) {
         geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
       }, 800, true);
     
@@ -336,17 +299,17 @@
       }
       
       $googleLink.click(function(){
-        trackEvent('directions', 'get', 'google');
+        tc.util.trackEvent('directions', 'get', 'google');
       });
       
       $bingLink.click(function(){
-        trackEvent('directions', 'get', 'bing');
+        tc.util.trackEvent('directions', 'get', 'bing');
       });
     });
 
     $searchButton.tap(function(e) {
       if (!$searchButton.is(':disabled')) {
-        trackEvent('directions', 'search');
+        tc.util.trackEvent('directions', 'search');
         calculate($originInput.val(), $destinationInput.val());
         e.preventDefault();
       }
@@ -370,4 +333,4 @@
     //Disabling this b/c it could be bad for bookmarking
     $.mobile.hashListeningEnabled = false;
   });
-})();
+})(TranspoChoices);
