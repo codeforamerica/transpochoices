@@ -71,6 +71,36 @@ var TranspoChoices = TranspoChoices || {};
 /********************   End ./client/util.js               ********************/
 
 
+/******************** Begin ./client/geocoder.js           ********************/
+var TranspoChoices = TranspoChoices || {};
+
+(function(tc){
+  var self = {},
+    geocoder = new google.maps.Geocoder(),
+    curLatLng,
+    bounds,
+    region = 'US';
+  
+  var initCurrentPosition = function() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( function(position) {
+        curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        bounds = new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+      }, null,
+      { enableHighAccuracy: true, maximumAge: 90000 });
+    } 
+  };  
+
+  self.geocode = tc.util.limit(function(addr, success, failure) {
+    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, success, failure);
+  }, 750, true);
+  
+  initCurrentPosition();
+  tc.geocoder = self;
+})(TranspoChoices);
+/********************   End ./client/geocoder.js           ********************/
+
+
 /******************** Begin ./client/transpo.js            ********************/
 var TranspoChoices = TranspoChoices || {};
 
@@ -87,8 +117,6 @@ var TranspoChoices = TranspoChoices || {};
         modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
         metrics: ['cost', 'duration', 'calories', 'emissions']
     },
-    geocoder = new google.maps.Geocoder(),
-    curLatLng,
     curPlan;
     
   var renderers = {
@@ -170,19 +198,7 @@ var TranspoChoices = TranspoChoices || {};
 
       return null;
   };
-  
-  var locateMe = function() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( function(position) {
-        curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      }, 
-      function(msg){
-        alert('We couldn\'t locate your position.');
-      },
-      { enableHighAccuracy: true, maximumAge: 90000 });
-    } 
-  };
-  
+
   var formatResults = function(data) {
     var val, i, j, metric, mode, total = 0, results = {};
     
@@ -327,23 +343,16 @@ var TranspoChoices = TranspoChoices || {};
   };
   
   var bindEvents = function() {
-    var bounds,
-      delayedGeocode = tc.util.limit(function(addr, bounds, listId) {
-        geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
-      }, 800, true);
-    
     $originInput.keyup(function() {
       if ($originInput.val()) {
-        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-        delayedGeocode($originInput.val(), bounds, 'origin');
+        tc.geocoder.geocode($originInput.val(), listAddresses('origin'));
       }
       toggleSearch();
     }).change(toggleSearch);
 
     $destinationInput.keyup(function() {
       if ($destinationInput.val()) {
-        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-        delayedGeocode($destinationInput.val(), bounds, 'destination');
+        tc.geocoder.geocode($destinationInput.val(), listAddresses('destination'));
       }
       toggleSearch();
     }).change(toggleSearch);
@@ -397,8 +406,6 @@ var TranspoChoices = TranspoChoices || {};
     $originInput = $('#origin');
     $destinationInput = $('#destination');
     $metricsContent = $('#metrics-content');
-    
-    locateMe();
     
     bindEvents();
   });

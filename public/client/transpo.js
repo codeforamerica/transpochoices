@@ -13,8 +13,6 @@ var TranspoChoices = TranspoChoices || {};
         modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
         metrics: ['cost', 'duration', 'calories', 'emissions']
     },
-    geocoder = new google.maps.Geocoder(),
-    curLatLng,
     curPlan;
     
   var renderers = {
@@ -96,19 +94,7 @@ var TranspoChoices = TranspoChoices || {};
 
       return null;
   };
-  
-  var locateMe = function() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( function(position) {
-        curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-      }, 
-      function(msg){
-        alert('We couldn\'t locate your position.');
-      },
-      { enableHighAccuracy: true, maximumAge: 90000 });
-    } 
-  };
-  
+
   var formatResults = function(data) {
     var val, i, j, metric, mode, total = 0, results = {};
     
@@ -253,23 +239,16 @@ var TranspoChoices = TranspoChoices || {};
   };
   
   var bindEvents = function() {
-    var bounds,
-      delayedGeocode = tc.util.limit(function(addr, bounds, listId) {
-        geocoder.geocode({'address':addr, 'bounds':bounds }, listAddresses(listId));
-      }, 800, true);
-    
     $originInput.keyup(function() {
       if ($originInput.val()) {
-        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-        delayedGeocode($originInput.val(), bounds, 'origin');
+        tc.geocoder.geocode($originInput.val(), listAddresses('origin'));
       }
       toggleSearch();
     }).change(toggleSearch);
 
     $destinationInput.keyup(function() {
       if ($destinationInput.val()) {
-        bounds = bounds || new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-        delayedGeocode($destinationInput.val(), bounds, 'destination');
+        tc.geocoder.geocode($destinationInput.val(), listAddresses('destination'));
       }
       toggleSearch();
     }).change(toggleSearch);
@@ -323,8 +302,6 @@ var TranspoChoices = TranspoChoices || {};
     $originInput = $('#origin');
     $destinationInput = $('#destination');
     $metricsContent = $('#metrics-content');
-    
-    locateMe();
     
     bindEvents();
   });
