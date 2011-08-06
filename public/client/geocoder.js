@@ -8,33 +8,50 @@ var TranspoChoices = TranspoChoices || {};
     region = 'US',
     currentLocationStr = 'Current Location';
   
-  var initCurrentPosition = function() {
+  // Init the current location
+  var initCurrentLocation = function(position) {
+    curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    bounds = new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
+    
+    $(tc).trigger('current-location', [currentLocationStr, curLatLng]);
+  };
+  
+  // Does this string match the currentLocationStr var
+  self.getCurrentLocation = function(term) {
+    if (term === currentLocationStr && curLatLng) {
+      return curLatLng;
+    }
+    
+    return null;
+  };
+  
+  // Get access to the current position directly from the geolocation object
+  self.getCurrentPosition = function(success, error) {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( function(position) {
-        curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        bounds = new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-      }, null,
-      { enableHighAccuracy: true, maximumAge: 90000 });
+      navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true, maximumAge: 90000 });
     } 
   };
 
   self.geocode = tc.util.limit(function(addr, callback) {
-    if (curLatLng && typeof addr === 'string' && addr && currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
-      callback([
-        {
+    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
+      tc.util.log(results);
+      
+      //If this could be "Current Location", then put on the top of the list
+      if (curLatLng && typeof addr === 'string' && addr && currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
+        results.unshift({
+          currentLocation: true,
           formatted_address: currentLocationStr,
           geometry: {
             location: curLatLng
           }
-        }
-      ]);
-    } else {
-      geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
-        callback(results);
-      });
-    }
+        });
+      }
+
+      callback(results);
+    });
   }, 750, true);
   
-  initCurrentPosition();
+  self.getCurrentPosition(initCurrentLocation);
+
   tc.geocoder = self;
 })(TranspoChoices);

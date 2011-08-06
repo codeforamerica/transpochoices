@@ -13,7 +13,9 @@ var TranspoChoices = TranspoChoices || {};
         modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
         metrics: ['cost', 'duration', 'calories', 'emissions']
     },
-    curPlan;
+    curPlan,
+    curLocationStr,
+    curLatLng;
 
   //Renderers for the metrics returned by the server,
   //keyed by the type.
@@ -233,7 +235,11 @@ var TranspoChoices = TranspoChoices || {};
       $list.empty();
 
       $.each(results, function(i, val) {
-        $list.append('<li data-icon="false" data-latlon="'+val.geometry.location.lat()+','+val.geometry.location.lng()+'">' + val.formatted_address + '</li>');
+        if (val.currentLocation) {
+          $list.append('<li data-icon="false" class="current-location" data-latlon="'+val.geometry.location.lat()+','+val.geometry.location.lng()+'">' + val.formatted_address + '</li>');
+        } else {
+          $list.append('<li data-icon="false" data-latlon="'+val.geometry.location.lat()+','+val.geometry.location.lng()+'">' + val.formatted_address + '</li>');
+        }
       });
 
       // This is needed for jQuery Mobile to make it pretty
@@ -245,7 +251,9 @@ var TranspoChoices = TranspoChoices || {};
 
         $input
           .val($this.text())
-          .attr('data-latlon', $this.attr('data-latlon'));
+          .change();
+//          .attr('data-latlon', $this.attr('data-latlon'));
+
 
         $list.empty();
         e.preventDefault();
@@ -255,7 +263,7 @@ var TranspoChoices = TranspoChoices || {};
 
   // Toggle whether the search button is active based on the
   // input of the origin and destingation input fields.
-  var toggleSearch = function() {
+  var handleInputChange = function() {    
     if ($originInput.val() || $destinationInput.val()) {
       $searchButton
         .removeAttr('disabled')
@@ -268,6 +276,8 @@ var TranspoChoices = TranspoChoices || {};
         .addClass('disabled-btn');
     }
 
+    handleCurrentLocation($originInput);
+
     if (!$originInput.val()) {
       $('#origin-list').empty();
     }
@@ -275,24 +285,43 @@ var TranspoChoices = TranspoChoices || {};
       $('#destination-list').empty();
     }
   };
+  
+  // If the input is current location, set the class
+  // and data-latlon attr
+  var handleCurrentLocation = function($input) {
+    if (curLatLng && curLocationStr) {
+      if ($input.val() === curLocationStr) {
+        $input.addClass('current-location')
+          .attr('data-latlon', curLatLng.lat()+','+curLatLng.lng());
+      
+      } else {
+        $input.removeClass('current-location')
+          .removeAttr('data-latlon');
+      }
+    }
+  };
 
   // Bind common events here
   var bindEvents = function() {
     // Geocode on keyup
-    $originInput.keyup(function() {
-      if ($originInput.val()) {
-        tc.geocoder.geocode($originInput.val(), listAddresses('origin'));
-      }
-      toggleSearch();
-    }).change(toggleSearch);
+    $originInput
+      .keyup(function() {
+        if ($originInput.val()) {
+          tc.geocoder.geocode($originInput.val(), listAddresses('origin'));
+        }
+        handleInputChange();
+      })
+      .change(handleInputChange);
 
     // Geocode on keyup
-    $destinationInput.keyup(function() {
-      if ($destinationInput.val()) {
-        tc.geocoder.geocode($destinationInput.val(), listAddresses('destination'));
-      }
-      toggleSearch();
-    }).change(toggleSearch);
+    $destinationInput
+      .keyup(function() {
+        if ($destinationInput.val()) {
+          tc.geocoder.geocode($destinationInput.val(), listAddresses('destination'));
+        }
+        handleInputChange();
+      })
+      .change(handleInputChange);
 
     // Build the plan page - buttons with links to Bing and Google directions
     $('#plan').live('pagebeforeshow', function() {
@@ -338,6 +367,11 @@ var TranspoChoices = TranspoChoices || {};
         e.preventDefault();
       }
     });
+    
+    $(tc).bind('current-location', function(event, currentLocationStr, currentLatLng) {
+      curLocationStr = currentLocationStr;
+      curLatLng = currentLatLng;
+    });
   };
 
   // Onready for mobile - start here
@@ -350,7 +384,7 @@ var TranspoChoices = TranspoChoices || {};
     $metricsContent = $('#metrics-content');
 
     // Setup the search button state
-    toggleSearch();
+    handleInputChange();
 
     // Bind events
     bindEvents();
