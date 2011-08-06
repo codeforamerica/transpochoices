@@ -252,8 +252,6 @@ var TranspoChoices = TranspoChoices || {};
         $input
           .val($this.text())
           .change();
-//          .attr('data-latlon', $this.attr('data-latlon'));
-
 
         $list.empty();
         e.preventDefault();
@@ -277,6 +275,7 @@ var TranspoChoices = TranspoChoices || {};
     }
 
     handleCurrentLocation($originInput);
+    handleCurrentLocation($destinationInput);
 
     if (!$originInput.val()) {
       $('#origin-list').empty();
@@ -371,6 +370,10 @@ var TranspoChoices = TranspoChoices || {};
     $(tc).bind('current-location', function(event, currentLocationStr, currentLatLng) {
       curLocationStr = currentLocationStr;
       curLatLng = currentLatLng;
+      
+      // Init origin to current location if available
+      $originInput.val(curLocationStr);
+      handleCurrentLocation($originInput);
     });
   };
 
