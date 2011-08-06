@@ -73,7 +73,7 @@ var TranspoChoices = TranspoChoices || {};
     var modes = {
       'walking': 'w',
       'biking': 'b',
-      'transit': 't',
+      'transit': 'r',
       'taxi': 'd',
       'driving': 'd'
     };
