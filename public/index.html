@@ -25,7 +25,6 @@
 <!-- Search Dialog -->
 <div id="search" data-role="page" data-title="reroute.it" data-theme="c">
   <div data-role="header">
-    <a id="cancel-button" href="#home" data-transition="flip">Cancel</a>
     <h1>Directions</h1>
   </div>
 
@@ -46,6 +45,11 @@
   </div>
 
   <input id="search-button" type="button" value="Search">
+
+  <div class="footer" data-role="footer" data-position="fixed">
+    <a href="#about" data-transition="slideup">About</a>
+    <a id="cancel-button" href="#home" data-transition="flip" class="footer-button-right">Cancel</a>
+  </div>
 </div>
 
 <!-- Home Page -->
@@ -54,7 +58,7 @@
   </div>
 
   <div class="footer" data-role="footer" data-position="fixed">
-    <a href="#about">About</a>
+    <a href="#about" data-transition="slideup">About</a>
     <a href="#search" data-transition="flip" class="footer-button-right">New Directions</a>
   </div>
 </div>
@@ -75,7 +79,7 @@
 <!-- About Page -->
 <div id="about" data-role="page" data-title="reroute.it" data-backbtn="false" data-theme="c">
   <div data-role="header">
-    <a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a>
+    <a href="#" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn-back"></a>
     <h1>About</h1>
   </div>
 
