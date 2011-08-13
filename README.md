@@ -53,7 +53,7 @@ Returns:
 
    [7]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
 
-**Calories** - Using this [table][8], assuming a 190lb individual
+**Calories** - Using this [table][8], assuming a 160lb individual
 
    [8]: http://transportation.stanford.edu/pdf/caloriecalc_walk.pdf
 

@@ -1,4 +1,4 @@
-CALORIES_PER_SECOND_WALKING = 8/60.0  #dietary calories / sec
+CALORIES_PER_SECOND_WALKING = 6.8/60.0  #dietary calories / sec
 CALORIES_PER_SECOND_SITTING = 1.4/60.0 #dietary calories / sec
 CALORIES_PER_KM_BIKING = 24 #dietary calories / km
 BIKE_SPEED_IN_KM_PER_SECOND = 14 / 3600.0 #30 km/h into km/sec
