@@ -27,7 +27,7 @@ var TranspoChoices = TranspoChoices || {};
       } else {
         return {
           value: 'N/A',
-          label: 'Not Available'
+          label: ''
         };
       }
     },
@@ -48,8 +48,8 @@ var TranspoChoices = TranspoChoices || {};
     //Kg of CO2
     'kg_co2': function(val) {
       return renderers.na(val) || {
-        value: (val || 0).toFixed(2),
-        label: 'kg of CO2'
+        value: (val || 0).toFixed(1),
+        label: 'lbs of CO2'
       };
     },
     //US Dollars
