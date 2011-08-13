@@ -7,14 +7,14 @@ def get_info_from_bing(params)
 	base_url="http://dev.virtualearth.net/REST/v1/Routes/"
 	query_params = "?wayPoint.1=#{params[:origin]}&waypoint.2=#{params[:destination]}&dateTime=#{params[:time] || Time.now.strftime("%H:%M")}&timeType=Arrival&key=#{ENV['BING_KEY']}"
 	modes=%w{driving walking transit}
-	
+
 	results =modes.map do |mode|
 		Thread.new do
 			begin
 				usable_url=URI.parse(URI.escape(base_url+mode+query_params))
 				#puts "calling url #{usable_url}"
 				response = JSON.parse(Net::HTTP.get(usable_url))
-	
+
 				resource = response["resourceSets"][0]["resources"][0]
 				info = {
 					:distance=>resource["travelDistance"],
@@ -50,10 +50,10 @@ def calculate_transit_by_bing_resource(resource)
 			}
 		end
 	end.flatten.group_by {|i| i[:type]}
-	
+
 	walking_duration = info_by_type["Walk"].inject(0) {|s,x| s+x[:duration]}
 	transit_duration = info_by_type["TakeTransit"].inject(0) {|s,x| s+x[:duration]}
-	
+
 	#calculate the total fare
 	#look at a TakeTransit, it has:
 		#child itinerary items, with [details][maneuverType] == TransitDepart and TransitArrive, each with [details][names] = [station name]
@@ -65,23 +65,23 @@ def calculate_transit_by_bing_resource(resource)
 	#puts "all info = "
 	#require 'pp'
 	#pp info_by_type
-	
+
 	cost = info_by_type["TakeTransit"].map {|x| x[:item]}.chunk {|x| (x["transitLine"] || {})["agencyName"]}.inject(0)  do |sum,(agency,agency_chunk)|
 		#puts "doing: #{agency}"
 		dir,agency_id = GTFS_MAPPING[agency]
 		break nil if (dir.nil? || agency_id.nil?) #if we don't have the agency's info, don't try to calculate a fare for it.
 		#fares_for(agency)
-		
+
 		fares = Fare.load(dir+"/fare_attributes.txt",dir+"/fare_rules.txt") #todo: check that rules exist
 		fares = fares[agency_id] || fares[nil]
-		
+
 		routes = csv_to_hash(dir+"/routes.txt")
 		stops = csv_to_hash(dir+"/stops.txt")
-		
+
 		rides = agency_chunk.map do |itinerary_item|
 			#puts "itinerary = "
 			#pp itinerary_item
-			
+
 			#horrible assumption here, should check maneuvertype or something
 			start_match = Amatch::Levenshtein.new(itinerary_item["childItineraryItems"][0]["details"][0]["names"][0].downcase)
 			finish_match= Amatch::Levenshtein.new(itinerary_item["childItineraryItems"][1]["details"][0]["names"][0].downcase)
@@ -98,12 +98,12 @@ def calculate_transit_by_bing_resource(resource)
 		break nil if fare.nil?
 		sum += fare
 	end
-	
-	
+
+
 	{
 		:duration=>resource["travelDuration"],
 		:calories=>walking_duration * CALORIES_PER_SECOND_WALKING + transit_duration * CALORIES_PER_SECOND_SITTING,
-		:emissions=>nil,
+		:emissions=> resource[:distance] * BUS_LBS_CO2_PASSENGER_KM,
 		:cost=>(cost.nil? ? nil : cost.to_f)
 	}
 end
@@ -111,19 +111,18 @@ end
 
 get "/info_for_route_bing" do
 	results = get_info_from_bing(params)
-	
+
 	if params[:raw_data]=="yes_please"
 		#puts "here"
-		return [200,{},JSON.pretty_generate(results)] 
+		return [200,{},JSON.pretty_generate(results)]
 	end
-	
+
 	if (resource=results["driving"])
 		results["driving"]=generic_by_bing_resource(resource)
-		gas_consumed = results["driving"][:distance] / CAMRY_MILEAGE
-		results["driving"][:emissions] = (gas_consumed * EMISSIONS_PER_GALLON).round(5)
+		results["driving"][:emissions] = results["driving"][:distance] * SOV_LBS_CO2_PASSENGER_KM
 		results["driving"][:cost] = (results["driving"][:distance] * AAA_COST_PER_KM).round(2)
 		results["driving"][:calories] = (results["driving"][:duration] * CALORIES_PER_SECOND_SITTING).round(2)
-		
+
 		results["taxi"]=results["driving"].clone
 		#taxi is like driving, but with a taxi rate
 		start_point = resource["routeLegs"][0]["actualStart"]["coordinates"]
@@ -137,7 +136,7 @@ get "/info_for_route_bing" do
 		results["walking"][:calories]=(results["walking"][:duration] * CALORIES_PER_SECOND_WALKING).round(1)
 		results["walking"][:emissions]=0
 		results["walking"][:cost]=0
-		
+
 		results["biking"]=generic_by_bing_resource(resource)
 		results["biking"][:duration] = (results["biking"][:distance] / BIKE_SPEED_IN_KM_PER_SECOND).round(0)
 		results["biking"][:calories] = results["biking"][:distance] * CALORIES_PER_KM_BIKING
@@ -145,9 +144,10 @@ get "/info_for_route_bing" do
 		results["biking"][:cost]= (results["biking"][:distance] * BIKING_COST_PER_KM).round(2)
 	end
 	if (resource=results["transit"])
+		resource[:distance] = results["driving"][:distance]
 		results["transit"] = calculate_transit_by_bing_resource(resource)
 	end
-	
+
 	output = {:units=>
 		{
 			:distance=>"km",
