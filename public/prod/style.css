@@ -39,12 +39,11 @@
 #metrics-content { margin-bottom:0; }
 
 /* Metrics table styling */
-#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100% 60px; width:100%; border-spacing:0; border-collapse:collapse; }
+#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100%; width:100%; border-spacing:0; border-collapse:collapse; }
     #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
     #metrics-table tbody tr {
       cursor:pointer;
-      background:-moz-linear-gradient(top,#EEE,#FDFDFD);
-      background:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEE),color-stop(1,#FDFDFD));
+	  border-bottom:#CCC 1px solid;
     }
     #metrics-table tbody td { text-align:center; height:55px; width:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
@@ -74,14 +73,24 @@
 .ui-page { background-image: url('images/bg.png') !important; }
 
 /* Override the header style to be blueish*/
-.ui-header { border: 1px solid #003b58;
-  background: #003b58;
+.ui-header {
+  background:url(images/header-bg.png) top left no-repeat;
   color: #fff;
+  height:64px;
   text-shadow: 0 1px 1px #3E3E3E;
-  background-image: -moz-linear-gradient(top, #37657d, #003b58);
-  background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
-  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
+  border:0;
 }
+#search h1.ui-title {
+  display: block;
+  font-size: 16px;
+  margin: 0;
+  min-height: 1.1em;
+  outline: 0 none !important;
+  overflow: hidden;
+  padding: 36px 80px;
+  text-align: left;
+  white-space: nowrap;
+	}
 
 /* Override the button active style to be gray, not light blue */
 .ui-btn-active {
@@ -98,6 +107,7 @@
 /* Tweak padding and widths */
 .ui-field-contain { border-bottom: none; padding:5px 0; }
 .ui-input-search { width: auto; }
+.ui-input-text { color:#003955;}
 
 /* Override the icon for the search fields */
 #origin-fieldcontain .ui-icon-searchfield {
