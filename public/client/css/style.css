@@ -20,17 +20,15 @@
 /* Position the address lists nicely under the address fields */
 .address-list-container { padding:0 15px; }
   .address-list { margin:-1px 0 0 0 !important; }
+  .address-list li { cursor:pointer; }
 
 /* All for room for the footer */
 #metrics-content { margin-bottom:0; }
 
 /* Metrics table styling */
-#metrics-table { background: url('images/header-bg.png') no-repeat; background-size:100%; width:100%; border-spacing:0; border-collapse:collapse; }
+#metrics-table { background: url('images/header-bg.png') no-repeat; width:100%; border-spacing:0; border-collapse:collapse; }
     #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
-    #metrics-table tbody tr {
-      cursor:pointer;
-	  border-bottom:#CCC 1px solid;
-    }
+    #metrics-table tbody tr { cursor:pointer; border-bottom:#CCC 1px solid; }
     #metrics-table tbody td { text-align:center; height:55px; width:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
 
@@ -39,7 +37,7 @@
     .metric-more { width:22px !important; }
 
 /* Current Location */
-.current-location { color:#2957FF; }
+.ui-input-text.current-location { color:#2957FF; }
 
 /* Metric images */
 .cost { background-image: url('images/cost.png'); }
@@ -55,7 +53,6 @@
 #driving th { background-image: url('images/driving.png'); }
 
 /* jQuery Mobile Overrides */
-
 .ui-page { background-image: url('images/bg.png') !important; }
 
 /* Override the header style to be blueish*/
@@ -66,7 +63,8 @@
   text-shadow: 0 1px 1px #3E3E3E;
   border:0;
 }
-#search h1.ui-title {
+
+.ui-page h1.ui-title {
   display: block;
   font-size: 16px;
   margin: 0;
@@ -76,7 +74,7 @@
   padding: 36px 80px;
   text-align: left;
   white-space: nowrap;
-	}
+}
 
 /* Override the button active style to be gray, not light blue */
 .ui-btn-active {
