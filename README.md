@@ -9,7 +9,7 @@ Example:
 	info_for_route_bing?destination=88%202nd%20%20st,%20san%20francisco&origin=563%2046th%20st%20oakland
 
 Returns:
-	
+
 	{
 		"units": {
 			"distance": "kilometers",
@@ -99,9 +99,9 @@ Returns:
 
 **Calories** - 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - [8.788 kg CO2/gallon gasoline at 35.4 km/gallon][15]
+**CO2 Emissions** - [0.65 pounds of CO2 per passenger mile][15] - assuming bus transit
 
-   [15]: http://www.epa.gov/otaq/climate/420f05004.htm#step1
+   [15]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
 
 ### Driving
 
@@ -115,9 +115,9 @@ Returns:
 
 **Calories** - 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - [8.788 kg CO2/gallon gasoline at 35.4 km/gallon][18]
+**CO2 Emissions** - [0.96 pounds of CO2 per passenger mile][18] - assuming single occupancy vehicle
 
-   [18]: http://www.epa.gov/otaq/climate/420f05004.htm#step1
+   [18]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
 
 ## Who Made This?
 
