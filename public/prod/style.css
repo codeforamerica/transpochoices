@@ -12,8 +12,6 @@
 
 
 /******************** Begin ./client/css/style.css         ********************/
-#home { background-color:#fdfdfd; background-image:none; }
-
 /* Position the "footer" */
 .footer { padding:6px 0; }
     .footer a { margin:6px; }
@@ -77,6 +75,9 @@
   text-shadow: 0 1px 1px #3E3E3E;
   border:0;
 }
+
+/* vertically center the header icons */
+.ui-header .ui-btn { margin-top:12px; }
 
 .ui-page h1.ui-title {
   display: block;

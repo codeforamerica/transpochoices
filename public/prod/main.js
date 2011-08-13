@@ -441,6 +441,21 @@ var TranspoChoices = TranspoChoices || {};
       }
     });
     
+    (function customBackButtonOnAboutPage() {
+      var pageId;
+      
+      $('#about .ui-btn-back').live('tap',function(e, ui) {
+        $.mobile.changePage('#'+pageId, {
+          transition: 'slideup',
+          reverse: true
+        });
+      });
+
+      $('#about').live('pageshow',function(event, ui){
+        pageId = ui.prevPage.attr('id');
+      });
+    })();
+        
     $(tc).bind('current-location', function(event, currentLocationStr, currentLatLng) {
       curLocationStr = currentLocationStr;
       curLatLng = currentLatLng;
