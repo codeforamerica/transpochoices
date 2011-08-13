@@ -1,10 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
+
   <link rel="apple-touch-startup-image" href="via-splash.png" />
   <link rel="apple-touch-icon" href="via-icon.png"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
@@ -17,9 +17,9 @@
   </script>
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="prod/main.js"></script>
-  
-  <title>Reroute</title> 
-</head> 
+
+  <title>Reroute</title>
+</head>
 <body>
 
 <!-- Search Dialog -->
@@ -83,7 +83,7 @@
   <div data-role="content">
     <p>TranspoChoices is all about making better transportation choices. However, our calculations are
       only approximations and should be treated as such.</p>
-    
+
     <h2>Assumptions</h2>
     <h3>Walking</h3>
     <p><strong>Cost</strong> - Always rounding to $0</p>
@@ -96,32 +96,32 @@
     <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Walking Routes API</a>, then extrapolates biking time</p>
     <p><strong>Calories</strong> - Assuming 30km/h and 24 calories/km</p>
     <p><strong>CO2 Emissions</strong> - Always rounding to 0</p>
-    
+
     <h3>Transit</h3>
     <p><strong>Cost</strong> - Uses fare data in the <a href="http://code.google.com/transit/spec/transit_feed_specification.html">GTFS specification</a> (SF Muni and BART only)</p>
     <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Transit Routes API</a></p>
     <p><strong>Calories</strong> - Calories burned while walking to transit, then 1.4-1.7 calories per idle minute</p>
-    <p><strong>CO2 Emissions</strong> - 0, but only because can can't find a good way to calculate it</p>
-        
+    <p><strong>CO2 Emissions</strong> - <a href=" http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf">0.65 pounds of CO2 per passenger mile</a> - assuming bus transit</p>
+
     <h3>Taxi</h3>
     <p><strong>Cost</strong> - Uses <a href="http://www.taxifarefinder.com/rates.php">TaxiFareFinder.com</a></p>
     <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Driving Routes API</a></p>
     <p><strong>Calories</strong> - 1.4-1.7 calories per idle minute</p>
-    <p><strong>CO2 Emissions</strong> - <a href="http://www.epa.gov/otaq/climate/420f05004.htm#step1">8.788 kg CO2/gallon gasoline at 35.4 km/gallon</a></p>
+    <p><strong>CO2 Emissions</strong> - <a href=" http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf">0.96 pounds of CO2 per passenger mile</a> - assuming single occupancy vehicle</p>
 
     <h3>Driving</h3>
     <p><strong>Cost</strong> - Uses $0.585, the <a href="http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf">2011 AAA average cost per mile</a></p>
     <p><strong>Time</strong> - Calculated by <a href="http://msdn.microsoft.com/en-us/library/ff701717.aspx">Bing Driving Routes API</a></p>
     <p><strong>Calories</strong> - 1.4-1.7 calories per idle minute</p>
-    <p><strong>CO2 Emissions</strong> - <a href="http://www.epa.gov/otaq/climate/420f05004.htm#step1">8.788 kg CO2/gallon gasoline at 35.4 km/gallon</a></p>
-  
+    <p><strong>CO2 Emissions</strong> - <a href=" http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf">0.96 pounds of CO2 per passenger mile</a> - assuming single occupancy vehicle</p>
+
     <h2>Who Made This?</h2>
-    <p>TranspoChoices was lovingly made by <a href="http://codeforamerica.org">Code for America</a> fellows 
-      <a href="http://twitter.com/atogle">Aaron Ogle</a> and <a href="http://twitter.com/yenthefirst">Talin Salway</a>, 
+    <p>TranspoChoices was lovingly made by <a href="http://codeforamerica.org">Code for America</a> fellows
+      <a href="http://twitter.com/atogle">Aaron Ogle</a> and <a href="http://twitter.com/yenthefirst">Talin Salway</a>,
       with design work by <a href="http://twitter.com/peterfecteau">Pete Fecteau</a>. Feel free to send feedback to aaron [at] codeforamerica.org.</p>
 
     <h2>This is cool. Can I help?</h2>
-    <p>Sure! TranspoChoices is an <a href="https://github.com/codeforamerica/transpochoices">open-source project</a> 
+    <p>Sure! TranspoChoices is an <a href="https://github.com/codeforamerica/transpochoices">open-source project</a>
       and we're looking for people with all kinds of talent to <a href="http://codeforamerica.org/?cfa_project=transportation-choices">get involved</a>.</p>
 
   </div>

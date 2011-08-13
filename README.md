@@ -85,57 +85,59 @@ Returns:
 
 **Calories** - Calories burned while walking to transit, then 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - Currently not calculated
+**CO2 Emissions** - [0.65 pounds of CO2 per passenger mile][13] - assuming bus transit
+
+   [13]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
 
 ### Taxi
 
-**Cost** - Uses [TaxiFareFinder.com][13]
+**Cost** - Uses [TaxiFareFinder.com][14]
 
-   [13]: http://www.taxifarefinder.com/rates.php
+   [14]: http://www.taxifarefinder.com/rates.php
 
-**Time** - Calculated by [Bing Driving Routes API][14]
+**Time** - Calculated by [Bing Driving Routes API][15]
 
-   [14]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+   [15]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
 
 **Calories** - 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - [0.65 pounds of CO2 per passenger mile][15] - assuming bus transit
+**CO2 Emissions** - [0.96 pounds of CO2 per passenger mile][16] - assuming single occupancy vehicle
 
-   [15]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
+   [16]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
 
 ### Driving
 
-**Cost** - Uses $0.585, the [2011 AAA average cost per mile][16]
+**Cost** - Uses $0.585, the [2011 AAA average cost per mile][17]
 
-   [16]: http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf
+   [17]: http://www.aaaexchange.com/Assets/Files/201145734460.DrivingCosts2011.pdf
 
-**Time** - Calculated by [Bing Driving Routes API][17]
+**Time** - Calculated by [Bing Driving Routes API][18]
 
-   [17]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
+   [18]: http://msdn.microsoft.com/en-us/library/ff701717.aspx
 
 **Calories** - 1.4-1.7 calories per idle minute
 
-**CO2 Emissions** - [0.96 pounds of CO2 per passenger mile][18] - assuming single occupancy vehicle
+**CO2 Emissions** - [0.96 pounds of CO2 per passenger mile][19] - assuming single occupancy vehicle
 
-   [18]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
+   [19]: http://www.fta.dot.gov/documents/PublicTransportationsRoleInRespondingToClimateChange.pdf
 
 ## Who Made This?
 
-TranspoChoices was lovingly made by [Code for America][19] fellows [Aaron
-Ogle][20] and [Talin Salway][21], with design work by [Pete Fecteau][22]. Feel
+TranspoChoices was lovingly made by [Code for America][20] fellows [Aaron
+Ogle][21] and [Talin Salway][22], with design work by [Pete Fecteau][23]. Feel
 free to send feedback to aaron [at] codeforamerica.org.
 
-   [19]: http://codeforamerica.org
-   [20]: http://twitter.com/atogle
-   [21]: http://twitter.com/yenthefirst
-   [22]: http://twitter.com/peterfecteau
+   [20]: http://codeforamerica.org
+   [21]: http://twitter.com/atogle
+   [22]: http://twitter.com/yenthefirst
+   [23]: http://twitter.com/peterfecteau
 
 ## This is cool. Can I help?
 
 Sure! TranspoChoices is an [open-source project][23] and we're looking for
 people with all kinds of talent to [get involved][24].
 
-   [23]: https://github.com/codeforamerica/transpochoices
-   [24]: http://codeforamerica.org/?cfa_project=transportation-choices
+   [24]: https://github.com/codeforamerica/transpochoices
+   [25]: http://codeforamerica.org/?cfa_project=transportation-choices
 
 [![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/transpochoices.png)](http://stats.codeforamerica.org)
