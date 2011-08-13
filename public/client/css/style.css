@@ -1,6 +1,6 @@
 /* Position the "footer" */
 .footer { padding:6px 0; }
-    .footer a { margin:6px; }
+    .footer .ui-btn { margin:0 6px; }
     .footer-button-right { float:right; }
 
 /* Tweak search button width */
