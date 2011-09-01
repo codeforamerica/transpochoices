@@ -12,6 +12,8 @@
 
 
 /******************** Begin ./client/css/style.css         ********************/
+div.ui-content .ui-link { color:#29546B;text-decoration:none;}
+
 /* Position the "footer" */
 .footer { padding:6px 0; }
     .footer .ui-btn { margin:0 6px; }
@@ -39,7 +41,7 @@
 
 /* Metrics table styling */
 #metrics-table { background: url('images/header-bg.png') no-repeat; width:100%; border-spacing:0; border-collapse:collapse; }
-    #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
+    #metrics-table thead th { height:60px; width:50px; background-repeat:no-repeat; background-position:center center; }
     #metrics-table tbody tr { cursor:pointer; border-bottom:#CCC 1px solid; }
     #metrics-table tbody td { text-align:center; height:55px; width:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
@@ -141,5 +143,10 @@
   background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
+
+h3 {
+	border-top:1px solid #CCC;
+	padding-top:20px;
+	}
 /********************   End ./client/css/style.css         ********************/
 
