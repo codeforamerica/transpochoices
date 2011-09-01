@@ -33,9 +33,22 @@
     .metric-value {font-size:20px; font-weight:bold;}
     .metric-label {font-size:11px;}
     .metric-more { width:22px !important; }
+	
+.ui-input-search input.ui-input-text {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    display: block;
+    margin: 3px 0 0;
+    outline: 0 none !important;
+    padding: 8px 0;
+}
+
+.address-list-container {
+    padding: 5px 15px;
+}
 
 /* Current Location */
-.ui-input-text.current-location { color:#2957FF; }
+.ui-input-text.current-location { color:#29546b; }
 
 /* Metric images */
 .cost { background-image: url('images/cost.png'); }
