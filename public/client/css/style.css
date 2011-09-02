@@ -77,12 +77,20 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
   border:0;
 }
 
+#about .ui-header {
+  background:url(images/header-bg2.png) top left no-repeat;
+  color: #fff;
+  height:64px;
+  text-shadow: 0 1px 1px #3E3E3E;
+  border:0;
+}
+
 /* vertically center the header icons */
 .ui-header .ui-btn { margin-top:12px; }
 
 .ui-page h1.ui-title {
   display: block;
-  font-size: 16px;
+  font-size: 0px;
   margin: 0;
   min-height: 1.1em;
   outline: 0 none !important;
