@@ -444,9 +444,9 @@ var TranspoChoices = TranspoChoices || {};
     (function customBackButtonOnAboutPage() {
       var pageId;
       
-      $('#about .ui-btn-back').live('tap',function(e, ui) {
+      $('.tc-btn-back').live('tap',function(e, ui) {
         $.mobile.changePage('#'+pageId, {
-          transition: 'slideup',
+          transition: 'slide',
           reverse: true
         });
       });

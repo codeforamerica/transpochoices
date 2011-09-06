@@ -18,7 +18,7 @@
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script src="prod/main.js"></script>
 
-  <title>Reroute</title>
+  <title>reroute.it</title>
 </head>
 <body>
 
@@ -47,7 +47,7 @@
   <input id="search-button" type="button" value="Search">
 
   <div class="footer" data-role="footer" data-position="fixed">
-    <a href="#about" data-transition="slideup">About</a>
+    <a href="#about" data-transition="slide">About</a>
     <a id="cancel-button" href="#home" data-transition="flip" class="footer-button-right">Cancel</a>
   </div>
 </div>
@@ -58,7 +58,7 @@
   </div>
 
   <div class="footer" data-role="footer" data-position="fixed">
-    <a href="#about" data-transition="slideup">About</a>
+    <a href="#about" data-transition="slide">About</a>
     <a href="#search" data-transition="flip" class="footer-button-right">New Directions</a>
   </div>
 </div>
@@ -66,7 +66,6 @@
 <!-- Plan Details -->
 <div id="plan" data-role="page" data-title="reroute.it" data-theme="c">
   <div data-role="header">
-    <a href="#home" data-transition="slide" data-direction="reverse" data-icon="arrow-l">Back</a>
     <h1 id="plan-title"></h1>
   </div>
 
@@ -74,12 +73,15 @@
     <a id="google-link" target="_blank" href="#" id="search-button" data-role="button">Google Directions</a>
     <a id="bing-link" target="_blank" href="#" id="search-button" data-role="button">Bing Directions</a>
   </div>
+
+  <div class="footer" data-role="footer" data-position="fixed">
+    <a href="#" data-icon="arrow-l" class="ui-btn-back tc-btn-back">Back</a>
+  </div>
 </div>
 
 <!-- About Page -->
 <div id="about" data-role="page" data-title="reroute.it" data-backbtn="false" data-theme="c">
   <div data-role="header">
-    <a href="#" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn-back"></a>
     <h1>About</h1>
   </div>
 
@@ -127,6 +129,10 @@
     <p>Sure! TranspoChoices is an <a href="https://github.com/codeforamerica/transpochoices">open-source project</a>
       and we're looking for people with all kinds of talent to <a href="http://codeforamerica.org/?cfa_project=transportation-choices">get involved</a>.</p>
 
+  </div>
+
+  <div class="footer" data-role="footer" data-position="fixed">
+    <a href="#" data-icon="arrow-l" class="ui-btn-back tc-btn-back">Back</a>
   </div>
 </div>
 
