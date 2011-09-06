@@ -1,5 +1,3 @@
-div.ui-content .ui-link { color:#29546B;text-decoration:none;}
-
 /* Position the "footer" */
 .footer { padding:6px 0; }
     .footer .ui-btn { margin:0 6px; }
@@ -27,7 +25,7 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
 
 /* Metrics table styling */
 #metrics-table { background: url('images/header-bg.png') no-repeat; width:100%; border-spacing:0; border-collapse:collapse; }
-    #metrics-table thead th { height:60px; width:50px; background-repeat:no-repeat; background-position:center center; }
+    #metrics-table thead th { height:60px; background-repeat:no-repeat; background-position:center center; }
     #metrics-table tbody tr { cursor:pointer; border-bottom:#CCC 1px solid; }
     #metrics-table tbody td { text-align:center; height:55px; width:55px; }
     #metrics-table tbody th { width:69px; background-repeat: no-repeat; background-position:center left; }
@@ -35,7 +33,7 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
     .metric-value {font-size:20px; font-weight:bold;}
     .metric-label {font-size:11px;}
     .metric-more { width:22px !important; }
-	
+
 .ui-input-search input.ui-input-text {
     background: none repeat scroll 0 0 transparent;
     border: 0 none;
@@ -67,6 +65,7 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
 
 /* jQuery Mobile Overrides */
 .ui-page { background-image: url('images/bg.png') !important; }
+div.ui-content .ui-link { color:#29546B;text-decoration:none;}
 
 /* Override the header style to be blueish*/
 .ui-header {
@@ -77,6 +76,7 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
   border:0;
 }
 
+/* Make the about page unique and awesome */
 #about .ui-header {
   background:url(images/header-bg2.png) top left no-repeat;
   color: #fff;
@@ -85,12 +85,20 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
   border:0;
 }
 
+#about h3 {
+    border-top:1px solid #CCC;
+    padding-top:20px;
+}
+
+#about .ui-title {
+    display:none;
+}
+
 /* vertically center the header icons */
 .ui-header .ui-btn { margin-top:12px; }
 
 .ui-page h1.ui-title {
   display: block;
-  font-size: 0px;
   margin: 0;
   min-height: 1.1em;
   outline: 0 none !important;
@@ -137,8 +145,3 @@ div.ui-content .ui-link { color:#29546B;text-decoration:none;}
   background-image: -webkit-gradient(linear,left top,left bottom, color-stop(0, #37657d), color-stop(1, #003b58));
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#37657d', EndColorStr='#003b58')";
 }
-
-h3 {
-	border-top:1px solid #CCC;
-	padding-top:20px;
-	}
