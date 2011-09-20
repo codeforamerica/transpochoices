@@ -453,7 +453,6 @@ var TranspoChoices = TranspoChoices || {};
 
       $('div[data-role="page"]').live('pageshow',function(event, ui){
         pageId = ui.prevPage.attr('id');
-        tc.util.log(pageId);
       });
     })();
         

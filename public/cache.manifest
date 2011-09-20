@@ -1,20 +1,34 @@
 CACHE MANIFEST
+# Revision: 1.8
+
 NETWORK:
 info_for_route_bing
-http://maps.gstatic.com/ 
-http://maps.google.com/ 
-http://maps.googleapis.com/
-http://www.google-analytics.com/ga.js 
 prod/style.css
 prod/main.js
-index.html
+http://maps.gstatic.com/
+http://maps.google.com/
+http://maps.googleapis.com/
+http://mt0.googleapis.com/
+http://mt1.googleapis.com/
+http://mt2.googleapis.com/
+http://mt3.googleapis.com/
+http://khm0.googleapis.com/
+http://khm1.googleapis.com/
+http://cbk0.googleapis.com/
+http://cbk1.googleapis.com/
+http://www.google-analytics.com/
+http://gg.google.com/
+http://csi.gstatic.com/
 
 CACHE:
-http://maps.gstatic.com/intl/en_us/mapfiles/api-3/5/5/main.js
-http://maps.gstatic.com/cat_js/intl/en_us/mapfiles/api-3/5/5/%7Bcommon,util,geocoder%7D.js
-http://maps.google.com/maps/api/js?sensor=false
-transpo.png
+index.html
+reroute-icon.png
+reroute-splash.png
 favicon.ico
+prod/style-min.css
+prod/main-min.js
+prod/images/bg.png
+prod/images/header-bg.png
 prod/images/ajax-loader.png
 prod/images/biking.png
 prod/images/calories.png
@@ -22,7 +36,6 @@ prod/images/cost.png
 prod/images/driving.png
 prod/images/duration.png
 prod/images/emissions.png
-prod/images/header-bg.png
 prod/images/icons-18-black.png
 prod/images/icons-18-white.png
 prod/images/icons-36-black.png
@@ -32,5 +45,3 @@ prod/images/transit.png
 prod/images/walking.png
 prod/images/point_a.png
 prod/images/point_b.png
-prod/style-min.css
-prod/main-min.js
