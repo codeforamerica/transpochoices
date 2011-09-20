@@ -34,8 +34,6 @@ var TranspoChoices = TranspoChoices || {};
 
   self.geocode = tc.util.limit(function(addr, callback) {
     geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
-      tc.util.log(results);
-      
       //If this could be "Current Location", then put on the top of the list
       if (curLatLng && typeof addr === 'string' && addr && currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
         results.unshift({

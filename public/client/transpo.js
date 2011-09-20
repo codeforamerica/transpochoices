@@ -377,7 +377,7 @@ var TranspoChoices = TranspoChoices || {};
         });
       });
 
-      $('#about').live('pageshow',function(event, ui){
+      $('div[data-role="page"]').live('pageshow',function(event, ui){
         pageId = ui.prevPage.attr('id');
       });
     })();
