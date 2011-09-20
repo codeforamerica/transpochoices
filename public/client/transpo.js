@@ -49,7 +49,7 @@ var TranspoChoices = TranspoChoices || {};
     'kg_co2': function(val) {
       return renderers.na(val) || {
         value: (val || 0).toFixed(1),
-        label: 'lbs of CO2'
+        label: 'lbs CO2'
       };
     },
     //US Dollars
