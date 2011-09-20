@@ -123,7 +123,7 @@ var TranspoChoices = TranspoChoices || {};
     'kg_co2': function(val) {
       return renderers.na(val) || {
         value: (val || 0).toFixed(1),
-        label: 'lbs CO2'
+        label: 'lbs CO<sub>2</sub>'
       };
     },
     //US Dollars
@@ -488,6 +488,7 @@ var TranspoChoices = TranspoChoices || {};
     $.mobile.hashListeningEnabled = false;
   });
 })(TranspoChoices);
+
 /********************   End ./client/transpo.js            ********************/
 
 
