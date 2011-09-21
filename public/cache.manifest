@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision: 1.9.3
+# Revision: 1.1.0
 
 NETWORK:
 info_for_route_bing
@@ -29,6 +29,7 @@ prod/style-min.css
 prod/main-min.js
 prod/images/bg.png
 prod/images/header-bg.png
+prod/images/header-bg2.png
 prod/images/ajax-loader.png
 prod/images/biking.png
 prod/images/calories.png
