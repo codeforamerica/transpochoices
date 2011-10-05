@@ -10,6 +10,9 @@ Installation
     $ git@github.com:codeforamerica/transpochoices.git
     $ cd transpochoices
     $ bundle install
+    $ bundle exec rackup
+
+Open your web browser to http://localhost:9292/
 
 ## <a name="ci">Continuous Integration</a>
 [![Build Status](https://secure.travis-ci.org/ryanatwork/transpochoices.png)](http://travis-ci.org/ryanatwork/transpochoices)
