@@ -11,6 +11,9 @@ Installation
     $ cd transpochoices
     $ bundle install
 
+## <a name="ci">Continuous Integration</a>
+[![Build Status](https://secure.travis-ci.org/ryanatwork/transpochoices.png)](http://travis-ci.org/ryanatwork/transpochoices)
+
 ## API
 	/info_for_route_bing?origin=<>&destination=<>
 
