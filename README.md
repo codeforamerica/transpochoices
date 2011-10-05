@@ -1,5 +1,15 @@
+ReRoute.it
+=======
+
 TranspoChoices is all about making better transportation choices. However, our
 calculations are only approximations and should be treated as such.
+
+Installation
+------------
+    # Install the app
+    $ git@github.com:codeforamerica/transpochoices.git
+    $ cd transpochoices
+    $ bundle install
 
 ## API
 	/info_for_route_bing?origin=<>&destination=<>
@@ -140,34 +150,87 @@ people with all kinds of talent to [get involved][24].
    [24]: https://github.com/codeforamerica/transpochoices
    [25]: http://codeforamerica.org/?cfa_project=transportation-choices
 
+Contributing
+------------
+In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.
+
+Here are some ways *you* can contribute:
+
+* by using alpha, beta, and prerelease versions
+* by reporting bugs
+* by suggesting new features
+* by writing or editing documentation
+* by writing specifications
+* by writing code (**no patch is too small**: fix typos, add comments, clean up inconsistent whitespace)
+* by refactoring code
+* by resolving [issues](http://github.com/codeforamerica/transpochoices/issues)
+* by reviewing patches
+
+Submitting an Issue
+-------------------
+We use the [GitHub issue tracker](http://github.com/codeforamerica/transpochoices/issues) to track bugs and
+features. Before submitting a bug report or feature request, check to make sure it hasn't already
+been submitted. You can indicate support for an existing issuse by voting it up. When submitting a
+bug report, please include a [Gist](http://gist.github.com/) that includes a stack trace and any
+details that may be necessary to reproduce the bug, including your gem version, Ruby version, and
+operating system. Ideally, a bug report should include a pull request with failing specs.
+
+Submitting a Pull Request
+-------------------------
+1. Fork the project.
+2. Create a topic branch.
+3. Implement your feature or bug fix.
+4. Add documentation for your feature or bug fix.
+5. Run <tt>bundle exec rake doc:yard</tt>. If your changes are not 100% documented, go back to step 4.
+6. Add specs for your feature or bug fix.
+7. Run <tt>bundle exec rake spec</tt>. If your changes are not 100% covered, go back to step 6.
+8. Commit and push your changes.
+9. Submit a pull request. Please do not include changes to the gemspec, version, or history file. (If you want to create your own version for some reason, please do so in a separate commit.)
+
+Supported Rubies
+----------------
+This library aims to support and is [tested
+against](http://travis-ci.org/codeforamerica/transpochoices) the following Ruby
+implementations:
+
+* Ruby 1.9.2
+* Ruby 1.9.3
+* [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/)
+
+Copyright
+---------
+Copyright (c) 2011 Code for America Laboratories
+See [LICENSE](https://github.com/codeforamerica/transpochoices/blob/master/LICENSE.mkd) for details.
+
+
 [![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/transpochoices.png)](http://stats.codeforamerica.org)
 
-                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~                                   
-                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                          
-                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                           
-                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                          
-                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                       
-                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                     
-                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                  
-                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~               
-                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~             
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~             
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~           
-             ~~~~~~~~MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~          
-             ~~~~~~~~M MN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         
-           ~~~~~~~~~:M . MM?~~~:~~~~~:~~~~:~~~~:~IMMMMM$~~~:~~~~~~~~~~:~~~~~~~~~~~~~~~~~~~~~~~~~        
-          ~~~~~~~~~~~M   . IMMMN+:~~~~~$DMMMMMMMMI...  ,NMMMMMMMNZ=~~~I8MMMMM8~~~~~~~~~~~~~~~~~~~       
-         ~~~~~~~~~~~~MMMMMMMMMMMMMMMMMMM..   ... .      ..  ..  . .    .   MMMMM7~~~~~~~~~~~~~~~~~      
-        ~~~~~~~~~~~~~MMMMMMMMMMMMMMMMM:                                     ,MMMM?~~~~~~~~~~~~~~~~    
-        ~~~~~~~~~~~~~MMMMMMMMMMMMMMM...                                     ..NMMZ~~~~~~~~~~~~~~~~~    
-       ~~~~~~~~::~~~$MMMMMMMMMMMMMN.                                        .  MM~~~~~~~~~~~~~~~~~~~   
-       ~~~~~~~~:~MMI.OMMMMMMMMMMM...                                           OM~~~~~~~~~~~~~~~~~~~   
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             ~~~~~~~~MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             ~~~~~~~~M MN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           ~~~~~~~~~:M . MM?~~~:~~~~~:~~~~:~~~~:~IMMMMM$~~~:~~~~~~~~~~:~~~~~~~~~~~~~~~~~~~~~~~~~
+          ~~~~~~~~~~~M   . IMMMN+:~~~~~$DMMMMMMMMI...  ,NMMMMMMMNZ=~~~I8MMMMM8~~~~~~~~~~~~~~~~~~~
+         ~~~~~~~~~~~~MMMMMMMMMMMMMMMMMMM..   ... .      ..  ..  . .    .   MMMMM7~~~~~~~~~~~~~~~~~
+        ~~~~~~~~~~~~~MMMMMMMMMMMMMMMMM:                                     ,MMMM?~~~~~~~~~~~~~~~~
+        ~~~~~~~~~~~~~MMMMMMMMMMMMMMM...                                     ..NMMZ~~~~~~~~~~~~~~~~~
+       ~~~~~~~~::~~~$MMMMMMMMMMMMMN.                                        .  MM~~~~~~~~~~~~~~~~~~~
+       ~~~~~~~~:~MMI.OMMMMMMMMMMM...                                           OM~~~~~~~~~~~~~~~~~~~
       ~~~~~~~~=MM  .  MMMMMMMMMN                              .. ..        M.  7M~~~~~~~~~~~~~~~~~~~~
-     ~~~~~~~MM,   MMMMMMMMMMMM...                             .+++.      .M . .M~~~~~~~~~~~~~~~~~~~~~ 
-     ~~~~=MN. .$MMMMMMMMMMMMZ                ... ....7MMMMMNMMMMMMMMMMMN......ZM~~~~~~~~~~~~~~~~~~~~~~  
-     ~~DM~...MMMMMMMMMMMMM~.            ...   IMMMMMMMMMMMM. MMMMMMMMMMMMM ..MN~~~~~~~~~~~~~~~~~~~~~~~  
-    77MI  +MMMMMMMMMMMMMD.           . .. MMMMMMMMMMMMMMMM  ..MMMMMMMMMMMMM7M~~~~~~~~~~~~~~~~~~~~~~~~~ 
+     ~~~~~~~MM,   MMMMMMMMMMMM...                             .+++.      .M . .M~~~~~~~~~~~~~~~~~~~~~
+     ~~~~=MN. .$MMMMMMMMMMMMZ                ... ....7MMMMMNMMMMMMMMMMMN......ZM~~~~~~~~~~~~~~~~~~~~~~
+     ~~DM~...MMMMMMMMMMMMM~.            ...   IMMMMMMMMMMMM. MMMMMMMMMMMMM ..MN~~~~~~~~~~~~~~~~~~~~~~~
+    77MI  +MMMMMMMMMMMMMD.           . .. MMMMMMMMMMMMMMMM  ..MMMMMMMMMMMMM7M~~~~~~~~~~~~~~~~~~~~~~~~~
     M: .8MMMMMMMMMMMMM,        .     ?MMMMMMMMMMMMMMMMMMMM    MMMMMMM?IMMMM?:~~~~~~~~~~~~~~~~~~~~~~~~~~
      .,MMMMMMMMMMMMI             .8MMMMM.  MMMMMMMMMMMMMMMZ.ZMMMMI..... MM~~~:~~~~~~~~~~~~~~~~~~~~~~~~~
     .MMMNZ$$$$$$~ ..      . . .MMMMMMMM   ,MMMMMMMMMMMMMMMMMD  ..  .  NM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,30 +243,30 @@ people with all kinds of talent to [get involved][24].
     $$$$.      .. $$$$$$MMMMMMMMMMMMMMMMMMM .                  .~M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     $$$$        $$$$$$$$NMMMMMMMMMMMMMMMMN...                  .M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ?$$$ .   I$$$$$$$$$$ZMMMMMMMMMMMMMMM:.                    .MO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     $$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMMM:.                     =M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-     $$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMM:                      MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-     +$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMN.                    .MM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-      $$$$$$$$$$$$$$$$$$$ZMMMMMMMMMMD...                 . N~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-      +$$$$$$$$$$$$$$$$$$$MMMMMMMMMM                   ..DM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-       $$$$$$$$$$$$$$$$$$$MMMMMMMMM$.                  NM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-        $$$$$$$$$$$$$$$$$$8MMMMMMMM .           .. .7MM+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-        +$$$$$$$$$$$$$$$$$$MMMMMMM8            ZMMMO~:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
-         Z$$$$$$$$$$$$$$$$$MMMMMMM        . ..MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     
-          $$$$$$$$$$$$$$$$$ZMMMMMM...     ..$M=:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     
-           $$$$$$$$$$$$$$$$$MMMMMM         OM~~:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~       
-            $$$$$$$$$$$$$$$$$MMMM$      . MN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         
-             $$$$$$$$$$$$$$$$MMMM=       8M::~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~          
-              =$$$$$$$$$$$$$$$MMM.      $M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~         
-                Z$$$$$$$$$$$$$MMM=      M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~           
-                 $$$$$$$$$$$$$$MMZ   ..M=:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~              
-                  =$$$$$$$$$$$$NMM    .M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~            
-                    ~$Z$$$$$$$$$MM.. .M+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~               
-                      $$$$$$$$$$ZM7 ..M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~               
-                        ?$$$$$$$$OM  .M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                 
-                          ?$$$$$$$MM. M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                       
-                             ~$$$$$NM M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                          
-                                77$$MM$M:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                             
-                                    7$MMO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                            
-                                       ++N:~~~~~~~~~~~~~~~~~~~~~~               
-                                   
+     $$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMMM:.                     =M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     $$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMM:                      MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     +$$$$$$$$$$$$$$$$$$$MMMMMMMMMMMMN.                    .MM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      $$$$$$$$$$$$$$$$$$$ZMMMMMMMMMMD...                 . N~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      +$$$$$$$$$$$$$$$$$$$MMMMMMMMMM                   ..DM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       $$$$$$$$$$$$$$$$$$$MMMMMMMMM$.                  NM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        $$$$$$$$$$$$$$$$$$8MMMMMMMM .           .. .7MM+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        +$$$$$$$$$$$$$$$$$$MMMMMMM8            ZMMMO~:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         Z$$$$$$$$$$$$$$$$$MMMMMMM        . ..MM:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          $$$$$$$$$$$$$$$$$ZMMMMMM...     ..$M=:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           $$$$$$$$$$$$$$$$$MMMMMM         OM~~:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            $$$$$$$$$$$$$$$$$MMMM$      . MN~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             $$$$$$$$$$$$$$$$MMMM=       8M::~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              =$$$$$$$$$$$$$$$MMM.      $M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                Z$$$$$$$$$$$$$MMM=      M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 $$$$$$$$$$$$$$MMZ   ..M=:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                  =$$$$$$$$$$$$NMM    .M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    ~$Z$$$$$$$$$MM.. .M+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                      $$$$$$$$$$ZM7 ..M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                        ?$$$$$$$$OM  .M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          ?$$$$$$$MM. M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             ~$$$$$NM M~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                77$$MM$M:~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                    7$MMO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                                       ++N:~~~~~~~~~~~~~~~~~~~~~~
+
 Made by badgers at [Code for America](http://codeforamerica.org)
