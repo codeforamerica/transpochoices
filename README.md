@@ -15,7 +15,7 @@ Installation
 Open your web browser to http://localhost:9292/
 
 ## <a name="ci">Continuous Integration</a>
-[![Build Status](https://secure.travis-ci.org/ryanatwork/transpochoices.png)](http://travis-ci.org/ryanatwork/transpochoices)
+[![Build Status](https://secure.travis-ci.org/codeforamerica/transpochoices.png)](http://travis-ci.org/codeforamerica/transpochoices)
 
 ## API
 	/info_for_route_bing?origin=<>&destination=<>
