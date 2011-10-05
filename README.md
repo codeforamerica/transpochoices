@@ -198,7 +198,6 @@ implementations:
 
 * Ruby 1.9.2
 * Ruby 1.9.3
-* [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/)
 
 Copyright
 ---------
