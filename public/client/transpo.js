@@ -13,6 +13,7 @@ var TranspoChoices = TranspoChoices || {};
         modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
         metrics: ['cost', 'duration', 'calories', 'emissions']
     },
+    results,
     curPlan,
     curLocationStr,
     curLatLng;
@@ -185,8 +186,10 @@ var TranspoChoices = TranspoChoices || {};
       success: function(data, textStatus, jqXHR) {
         var obj = formatResults(data),
           total = obj.total,
-          results = obj.results,
-          html = makeMetricsTable(options.metrics, results);
+          html;
+          
+        results = obj.results;
+        html = makeMetricsTable(options.metrics, results);
 
         if (total > 0) {
           // Set the display table
@@ -366,22 +369,7 @@ var TranspoChoices = TranspoChoices || {};
         e.preventDefault();
       }
     });
-    
-    (function customBackButtonOnAboutPage() {
-      var pageId;
-      
-      $('.tc-btn-back').live('tap',function(e, ui) {
-        $.mobile.changePage('#'+pageId, {
-          transition: 'slide',
-          reverse: true
-        });
-      });
 
-      $('div[data-role="page"]').live('pageshow',function(event, ui){
-        pageId = ui.prevPage.attr('id');
-      });
-    })();
-        
     $(tc).bind('current-location', function(event, currentLocationStr, currentLatLng) {
       curLocationStr = currentLocationStr;
       curLatLng = currentLatLng;
@@ -407,10 +395,14 @@ var TranspoChoices = TranspoChoices || {};
     // Bind events
     bindEvents();
   });
-
-  // Setup jQuery Mobile options
-  $(document).bind("mobileinit", function() {
-    //Disabling this b/c it could be bad for bookmarking
-    $.mobile.hashListeningEnabled = false;
+  
+  //Don't show the home page if no results exist
+  $('#home').live('pagebeforeshow', function(evt) {
+    if (!results) {
+      $.mobile.changePage('#search', {
+        transition: 'fade'
+      });
+    }
   });
+  
 })(TranspoChoices);
