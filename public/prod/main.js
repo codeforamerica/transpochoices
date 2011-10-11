@@ -511,8 +511,6 @@ var TranspoChoices = TranspoChoices || {};
       currentLocationStr = location;
       currentLatLng = latLng;
       
-      console.log('current-location', location, latLng);
-      
       // Init origin to current location if available
       if (firstGeocode && $originInput.val() === '') {
         $originInput.val(currentLocationStr);
