@@ -71,6 +71,67 @@ var TranspoChoices = TranspoChoices || {};
 /********************   End public/client/util.js          ********************/
 
 
+/******************** Begin public/client/geocoder.js      ********************/
+var TranspoChoices = TranspoChoices || {};
+
+(function(tc) {
+  tc.geocoder = function(){
+    var self = {},
+      geocoder = new google.maps.Geocoder(),
+      //Default to the continental US
+      bounds = new google.maps.LatLngBounds(new google.maps.LatLng(-124.4, 32.5), new google.maps.LatLng(-66.7, 47.4)),
+      region = 'US';
+
+    self.currentLocationStr = 'Current Location';
+
+    self.setCurrentLocation = function() {
+      if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          self.currentLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          bounds = new google.maps.Circle({center:self.currentLatLng, radius:8000}).getBounds();
+
+          $(tc).trigger('current-location', [self.currentLocationStr, self.currentLatLng]);
+        }, function() {
+          tc.util.log('error getting location');
+        },
+        {enableHighAccuracy:true});
+      }
+    };
+
+    self.geocode = tc.util.limit(function(addr, callback) {
+      geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
+        //If this could be "Current Location", then put on the top of the list
+        if (self.currentLatLng && typeof addr === 'string' && addr && self.currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
+          results.unshift({
+            currentLocation: true,
+            formatted_address: self.currentLocationStr,
+            geometry: {
+              location: self.currentLatLng
+            }
+          });
+        }
+
+        callback(results);
+      });
+    }, 750, true);
+
+    //Init and monitor the current location if available
+    //Using getCurrentPosition with setInterval b/c Safari on iPhone wasn't
+    //respecting the maximumAge
+    if (navigator.geolocation && navigator.geolocation.getCurrentPosition) {
+      self.setCurrentLocation();
+
+      setInterval(function(){
+        self.setCurrentLocation();
+      }, 30000);
+    }
+
+    return self;
+  };
+})(TranspoChoices);
+/********************   End public/client/geocoder.js      ********************/
+
+
 /******************** Begin public/client/transpo.js       ********************/
 var TranspoChoices = TranspoChoices || {};
 
@@ -87,10 +148,12 @@ var TranspoChoices = TranspoChoices || {};
         modes: ['walking', 'biking', 'transit', 'taxi', 'driving'],
         metrics: ['cost', 'duration', 'calories', 'emissions']
     },
+    firstGeocode = true,
+    geocoder,
     results,
-    curPlan,
-    curLocationStr,
-    curLatLng;
+    currentLocationStr,
+    currentLatLng,
+    currentPlan;
 
   //Renderers for the metrics returned by the server,
   //keyed by the type.
@@ -273,7 +336,7 @@ var TranspoChoices = TranspoChoices || {};
           $('#metrics-table tbody th, #metrics-table tbody td').bind('tap', function(e) {
             tc.util.trackEvent('mode', 'click', this.parentNode.id);
 
-            curPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
+            currentPlan = { origin: origin, destination: destination, mode:this.parentNode.id };
             $.mobile.changePage('#plan');
             e.preventDefault();
           });
@@ -328,6 +391,7 @@ var TranspoChoices = TranspoChoices || {};
 
         $input
           .val($this.text())
+          .attr('data-latlon', $this.attr('data-latlon'))
           .change();
 
         $list.empty();
@@ -365,14 +429,12 @@ var TranspoChoices = TranspoChoices || {};
   // If the input is current location, set the class
   // and data-latlon attr
   var handleCurrentLocation = function($input) {
-    if (curLatLng && curLocationStr) {
-      if ($input.val() === curLocationStr) {
+    if (currentLatLng && currentLocationStr) {
+      if ($input.val() === currentLocationStr) {
         $input.addClass('current-location')
-          .attr('data-latlon', curLatLng.lat()+','+curLatLng.lng());
-      
+          .attr('data-latlon', currentLatLng.lat()+','+currentLatLng.lng());
       } else {
-        $input.removeClass('current-location')
-          .removeAttr('data-latlon');
+        $input.removeClass('current-location');
       }
     }
   };
@@ -383,7 +445,7 @@ var TranspoChoices = TranspoChoices || {};
     $originInput
       .keyup(function() {
         if ($originInput.val()) {
-          tc.geocoder.geocode($originInput.val(), listAddresses('origin'));
+          geocoder.geocode($originInput.val(), listAddresses('origin'));
         }
         handleInputChange();
       })
@@ -393,7 +455,7 @@ var TranspoChoices = TranspoChoices || {};
     $destinationInput
       .keyup(function() {
         if ($destinationInput.val()) {
-          tc.geocoder.geocode($destinationInput.val(), listAddresses('destination'));
+          geocoder.geocode($destinationInput.val(), listAddresses('destination'));
         }
         handleInputChange();
       })
@@ -401,14 +463,14 @@ var TranspoChoices = TranspoChoices || {};
 
     // Build the plan page - buttons with links to Bing and Google directions
     $('#plan').live('pagebeforeshow', function() {
-      var googleUrl = makeGoogleUrl(curPlan.origin, curPlan.destination, curPlan.mode),
-        bingUrl = makeBingUrl(curPlan.origin, curPlan.destination, curPlan.mode);
+      var googleUrl = makeGoogleUrl(currentPlan.origin, currentPlan.destination, currentPlan.mode),
+        bingUrl = makeBingUrl(currentPlan.origin, currentPlan.destination, currentPlan.mode);
 
       $googleLink = $googleLink || $('#google-link');
       $bingLink = $bingLink || $('#bing-link');
       $planTitle = $planTitle || $('#plan-title');
 
-      $planTitle.text(curPlan.mode);
+      $planTitle.text(currentPlan.mode);
 
       // Setup Google
       if (googleUrl) {
@@ -443,14 +505,22 @@ var TranspoChoices = TranspoChoices || {};
         e.preventDefault();
       }
     });
-
-    $(tc).bind('current-location', function(event, currentLocationStr, currentLatLng) {
-      curLocationStr = currentLocationStr;
-      curLatLng = currentLatLng;
+    
+    // Init origin to current location if available
+    $(tc).bind('current-location', function(event, location, latLng) {
+      currentLocationStr = location;
+      currentLatLng = latLng;
+      
+      console.log('current-location', location, latLng);
       
       // Init origin to current location if available
-      $originInput.val(curLocationStr);
+      if (firstGeocode && $originInput.val() === '') {
+        $originInput.val(currentLocationStr);
+        firstGeocode = false;
+      }
+
       handleCurrentLocation($originInput);
+      handleCurrentLocation($destinationInput);
     });
   };
 
@@ -468,6 +538,9 @@ var TranspoChoices = TranspoChoices || {};
 
     // Bind events
     bindEvents();
+    
+    // Init geocoder
+    geocoder = TranspoChoices.geocoder();
   });
   
   //Don't show the home page if no results exist
@@ -482,65 +555,6 @@ var TranspoChoices = TranspoChoices || {};
 })(TranspoChoices);
 
 /********************   End public/client/transpo.js       ********************/
-
-
-/******************** Begin public/client/geocoder.js      ********************/
-var TranspoChoices = TranspoChoices || {};
-
-(function(tc){
-  var self = {},
-    geocoder = new google.maps.Geocoder(),
-    curLatLng,
-    bounds,
-    region = 'US',
-    currentLocationStr = 'Current Location';
-  
-  // Init the current location
-  var initCurrentLocation = function(position) {
-    curLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    bounds = new google.maps.Circle({center:curLatLng, radius:8000}).getBounds();
-    
-    $(tc).trigger('current-location', [currentLocationStr, curLatLng]);
-  };
-  
-  // Does this string match the currentLocationStr var
-  self.getCurrentLocation = function(term) {
-    if (term === currentLocationStr && curLatLng) {
-      return curLatLng;
-    }
-    
-    return null;
-  };
-  
-  // Get access to the current position directly from the geolocation object
-  self.getCurrentPosition = function(success, error) {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error, { enableHighAccuracy: true, maximumAge: 90000 });
-    } 
-  };
-
-  self.geocode = tc.util.limit(function(addr, callback) {
-    geocoder.geocode({'address':addr, 'bounds':bounds, 'region': region }, function(results, status) {
-      //If this could be "Current Location", then put on the top of the list
-      if (curLatLng && typeof addr === 'string' && addr && currentLocationStr.toLowerCase().indexOf(addr.trim().toLowerCase()) > -1) {
-        results.unshift({
-          currentLocation: true,
-          formatted_address: currentLocationStr,
-          geometry: {
-            location: curLatLng
-          }
-        });
-      }
-
-      callback(results);
-    });
-  }, 750, true);
-  
-  self.getCurrentPosition(initCurrentLocation);
-
-  tc.geocoder = self;
-})(TranspoChoices);
-/********************   End public/client/geocoder.js      ********************/
 
 
 /******************** Begin public/lib/jquery.mobile-1.0b1/jquery.mobile-1.0b1.min.js ********************/
