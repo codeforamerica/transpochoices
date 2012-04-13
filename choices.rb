@@ -159,7 +159,7 @@ get "/info_for_route_bing" do
 		{
 			:distance=>"km",
 			:duration=>"sec",
-			:emissions=>"kg_co2",
+			:emissions=>"lb_co2",
 			:cost=>"usd",
 			:calories=>"cal"
 		},

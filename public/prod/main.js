@@ -187,6 +187,13 @@ var TranspoChoices = TranspoChoices || {};
     'kg_co2': function(val) {
       return renderers.na(val) || {
         value: (val || 0).toFixed(1),
+        label: 'kg CO<sub>2</sub>'
+      };
+    },
+    //Pounds of CO2
+    'lb_co2': function(val) {
+      return renderers.na(val) || {
+        value: (val || 0).toFixed(1),
         label: 'lbs CO<sub>2</sub>'
       };
     },
@@ -324,7 +331,7 @@ var TranspoChoices = TranspoChoices || {};
         var obj = formatResults(data),
           total = obj.total,
           html;
-          
+
         results = obj.results;
         html = makeMetricsTable(options.metrics, results);
 
@@ -366,7 +373,7 @@ var TranspoChoices = TranspoChoices || {};
 
   // Creates an autocomplete list of geocoded address matches
   // The searchId binds this either the origin or destination
-  // input field. 
+  // input field.
   var listAddresses = function(searchId) {
     var $list = $('#' + searchId + '-list'),
       $input = $('#' + searchId);
@@ -402,7 +409,7 @@ var TranspoChoices = TranspoChoices || {};
 
   // Toggle whether the search button is active based on the
   // input of the origin and destingation input fields.
-  var handleInputChange = function() {    
+  var handleInputChange = function() {
     if ($originInput.val() || $destinationInput.val()) {
       $searchButton
         .removeAttr('disabled')
@@ -425,7 +432,7 @@ var TranspoChoices = TranspoChoices || {};
       $('#destination-list').empty();
     }
   };
-  
+
   // If the input is current location, set the class
   // and data-latlon attr
   var handleCurrentLocation = function($input) {
@@ -505,12 +512,12 @@ var TranspoChoices = TranspoChoices || {};
         e.preventDefault();
       }
     });
-    
+
     // Init origin to current location if available
     $(tc).bind('current-location', function(event, location, latLng) {
       currentLocationStr = location;
       currentLatLng = latLng;
-      
+
       // Init origin to current location if available
       if (firstGeocode && $originInput.val() === '') {
         $originInput.val(currentLocationStr);
@@ -536,11 +543,11 @@ var TranspoChoices = TranspoChoices || {};
 
     // Bind events
     bindEvents();
-    
+
     // Init geocoder
     geocoder = TranspoChoices.geocoder();
   });
-  
+
   //Don't show the home page if no results exist
   $('#home').live('pagebeforeshow', function(evt) {
     if (!results) {
@@ -549,7 +556,7 @@ var TranspoChoices = TranspoChoices || {};
       });
     }
   });
-  
+
 })(TranspoChoices);
 
 /********************   End public/client/transpo.js       ********************/
