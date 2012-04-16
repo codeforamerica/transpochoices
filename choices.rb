@@ -2,6 +2,7 @@ require 'net/http'
 require 'cgi'
 require './fare.rb'
 require './constants.rb'
+require './otp.rb'
 
 require 'pp'
 def get_info_from_bing(params)
@@ -15,7 +16,7 @@ def get_info_from_bing(params)
 	}.map {|k,v| "#{k}=#{CGI.escape(v)}"}*"&"
 	modes=%w{driving walking transit}
 
-	results =modes.map do |mode|
+	results = modes.map do |mode|
 		Thread.new do
 			begin
 				usable_url=URI.parse(base_url+mode+query_params)
@@ -124,6 +125,10 @@ get "/info_for_route_bing" do
 		return [200,{},JSON.pretty_generate(results)]
 	end
 
+	# Save the geocoded address points in an array [lat,lon] for OTP to use
+	origin = results["driving"]["routeLegs"][0]["actualStart"]["coordinates"]
+	destination = results["driving"]["routeLegs"][0]["actualEnd"]["coordinates"]
+
 	if (resource=results["driving"])
 		results["driving"]=generic_by_bing_resource(resource)
 		results["driving"][:emissions] = results["driving"][:distance] * SOV_LBS_CO2_PASSENGER_KM
@@ -150,7 +155,23 @@ get "/info_for_route_bing" do
 		results["biking"][:emissions] = 0
 		results["biking"][:cost]= (results["biking"][:distance] * BIKING_COST_PER_KM).round(2)
 	end
-	if (resource=results["transit"])
+
+	# If we have an OTP config for both the origin and destination, then use OTP over Bing
+	if (has_otp_config(origin[0], origin[1]) && has_otp_config(destination[0], destination[1]))
+		params = {
+			:origin => origin,
+			:destination => destination,
+			:date => Date.today.strftime("%m/%d/%Y"),
+			:time => Time.now.strftime("%I:%M %p")
+		}
+
+		resource = get_info_from_otp(params)
+		results["transit"][:duration] = resource[:duration]
+		results["transit"][:calories] = resource[:walk_duration] * CALORIES_PER_SECOND_WALKING + resource[:transit_duration] * CALORIES_PER_SECOND_SITTING
+		results["transit"][:emissions] = results["driving"][:distance] * BUS_LBS_CO2_PASSENGER_KM
+    results["transit"][:cost] = resource[:cost]
+	# If we got results from Bing and there's not OTP, use Bing
+	elsif (resource=results["transit"])
 		resource[:distance] = results["driving"][:distance]
 		results["transit"] = calculate_transit_by_bing_resource(resource)
 	end

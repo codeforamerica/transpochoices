@@ -14,6 +14,15 @@ AVG_BUS_SPEED = 20.5 #km / hour - in city
 SOV_LBS_CO2_PASSENGER_KM = 0.597 #Average SOV car pounds of CO2 emitted per km (0.96 * 0.6214)
 BUS_LBS_CO2_PASSENGER_KM = 0.404 #Average bus pounds of CO2 emitted per km (0.65 * 0.6214)
 
+# Map a bbox (left, bottom, right, top) to an OTP service url
+# You can get the bbox from the /meta route on your OTP service
+OTP_MAPPING = [
+    {
+        "bbox" => {"min_lon"=>-75.56027, "min_lat"=>38.92998, "max_lon"=>-71.91406, "max_lat"=>41.85966},
+        "url" =>"http://nyc.deployer.opentripplanner.org/opentripplanner-api-webapp/ws/"
+    }
+]
+
 GTFS_MAPPING = {
     "San Francisco Municipal Transportation Agency"=>["MUNI_google_transit","SFMTA"],
     "Bay Area Rapid Transit"=>["BART_google_transit","BART"],
