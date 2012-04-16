@@ -15,11 +15,16 @@ SOV_LBS_CO2_PASSENGER_KM = 0.597 #Average SOV car pounds of CO2 emitted per km (
 BUS_LBS_CO2_PASSENGER_KM = 0.404 #Average bus pounds of CO2 emitted per km (0.65 * 0.6214)
 
 # Map a bbox (left, bottom, right, top) to an OTP service url
-# You can get the bbox from the /meta route on your OTP service
+# You can get the bbox from the /metadata route on your OTP service
 OTP_MAPPING = [
     {
+        "name" => "New York City",
         "bbox" => {"min_lon"=>-75.56027, "min_lat"=>38.92998, "max_lon"=>-71.91406, "max_lat"=>41.85966},
         "url" =>"http://nyc.deployer.opentripplanner.org/opentripplanner-api-webapp/ws/"
+    },{
+        "name" => "Washington DC",
+        "bbox" => {"min_lon"=>-77.48693, "min_lat"=>38.55874, "max_lon"=>-76.62914, "max_lat"=>39.2311},
+        "url" =>"http://dc.deployer.opentripplanner.org/opentripplanner-api-webapp/ws/"
     }
 ]
 

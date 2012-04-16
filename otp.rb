@@ -46,12 +46,19 @@ def get_info_from_otp(params)
     # puts "calling url #{uri}"
     res = JSON.parse(http.request(request).body)
 
+    # TODO: make this more elegant when the fare data is better understood
+    begin
+      cost = res["plan"]["itineraries"].first["fare"]["fare"]["regular"]["cents"].fdiv(100)
+    rescue Exception => e
+      cost = nil
+    end
+
     {
       :walk_duration => res["plan"]["itineraries"].first["walkTime"],
       :transit_duration => res["plan"]["itineraries"].first["transitTime"],
       :wait_duration => res["plan"]["itineraries"].first["waitingTime"],
       :duration => res["plan"]["itineraries"].first["duration"].fdiv(1000),
-      :cost => res["plan"]["itineraries"].first["fare"]["fare"]["regular"]["cents"].fdiv(100) || nil
+      :cost => cost
     }
   end
 end
