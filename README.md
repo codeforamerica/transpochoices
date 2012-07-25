@@ -107,9 +107,7 @@ Returns:
 
 ### Taxi
 
-**Cost** - Uses [TaxiFareFinder.com][14]
-
-   [14]: http://www.taxifarefinder.com/rates.php
+**Cost** - Uses scraped taxi rates
 
 **Time** - Calculated by [Bing Driving Routes API][15]
 

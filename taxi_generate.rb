@@ -3,7 +3,7 @@ require 'json'
 require 'net/http'
 require 'cgi'
 
-#csv_to_hashed, with some keys ignored. courtesy of http://www.taxifarefinder.com/rates.php
+#csv_to_hashed, with some keys ignored, via http://www.taxifarefinder.com/rates.php
 $taxi_info = [{"Add. Charge (per mile)"=>"$2.80",
   "City"=>"Boston",
   "Wait Time Charge (per hour)"=>"$28.00",
@@ -144,7 +144,7 @@ $taxi_info = [{"Add. Charge (per mile)"=>"$2.80",
   "Wait Time Charge (per hour)"=>"$22.00",
   "Initial Increment (mile)"=>"1/10",
   "Initial Charge"=>"$2.50"}]
-  
+
 KM_PER_MILE = 1.609344
 
 $taxi_info.each {|l| r= JSON.parse(Net::HTTP.get(URI.parse("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address="+CGI.escape(l["City"]))))["results"][0]["geometry"]["location"]; l[:lat]=r["lat"]; l[:lon]=r["lng"]}
