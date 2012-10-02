@@ -6,6 +6,9 @@ require './constants'
 
 # Is this point within the configured bbox of an OTP instance?
 def has_otp_config(lat, lon)
+  # Disabling OTP for the time being. Not ready for prime time.
+  return false
+
   match = OTP_MAPPING.select {|m| lon >= m["bbox"]["min_lon"] && lon <= m["bbox"]["max_lon"] &&
                                   lat >= m["bbox"]["min_lat"] && lat <= m["bbox"]["max_lat"] }
   !match.empty?

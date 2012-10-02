@@ -19,7 +19,7 @@ BUS_LBS_CO2_PASSENGER_KM = 0.404 #Average bus pounds of CO2 emitted per km (0.65
 OTP_MAPPING = [
     {
         "name" => "New York City",
-        "bbox" => {"min_lon"=>-75.56027, "min_lat"=>38.92998, "max_lon"=>-71.91406, "max_lat"=>41.85966},
+        "bbox" => {"min_lon"=>-74.501, "min_lat"=>40.345, "max_lon"=>-73.226, "max_lat"=>41.097},
         "url" =>"http://nyc.deployer.opentripplanner.org/opentripplanner-api-webapp/ws/"
     },{
         "name" => "Washington DC",
