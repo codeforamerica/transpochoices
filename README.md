@@ -73,11 +73,12 @@ Returns:
 Deploying
 ----------
 
-	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
-	heroku create --stack bamboo-mri-1.9.2 <appname>
-	or the following, to fix an existing app:
-	heroku stack:migrate bamboo-mri-1.9.2 <appname>
+Deployment is easy on Heroku.
 
+    heroku create your-app-name
+    git push heroku master
+    heroku config:set BING_KEY=your-bing-key
+    
 ## Assumptions
 
 ### Walking
