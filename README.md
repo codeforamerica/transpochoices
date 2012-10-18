@@ -6,18 +6,24 @@ calculations are only approximations and should be treated as such.
 
 Installation
 ------------
-    # Install the app
-    $ git@github.com:codeforamerica/transpochoices.git
-    $ cd transpochoices
-    $ bundle install
-    $ bundle exec rackup
 
-Open your web browser to http://localhost:9292/
+```bash
+git clone git@github.com:codeforamerica/transpochoices.git
+cd transpochoices
+bundle install
+bundle exec rackup
+```
 
-## <a name="ci">Continuous Integration</a>
-[![Build Status](https://secure.travis-ci.org/codeforamerica/transpochoices.png)](http://travis-ci.org/codeforamerica/transpochoices)
+Open your web browser to [localhost:9292](http://localhost:9292/)
 
-## API
+Continuous Integration
+----------------------
+
+[![Build Status]( https://secure.travis-ci.org/codeforamerica/transpochoices.png)](http://travis-ci.org/codeforamerica/transpochoices)
+
+API
+---
+
 	/info_for_route_bing?origin=<>&destination=<>
 
 Example:
@@ -53,7 +59,9 @@ Returns:
 		}
 	}
 
-## Deploying
+Deploying
+----------
+
 	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
 	heroku create --stack bamboo-mri-1.9.2 <appname>
 	or the following, to fix an existing app:
