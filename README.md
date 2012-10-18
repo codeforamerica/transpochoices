@@ -7,7 +7,18 @@ calculations are only approximations and should be treated as such.
 Installation
 ------------
 
+You'll need an API key for Bing maps.
+Get one at [bingmapsportal.com](http://bingmapsportal.com), then set an environment variable
+in your `.bashrc` or `.bash_profile` like so:
+
 ```bash
+export BING_KEY="your-bing-api-key"
+```
+
+Ruby 1.9.2 or greater is required to run this app. Install ruby, then:
+
+```bash
+gem install bundler
 git clone git@github.com:codeforamerica/transpochoices.git
 cd transpochoices
 bundle install
