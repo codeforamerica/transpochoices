@@ -6,18 +6,35 @@ calculations are only approximations and should be treated as such.
 
 Installation
 ------------
-    # Install the app
-    $ git@github.com:codeforamerica/transpochoices.git
-    $ cd transpochoices
-    $ bundle install
-    $ bundle exec rackup
 
-Open your web browser to http://localhost:9292/
+You'll need an API key for Bing maps.
+Get one at [bingmapsportal.com](http://bingmapsportal.com), then set an environment variable
+in your `.bashrc` or `.bash_profile` like so:
 
-## <a name="ci">Continuous Integration</a>
-[![Build Status](https://secure.travis-ci.org/codeforamerica/transpochoices.png)](http://travis-ci.org/codeforamerica/transpochoices)
+```bash
+export BING_KEY="your-bing-api-key"
+```
 
-## API
+Ruby 1.9.2 or greater is required to run this app. Install ruby, then:
+
+```bash
+gem install bundler
+git clone git@github.com:codeforamerica/transpochoices.git
+cd transpochoices
+bundle install
+bundle exec rackup
+```
+
+Open your web browser to [localhost:9292](http://localhost:9292/)
+
+Continuous Integration
+----------------------
+
+[![Build Status]( https://secure.travis-ci.org/codeforamerica/transpochoices.png)](http://travis-ci.org/codeforamerica/transpochoices)
+
+API
+---
+
 	/info_for_route_bing?origin=<>&destination=<>
 
 Example:
@@ -53,12 +70,15 @@ Returns:
 		}
 	}
 
-## Deploying
-	some features depend on ruby 1.9.2. to deploy on heroku, use the following when creating:
-	heroku create --stack bamboo-mri-1.9.2 <appname>
-	or the following, to fix an existing app:
-	heroku stack:migrate bamboo-mri-1.9.2 <appname>
+Deploying
+----------
 
+Deployment is easy on Heroku.
+
+    heroku create your-app-name
+    git push heroku master
+    heroku config:set BING_KEY=your-bing-key
+    
 ## Assumptions
 
 ### Walking
