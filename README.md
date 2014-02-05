@@ -99,7 +99,7 @@ Deployment is easy on Heroku.
 
 **Cost** - [$0.115 per mile][9]
 
-   [9]: http://www.kenkifer.com/bikepages/advocacy/autocost.htm
+   [9]: http://web.archive.org/web/20120407012804/http://www.kenkifer.com/bikepages/advocacy/autocost.htm
 
 **Time** - Calculated by [Bing Walking Routes API][10], then extrapolates biking time
 
